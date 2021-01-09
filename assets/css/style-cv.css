@@ -1,0 +1,223 @@
+*{
+    margin: 0em;
+    padding: 0em;
+    clear: both;
+}
+div, header, nav, ul, ol, li, main, article, aside, footer{
+    position: relative;
+    font-size: 14px;
+    list-style-type: none;
+}
+table{
+    position: relative;
+    width: 100%;
+    text-align: justify;
+    border-collapse: collapse;
+}
+tr, th, td{
+    color: #5e6472;
+    word-break: normal;
+}
+td{
+    padding: 5px;
+}
+td:first-child{
+    width: 105px;
+}
+.single-border-tabel{
+    border-left: 3px solid rgb(11, 181, 244);
+}
+.single-border-bottom-tabel{
+    border-bottom: 3px solid rgb(11, 181, 244);
+}
+.box-shadow{
+    border: 1px solid #bfbfbf;
+    background-color: #ffffff;
+    box-shadow: 0px 5px 5px #aaaaaa;
+}
+.icon {
+    position: absolute;
+    left: -20px;
+    top: 20%;
+}
+.container{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    background-color: #5e6472;
+}
+.back-to{
+    position: fixed;
+    display: inline-block;
+    top: 35%;
+    width: 50px;
+    height: 50px;
+}
+.back-to ul{
+    display: block;
+    width: inherit;
+}
+.back-to ul li{
+    position: relative;
+    display: inline-block;
+    background-color: rgb(11, 181, 244);
+    width: 50px;
+    height: 50px;
+    float: left;
+    width: inherit;
+    border-bottom: rgba(255,255,255,0.5) dotted 3px;
+}
+.back-to ul li:hover{
+    background-color: rgb(9, 145, 195);
+}
+.back-to ul li a{
+    display: inline-block;
+    padding: 0.8em;
+}
+.back-to span{
+    width: 28px;
+    left: 0;
+    display: inline-block;
+    position: relative;
+}
+.photo-profile{
+    display: inline-block;
+    margin: 1em;
+}
+.photo-profile img{
+    width: 150px;
+    height: 155px;
+    border: 5px solid #aed9e0;
+    border-radius: 50%;
+}
+main{
+    margin-top: 2em;
+    margin-bottom: 2em;
+    width: 70%;
+    left: 15%;
+    right: 15%;
+    height: 100%;
+    display: inline-flex;
+    border: 5px solid #ffffff;
+    border-radius: 2em;
+}
+.item-content{
+    float: left;
+    display: block;
+}
+.left-side{
+    width: 60%;
+    background-color: rgb(11, 181, 244);
+    border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
+    border: 5px solid #ffffff;
+    text-align: center;
+    display: inline-block;
+}
+.left-side .accumulation{
+    position: inherit;
+    width: 300px;
+    height: 2px;
+    border-radius: 50%;
+    display: inline-block;
+    background: #ffffff;
+    opacity: 75%;
+}
+.skill .title{
+    display: inline-block;
+}
+.skill-progress{
+    position: absolute;
+    width: 125px;
+    height: 5px;
+    display: inline-block;
+    background: #009fd9;
+    top: 7px;
+    right: 65px;
+}
+.skill-progress span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: rgb(255,255,255);
+}
+.skill-percent{
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+}
+.side-content{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.side-content .description ul{
+    display: inherit;
+}
+.side-content .description ul li{
+    display: inline-flex;
+    padding-top: 1em;
+    padding-left: 1em;
+}
+.side-content .description .profile li, .side-content .description .info{
+    text-align: left;
+    left: 15%;
+    width: 80%;
+}
+.side-content .description .profile .hobi{
+    display: inline;
+    right: 70px;
+}
+.side-content .description .profile .hobi li{
+    display: inline-block;
+    width: 75px;
+    padding-right: 1em;
+}
+.side-content .description .media-sosial img{
+    width: 25px;
+    padding-right: 1em;
+}
+.side-content .description .keahlian{
+    text-align: left;
+    margin: 1em;
+}
+.side-content .description .profile li, .side-content .description .keahlian li{
+    display: inline-block;
+    width: 100%;
+}
+.right-side{
+    width: 100%;
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
+}
+.right-content{
+    margin-top: 3em;
+}
+.right-content .accumulation{
+    position: absolute;
+    width: 175px;
+    height: 2px;
+    border-radius: 50%;
+    display: inline-block;
+    background: rgb(11, 181, 244);
+    opacity: 75%;
+}
+.right-content .description{
+    margin-top: 2em;
+    margin-left: 3em;
+    margin-right: 3em;
+    margin-bottom: 2em;
+}
+.right-content .description p{
+    color: #5e6472;
+    text-align: justify;
+    word-break: normal;
+}
+.left-accumulation{
+    left: 30px;
+    top: 12px;
+}
+.right-accumulation{
+    right: 30px;
+    top: 12px;
+}

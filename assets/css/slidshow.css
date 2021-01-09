@@ -1,0 +1,50 @@
+/* START CSS SLIDESHOW PHOTO W3SCHOOL.COM */
+.photos_container{
+	width: 100%;
+    height: 100vh;
+    margin: auto;
+    display: inline-block;
+}
+.slidesPhoto {display: none;}
+.slidesPhoto a img{
+	width: 100%;
+	height: 100vh;
+	object-fit: cover;
+}
+/* Slideshow container */
+.slideshow_container {
+	position: relative;
+	width: 100%;
+	height: auto;
+    display: inline-block;
+    margin: auto;
+}
+/* The dots/bullets/indicators */
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+.active {
+    background-color: #717171;
+}
+/* Fading animation */
+.opasity {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+@-webkit-keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+/* END CSS SLIDESHOW PHOTO W3SCHOOL.COM */
