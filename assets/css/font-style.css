@@ -1,0 +1,63 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+}
+a{
+    text-decoration: none;
+    color: #e63946;
+}
+a:hover{
+    color: #e94957;
+}
+h1, h2, h3, h4, h5, h6{
+    font-weight: 500;
+    display: inline-block;
+    color: #000000;
+    text-transform: capitalize;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+.main-menu nav ul li a{
+    color: #457b9d;
+    display: block;
+    font-weight: 500;
+    text-transform: capitalize;
+    padding: 14px 16px;
+}
+.main-menu nav ul li a:hover{
+    color: #3e6f8e;
+}
+.content-main .item-content .about-us{
+    color: #eff9eb;
+}
+.content-main .item-content .contact-person, .content-main .item-content .content-biography{
+    color: #000000;
+}
+.content-footer .item-content .copyright{
+    color: #eff9eb;
+    text-transform: capitalize;
+}
+.right-side{
+    text-align: center;
+}
+.right-side h2, .right-side h3, .right-side h4, .right-side h5{
+    color: rgb(11, 181, 244);   
+}
+.side-content .description h2{
+    color: #ffffff;
+}
+.side-content .description ul li a{
+    color: #ffffff;
+    text-decoration: underline;
+}
+.side-content .description ul li a:hover{
+    color: #e6e6e6;
+}
+.side-content .description{
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #ffffff;
+    font-weight: 500;
+    word-break: normal;
+}
