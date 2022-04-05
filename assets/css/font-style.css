@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6{
 .right-side{
     text-align: center;
 }
-.right-side h2, .right-side h3{
+.right-side h2, .right-side h3, .right-side h4, .right-side h5{
     color: rgb(11, 181, 244);   
 }
 .side-content .description h2{

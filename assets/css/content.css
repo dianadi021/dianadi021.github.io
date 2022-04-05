@@ -3,14 +3,12 @@
     width: 25px;
     height: 25px;
     background-size: cover;
-    position: absolute;
 }
 .logo{
     display: inline-block;
     width: 65px;
     height: 65px;
     background-size: cover;
-    position: absolute;
 }
 .white-icon{
     filter: brightness(0) invert(1);
