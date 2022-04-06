@@ -11,7 +11,7 @@
 .border-div-custom-me{
     border-bottom: 1.5px solid #ffffff;
 }
-#community a:hover{
+#community div div h4 a:hover{
     text-decoration: none !important;
     color: #155d74 !important;
 }
