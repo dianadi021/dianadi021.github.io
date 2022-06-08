@@ -1,1 +1,0 @@
-alert('selamat datang di curriculum vitae sedarhanaku!');
