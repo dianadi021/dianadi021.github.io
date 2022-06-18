@@ -109,10 +109,10 @@
                       </thead> 
                       <tbody>
                         <tr id='choice-1'><th scope='row'>1</th><td>
-                          <input type='text' class='form-control choices'  placeholder="name 1" id='choices-1'>
+                          <input type='text' class='form-control choices' value="name 1" id='choices-1'>
                         </td></tr>
                         <tr id='choice-2'><th scope='row'>2</th><td>
-                          <input type='text' class='form-control choices' placeholder="name 2" id='choices-2'>
+                          <input type='text' class='form-control choices' value="name 2" id='choices-2'>
                         </td></tr>
                       </tbody>
                     </table> 
@@ -146,12 +146,12 @@
                     </thead> 
                     <tbody>
                       <tr id='indicator-1'><th scope='row'>1</th><td>
-                        <input type="text" class="form-control indicator-name" id="indicator-name-1"></td><td>
+                        <input type="text" class="form-control indicator-name" value="name 1" id="indicator-name-1"></td><td>
                           <input type="checkbox" class="indicator-negatif" id="indicator-negatif-1"></td> <td>
                             <input type="number" class="form-control indicator-weight" id="indicator-weight-1" value="1"></td> <td>
                               <input type="checkbox" class="indicator-qualitative" id="indicator-qualitative-1"></td></tr>
                       <tr id='indicator-2'><th scope='row'>2</th><td>
-                        <input type="text" class="form-control indicator-name" id="indicator-name-2"></td><td>
+                        <input type="text" class="form-control indicator-name" value="name 2" id="indicator-name-2"></td><td>
                           <input type="checkbox" class="indicator-negatif" id="indicator-negatif-2"></td> <td>
                             <input type="number" class="form-control indicator-weight" id="indicator-weight-2" value="1"></td> <td>
                               <input type="checkbox" class="indicator-qualitative" id="indicator-qualitative-2"></td></tr>
@@ -172,21 +172,24 @@
               <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                 <div class="accordion-body">
                   <table class="table table-bordered matrix" id="matrix_table">
-                    <thead id="valueIndicatorName"><tr><th></th> <th>
-                    name 1
-                    </th><th>
-                    name 2
-                    </th></tr>
+                    <thead>
+                      <tr id="valueChoicesName">
+                        <th></th>
+                        <th>name 1</th>
+                        <th>name 2</th>
+                      </tr>
                   </thead> 
-                    <tbody><tr><th scope="row ">
-                    name 1
-                    </th> <td>
-                      <input type="number" class="form-control matrix-1" value="1" id="matrix-1-1"> <!----></td><td>
-                        <input type="number" class="form-control matrix-1" value="1" id="matrix-1-2"> <!----></td></tr><tr><th scope="row ">
-                    name 2
-                    </th> <td>
-                      <input type="number" class="form-control matrix-2" value="1" id="matrix-2-1"> <!----></td><td>
-                        <input type="number" class="form-control matrix-2" value="1" id="matrix-2-2"> <!----></td></tr> <tr></tr>
+                    <tbody id="valueIndicatorName">
+                      <tr class="rowsFormCols" id="rowsFormCols-1">
+                        <th>name 1</th>
+                        <td><input type="number" class="form-control matrix-1" value="1" id="matrix-1-1"></td>
+                        <td><input type="number" class="form-control matrix-1" value="1" id="matrix-1-2"></td>
+                      </tr>
+                      <tr class="rowsFormCols" id="rowsFormCols-2">
+                        <th>name 2</th>
+                        <td><input type="number" class="form-control matrix-2" value="1" id="matrix-2-1"></td>
+                        <td><input type="number" class="form-control matrix-2" value="1" id="matrix-2-2"></td>
+                      </tr>
                   </tbody>
                 </table>
                 </div>
