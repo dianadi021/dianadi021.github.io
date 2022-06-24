@@ -122,7 +122,7 @@ $(document).ready(function(){
     for (let iLoopIndicator = 1; iLoopIndicator <= indicatorNameArrayLength; iLoopIndicator++) {
       innerHTMLChangeIndicatorName += `<tr class="rowsFormCols" id="rowsFormCols-`+iLoopIndicator+`"><th>`+document.getElementById("indicator-name-"+iLoopIndicator).value+`</th>`;
       for (let iLoopChoices = 1; iLoopChoices <= choicesArrayLength; iLoopChoices++) {
-        innerHTMLChangeIndicatorName += `<td><input type="number" class="form-control matrix-`+iLoopIndicator+`" value="1" id="matrix-`+iLoopIndicator+`-`+iLoopChoices+`"></td>`;
+        innerHTMLChangeIndicatorName += `<td><input type="number" class="form-control matrix_`+iLoopIndicator+`" value="1" id="matrix_`+iLoopIndicator+`-`+iLoopChoices+`"></td>`;
       };
       innerHTMLChangeIndicatorName += `</tr>`;
     };
