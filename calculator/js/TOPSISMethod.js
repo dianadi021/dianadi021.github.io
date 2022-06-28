@@ -37,7 +37,7 @@ function popup_result_TOPSIS() {
   
 
 
-  var arrayIndicatorJSONData = '{"MatrixAll":[],"nilaiKuadratBasic":[]}';
+  var arrayIndicatorJSONData = '{"MatrixAll":[],"nilaiKuadratBasic":[],"nilaiTernormalisasi":[]}';
   var objIndicator = JSON.parse(arrayIndicatorJSONData);
 
   
@@ -74,12 +74,17 @@ function popup_result_TOPSIS() {
     var tempNameIndicator = document.getElementById("indicator-name-"+iIndicatorLength).value;
     for (let iChoicesLength = 1; iChoicesLength <= choicesArrayLength; iChoicesLength++) {
       var tempNameChoices = document.getElementById("choices-"+iChoicesLength).value;
-      let arrayTempValueKuadrat = document.getElementById("matrix_"+iIndicatorLength+"-"+iChoicesLength).value*document.getElementById("matrix_"+iIndicatorLength+"-"+iChoicesLength).value;
+      let arrayTempValueKuadrat = document.getElementById("matrix_"+iIndicatorLength+"-"+iChoicesLength).value;
 
       objIndicator['MatrixAll'].push({"Matrix":matrixName,"MatrixOf":tempNameIndicator,"Value":arrayTempValueKuadrat,"Choice":tempNameChoices});
       arrayIndicatorJSONData = JSON.stringify(objIndicator);
     };
   };
+  /* LOOPING UNTUK MENYIMPAN DARI FORM KE DALAM ARRAY DALAM BENTUK BASIC KUADRAT*/
+
+
+
+
 
 
 
@@ -88,20 +93,80 @@ function popup_result_TOPSIS() {
   /* LOOPING UNTUK MENGHITUNG KUADRAT PEMBAGI*/
   for (let iIndicatorLength = 1; iIndicatorLength <= indicatorArrayLength; iIndicatorLength++) {
     var matrixName = 'Matrix_'+iIndicatorLength;
+    var tempNameIndicator = document.getElementById("indicator-name-"+iIndicatorLength).value;
     let tempHitungKuadrat = 0;
     for (let iMatrixAll = 0; iMatrixAll < matrixArrayLength; iMatrixAll++) {
       if (objIndicator.MatrixAll[iMatrixAll].Matrix == matrixName) {
-        tempHitungKuadrat = tempHitungKuadrat+objIndicator.MatrixAll[iMatrixAll].Value;
+        let arrayTempValueKuadrat = objIndicator.MatrixAll[iMatrixAll].Value*objIndicator.MatrixAll[iMatrixAll].Value;
+        tempHitungKuadrat = tempHitungKuadrat+arrayTempValueKuadrat;
       };
     };
-    console.log(Math.sqrt(tempHitungKuadrat));
+    objIndicator['nilaiKuadratBasic'].push({"Matrix":matrixName,"MatrixOf":tempNameIndicator,"Value":tempHitungKuadrat,"KuadratBasic":Math.sqrt(tempHitungKuadrat)});
+    arrayIndicatorJSONData = JSON.stringify(objIndicator);
+    /*console.log(Math.sqrt(tempHitungKuadrat));*/
   };
+  /* LOOPING UNTUK MENGHITUNG KUADRAT PEMBAGI*/
+                  /* END*/
   
 
   
 
 
 
+
+
+
+
+
+
+
+
+          
+  /* LOOPING UNTUK MENGHITUNG TERNORMALISASI*/                
+
+
+  for (let iIndicatorLength = 1; iIndicatorLength <= indicatorArrayLength; iIndicatorLength++) {
+    var matrixName = 'Matrix_'+iIndicatorLength;
+    var tempNameIndicator = document.getElementById("indicator-name-"+iIndicatorLength).value;
+    let tempHitungTernormalisasi = 0;
+    for (let iMatrixAll = 0; iMatrixAll < matrixArrayLength; iMatrixAll++) {
+      if (objIndicator.MatrixAll[iMatrixAll].Matrix == matrixName) {
+        tempHitungTernormalisasi = objIndicator.MatrixAll[iMatrixAll].Value/objIndicator.nilaiKuadratBasic[iIndicatorLength-1].KuadratBasic;
+        objIndicator['nilaiTernormalisasi'].push({"Matrix":matrixName,"MatrixOf":tempNameIndicator,"Value":tempHitungTernormalisasi});
+        arrayIndicatorJSONData = JSON.stringify(objIndicator);
+        /*console.log(tempHitungTernormalisasi);*/
+      };
+    };
+  };
+
+
+  /* LOOPING UNTUK MENGHITUNG TERNORMALISASI*/                
+                    /* END*/
+
+
+  
+                
+                    
+
+
+
+
+
+
+
+
+  /* LOOPING UNTUK MENGHITUNG TERBOBOT*/                
+
+
+  
+
+
+
+  /* LOOPING UNTUK MENGHITUNG TERBOBOT*/                
+                    /* END*/
+
+
+  /*console.log(objIndicator);*/
 
  
 
@@ -110,9 +175,6 @@ function popup_result_TOPSIS() {
 
 
 
-
-
-  console.log(objIndicator.MatrixAll);
 
   
 
