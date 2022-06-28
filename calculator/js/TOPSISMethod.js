@@ -37,7 +37,7 @@ function popup_result_TOPSIS() {
   
 
 
-  var arrayIndicatorJSONData = '{"MatrixAll":[],"nilaiKuadratBasic":[],"nilaiTernormalisasi":[]}';
+  var arrayIndicatorJSONData = '{"MatrixAll":[],"nilaiKuadratBasic":[],"nilaiTernormalisasi":[],"nilaiTerbobot":[],"maxMinPlusNegatif":[]}';
   var objIndicator = JSON.parse(arrayIndicatorJSONData);
 
   
@@ -74,7 +74,7 @@ function popup_result_TOPSIS() {
     var tempNameIndicator = document.getElementById("indicator-name-"+iIndicatorLength).value;
     for (let iChoicesLength = 1; iChoicesLength <= choicesArrayLength; iChoicesLength++) {
       var tempNameChoices = document.getElementById("choices-"+iChoicesLength).value;
-      let arrayTempValueKuadrat = document.getElementById("matrix_"+iIndicatorLength+"-"+iChoicesLength).value;
+      let arrayTempValueKuadrat = parseFloat(document.getElementById("matrix_"+iIndicatorLength+"-"+iChoicesLength).value);
 
       objIndicator['MatrixAll'].push({"Matrix":matrixName,"MatrixOf":tempNameIndicator,"Value":arrayTempValueKuadrat,"Choice":tempNameChoices});
       arrayIndicatorJSONData = JSON.stringify(objIndicator);
@@ -97,10 +97,12 @@ function popup_result_TOPSIS() {
     let tempHitungKuadrat = 0;
     for (let iMatrixAll = 0; iMatrixAll < matrixArrayLength; iMatrixAll++) {
       if (objIndicator.MatrixAll[iMatrixAll].Matrix == matrixName) {
-        let arrayTempValueKuadrat = objIndicator.MatrixAll[iMatrixAll].Value*objIndicator.MatrixAll[iMatrixAll].Value;
+        let arrayTempValueKuadrat = parseFloat(objIndicator.MatrixAll[iMatrixAll].Value)*parseFloat(objIndicator.MatrixAll[iMatrixAll].Value);
         tempHitungKuadrat = tempHitungKuadrat+arrayTempValueKuadrat;
       };
     };
+
+    /*  PUSH TO NILAI KUADRAT BASIC   */
     objIndicator['nilaiKuadratBasic'].push({"Matrix":matrixName,"MatrixOf":tempNameIndicator,"Value":tempHitungKuadrat,"KuadratBasic":Math.sqrt(tempHitungKuadrat)});
     arrayIndicatorJSONData = JSON.stringify(objIndicator);
     /*console.log(Math.sqrt(tempHitungKuadrat));*/
@@ -125,19 +127,24 @@ function popup_result_TOPSIS() {
   /* LOOPING UNTUK MENGHITUNG TERNORMALISASI*/                
 
 
+
+
   for (let iIndicatorLength = 1; iIndicatorLength <= indicatorArrayLength; iIndicatorLength++) {
     var matrixName = 'Matrix_'+iIndicatorLength;
+    let tempIndexIndicatorArry = iIndicatorLength-1;
     var tempNameIndicator = document.getElementById("indicator-name-"+iIndicatorLength).value;
     let tempHitungTernormalisasi = 0;
     for (let iMatrixAll = 0; iMatrixAll < matrixArrayLength; iMatrixAll++) {
       if (objIndicator.MatrixAll[iMatrixAll].Matrix == matrixName) {
-        tempHitungTernormalisasi = objIndicator.MatrixAll[iMatrixAll].Value/objIndicator.nilaiKuadratBasic[iIndicatorLength-1].KuadratBasic;
-        objIndicator['nilaiTernormalisasi'].push({"Matrix":matrixName,"MatrixOf":tempNameIndicator,"Value":tempHitungTernormalisasi});
+        tempHitungTernormalisasi = objIndicator.MatrixAll[iMatrixAll].Value/objIndicator.nilaiKuadratBasic[tempIndexIndicatorArry].KuadratBasic;
+        objIndicator['nilaiTernormalisasi'].push({"Matrix":objIndicator.MatrixAll[iMatrixAll].Choice,"MatrixOf":tempNameIndicator,"Value":tempHitungTernormalisasi});
         arrayIndicatorJSONData = JSON.stringify(objIndicator);
         /*console.log(tempHitungTernormalisasi);*/
       };
     };
   };
+
+
 
 
   /* LOOPING UNTUK MENGHITUNG TERNORMALISASI*/                
@@ -155,10 +162,33 @@ function popup_result_TOPSIS() {
 
 
 
-  /* LOOPING UNTUK MENGHITUNG TERBOBOT*/                
+  /* LOOPING UNTUK MENGHITUNG TERBOBOT*/         
+  /* PADA BAGIAN INI HARUS DI *1 JIKA ITU PROFIT JIKA COST *-1 */
 
 
-  
+
+  for (let iIndicatorLength = 1; iIndicatorLength <= indicatorArrayLength; iIndicatorLength++) {
+    var tempNameIndicator = document.getElementById("indicator-name-"+iIndicatorLength).value;
+    var tempWeightIndicator = document.getElementById("indicator-weight-"+iIndicatorLength).value;
+    var tempIfIndicator = document.getElementById("indicator-negatif-"+iIndicatorLength).checked;
+    let tempHitungTernormalisasi = 0;
+    for (let iMatrixAll = 0; iMatrixAll < matrixArrayLength; iMatrixAll++) {
+      if (objIndicator.nilaiTernormalisasi[iMatrixAll].MatrixOf == tempNameIndicator) {
+        if (tempIfIndicator == true) {
+          tempHitungTernormalisasi = objIndicator.nilaiTernormalisasi[iMatrixAll].Value*tempWeightIndicator*-1;
+          objIndicator['nilaiTerbobot'].push({"Matrix":objIndicator.MatrixAll[iMatrixAll].Choice,"MatrixOf":tempNameIndicator,"Value":tempHitungTernormalisasi});
+          arrayIndicatorJSONData = JSON.stringify(objIndicator);
+          /*console.log(tempHitungTernormalisasi);*/
+        } else {
+          tempHitungTernormalisasi = objIndicator.nilaiTernormalisasi[iMatrixAll].Value*tempWeightIndicator*1;
+          objIndicator['nilaiTerbobot'].push({"Matrix":objIndicator.MatrixAll[iMatrixAll].Choice,"MatrixOf":tempNameIndicator,"Value":tempHitungTernormalisasi});
+          arrayIndicatorJSONData = JSON.stringify(objIndicator);
+          /*console.log(tempHitungTernormalisasi);*/
+        };
+      };
+    };
+  };
+
 
 
 
@@ -166,7 +196,35 @@ function popup_result_TOPSIS() {
                     /* END*/
 
 
-  /*console.log(objIndicator);*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  console.log(objIndicator);
 
  
 

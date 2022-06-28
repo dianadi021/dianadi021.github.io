@@ -45,8 +45,8 @@ $(document).ready(function(){
       $('#indicator_field').append(`<tr id='indicator-`+indicator+`'><th scope='row'>`+indicator+`</th><td>
       <input type="text" class="form-control handleChangeGlobal indicator-name" value='name `+indicator+`' id="indicator-name-`+indicator+`"></td><td>
       <input type="checkbox" class="indicator-negatif" id="indicator-negatif-`+indicator+`"></td> <td>
-      <input type="number" class="form-control indicator-weight" value="1" id="indicator-weight-`+indicator+`"></td> <td>
-       <input type="checkbox" class="indicator-qualitative" id="indicator-qualitative-`+indicator+`"></td></tr>`);
+      <input type="number" class="form-control indicator-weight" value="1" id="indicator-weight-`+indicator+`"></td> <!--<td>
+       <input type="checkbox" class="indicator-qualitative" id="indicator-qualitative-`+indicator+`"></td>--></tr>`);
       indicator++;
      if (indicator>2) {
        document.getElementById("remove-indicator").removeAttribute("disabled");
