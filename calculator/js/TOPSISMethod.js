@@ -1,4 +1,5 @@
-/*const elementChoicesValue = new Array();
+/*
+const elementChoicesValue = new Array();
 const choicesArrayLength = document.getElementsByClassName("choices").length;
 const elementIndicatorNameValue = new Array();
 const indicatorNameArrayLength = document.getElementsByClassName("indicator-name").length;
@@ -25,34 +26,101 @@ const indicatorQualitativeArrayLength = document.getElementsByClassName("indicat
 
 
 
+
+
+
+
+
 /* MENAMPILKAN HASIL PERHITUNGAN */
 
 function popup_result_TOPSIS() {
-var fs = require("fs");
+  
+
+
+  var arrayIndicatorJSONData = '{"MatrixAll":[],"nilaiKuadratBasic":[]}';
+  var objIndicator = JSON.parse(arrayIndicatorJSONData);
 
   
-  /* MELAKUKAN PERHITUNGAN DENGAN LOOPING */
-  /* NILAI PEMBAGI (KUADRAT) */
-  var arrayIndicatorJSONData = '{"Matrix":[{"Matrix_":"0","value":"0"}]}';
-  const arrayValue = new Array();
-  const indicatorNameArrayLength = document.getElementsByClassName("indicator-name").length;
+  const matrixArrayLength = document.getElementsByClassName("matrixAll").length;
+  const indicatorArrayLength = document.getElementsByClassName("indicator-name").length;
   const choicesArrayLength = document.getElementsByClassName("choices").length;
 
-  for (let iLoopIndicator = 1; iLoopIndicator <= indicatorNameArrayLength; iLoopIndicator++) {
-    var matrixName = "Matrix_"+iLoopIndicator;
-    for (let iLoopChoices = 1; iLoopChoices <= choicesArrayLength; iLoopChoices++) {
-      arrayValue[iLoopIndicator] = document.getElementById("matrix_"+iLoopIndicator+"-"+iLoopChoices).value;
-      /*console.log(arrayValue[iLoopIndicator]);*/
-      
-      
-      var obj = JSON.parse(arrayIndicatorJSONData);
-      obj['Matrix'].push({"Matrix_":iLoopIndicator,"value":arrayValue[iLoopIndicator]});
-      arrayIndicatorJSONData = JSON.stringify(obj);
 
+
+
+
+  /*
+  LOOPING TESTING MENGETAHUI ARRAY MATRIX YANG ADA
+
+  for (let iIndicatorLength = 1; iIndicatorLength <= indicatorArrayLength; iIndicatorLength++) {
+    for (let iChoicesLength = 1; iChoicesLength <= choicesArrayLength; iChoicesLength++) {
+      console.log(iIndicatorLength+" - "+iChoicesLength);
+      console.log(document.getElementById("matrix_"+iIndicatorLength+"-"+iChoicesLength).value);
     };
   };
 
-  console.log(arrayIndicatorJSONData);
+
+  END
+  */
+
+
+  
+
+
+
+  /* LOOPING UNTUK MENYIMPAN DARI FORM KE DALAM ARRAY DALAM BENTUK BASIC KUADRAT*/
+  for (let iIndicatorLength = 1; iIndicatorLength <= indicatorArrayLength; iIndicatorLength++) {
+    var matrixName = 'Matrix_'+iIndicatorLength;
+    var tempNameIndicator = document.getElementById("indicator-name-"+iIndicatorLength).value;
+    for (let iChoicesLength = 1; iChoicesLength <= choicesArrayLength; iChoicesLength++) {
+      var tempNameChoices = document.getElementById("choices-"+iChoicesLength).value;
+      let arrayTempValueKuadrat = document.getElementById("matrix_"+iIndicatorLength+"-"+iChoicesLength).value*document.getElementById("matrix_"+iIndicatorLength+"-"+iChoicesLength).value;
+
+      objIndicator['MatrixAll'].push({"Matrix":matrixName,"MatrixOf":tempNameIndicator,"Value":arrayTempValueKuadrat,"Choice":tempNameChoices});
+      arrayIndicatorJSONData = JSON.stringify(objIndicator);
+    };
+  };
+
+
+
+
+
+  /* LOOPING UNTUK MENGHITUNG KUADRAT PEMBAGI*/
+  for (let iIndicatorLength = 1; iIndicatorLength <= indicatorArrayLength; iIndicatorLength++) {
+    var matrixName = 'Matrix_'+iIndicatorLength;
+    let tempHitungKuadrat = 0;
+    for (let iMatrixAll = 0; iMatrixAll < matrixArrayLength; iMatrixAll++) {
+      if (objIndicator.MatrixAll[iMatrixAll].Matrix == matrixName) {
+        tempHitungKuadrat = tempHitungKuadrat+objIndicator.MatrixAll[iMatrixAll].Value;
+      };
+    };
+    console.log(Math.sqrt(tempHitungKuadrat));
+  };
+  
+
+  
+
+
+
+
+ 
+
+
+  
+
+
+
+
+
+  console.log(objIndicator.MatrixAll);
+
+  
+
+
+
+
+
+  
 
 
 
@@ -69,11 +137,17 @@ var fs = require("fs");
   linkElement.click();
   END DOWNLOAD FILE*/
 
-  fs.writeFile ("./calculator/topsisDB.json", JSON.stringify(arrayIndicatorJSONData), function(err) {
+
+
+
+
+
+  /*var fs = require("fs");*/
+  /*fs.writeFile ("./calculator/topsisDB.json", JSON.stringify(arrayIndicatorJSONData), function(err) {
     if (err) throw err;
     console.log('complete');
     }
-  );
+  );*/
 
 
   
@@ -104,14 +178,19 @@ var fs = require("fs");
         </div>
       </div>
   `;
-}
+};
+
+
+
+
+
 
 function TOPSISMethod() {
     popup_result_TOPSIS()
     document.getElementById("popup_result").style.width = "100%";
-}
+};
 
 
 function closeNav() {
   document.getElementById("popup_result").style.width = "0%";
-}
+};

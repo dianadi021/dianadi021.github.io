@@ -7,7 +7,7 @@ $(document).ready(function(){
          alert("Mohon maaf, maksimal input hanya 7")
        } else {
         $('#choice_field').append(`<tr id='choice-`+choice+`'><th scope='row'>`+choice+`</th><td>
-        <input type='text' class='form-control choices' value='name `+choice+`' id='choices-`+choice+`'>
+        <input type='text' class='form-control handleChangeGlobal choices' value='name `+choice+`' id='choices-`+choice+`'>
       </td></tr>`);
       choice++;
         if (choice>2) {
@@ -43,7 +43,7 @@ $(document).ready(function(){
       alert("Mohon maaf, maksimal input hanya 7")
     } else {
       $('#indicator_field').append(`<tr id='indicator-`+indicator+`'><th scope='row'>`+indicator+`</th><td>
-      <input type="text" class="form-control indicator-name" value='name `+indicator+`' id="indicator-name-`+indicator+`"></td><td>
+      <input type="text" class="form-control handleChangeGlobal indicator-name" value='name `+indicator+`' id="indicator-name-`+indicator+`"></td><td>
       <input type="checkbox" class="indicator-negatif" id="indicator-negatif-`+indicator+`"></td> <td>
       <input type="number" class="form-control indicator-weight" value="1" id="indicator-weight-`+indicator+`"></td> <td>
        <input type="checkbox" class="indicator-qualitative" id="indicator-qualitative-`+indicator+`"></td></tr>`);
@@ -101,8 +101,23 @@ $(document).ready(function(){
 
 
 
+    handleChange();
+  });
+});
 
-    /*----- AUTO FORM MATRIX NAME AND INDICATOR VALUE -----*/
+
+
+
+
+
+
+
+
+
+
+
+function handleChange() {
+  /*----- AUTO FORM MATRIX NAME AND INDICATOR VALUE -----*/
     /*----- START -----*/
     var innerHTMLChangeChoicesName = "<th></th>";
     const choicesArrayLength = document.getElementsByClassName("choices").length;
@@ -122,7 +137,7 @@ $(document).ready(function(){
     for (let iLoopIndicator = 1; iLoopIndicator <= indicatorNameArrayLength; iLoopIndicator++) {
       innerHTMLChangeIndicatorName += `<tr class="rowsFormCols" id="rowsFormCols-`+iLoopIndicator+`"><th>`+document.getElementById("indicator-name-"+iLoopIndicator).value+`</th>`;
       for (let iLoopChoices = 1; iLoopChoices <= choicesArrayLength; iLoopChoices++) {
-        innerHTMLChangeIndicatorName += `<td><input type="number" class="form-control matrix_`+iLoopIndicator+`" value="1" id="matrix_`+iLoopIndicator+`-`+iLoopChoices+`"></td>`;
+        innerHTMLChangeIndicatorName += `<td><input type="number" class="form-control matrixAll Matrix_`+iLoopIndicator+`" value="1" id="matrix_`+iLoopIndicator+`-`+iLoopChoices+`"></td>`;
       };
       innerHTMLChangeIndicatorName += `</tr>`;
     };
@@ -133,7 +148,4 @@ $(document).ready(function(){
 
     /*----- AUTO FORM MATRIX NAME AND INDICATOR VALUE -----*/
     /*----- END -----*/
-
-      
-  });
-});
+};
