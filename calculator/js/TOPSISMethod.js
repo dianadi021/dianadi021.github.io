@@ -329,7 +329,7 @@ function popup_result_TOPSIS() {
                     </div>
                     <div class="col result_TOPSIS">
                       <div role="alert" class="alert alert-success">
-                        Best Choice is <strong>`;
+                      <strong>Pilihan Terbaik</strong> adalah <strong>`;
                         var innerHTMLSimpleResultMiddle = `
                         </div>
                         <div role="alert" class="alert alert-warning">
@@ -362,7 +362,7 @@ function popup_result_TOPSIS() {
                     </div>
                     <div class="col result_TOPSIS">
                       <div role="alert" class="alert alert-success">
-                        Best Choice is <strong>`;
+                      <strong>Pilihan Terbaik</strong> adalah <strong>`;
                         var innerHTMLFullResultMiddle = `
                         </div>
                         </div>
@@ -380,14 +380,15 @@ function popup_result_TOPSIS() {
               
                     if (bestChoiceValue == objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].NilaiPreferensi) {
                       var bestChoiceName = objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].Choice;
-                      innerHTMLSimpleResultFirst += bestChoiceName+`</strong> With score <strong>`+bestChoiceValue+`</strong></br>`;
+                      innerHTMLSimpleResultFirst += bestChoiceName+`</strong> dengan nilai <strong>`+bestChoiceValue+`</strong></br>`;
                     };
               
-                    if (objIndicator.nilaiTernormalisasi[iChoicesLength-1].Value == 0.7071067811865475) {
+                    innerHTMLSimpleResultMiddle += `<li class="list-group-item "><strong>`+objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].Choice+`</strong> dengan nilai <strong>`+objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].NilaiPreferensi+`</strong></li>`;
+                    /*if (objIndicator.nilaiTernormalisasi[iChoicesLength-1].Value == 0.7071067811865475) {
                       innerHTMLSimpleResultMiddle = innerHTMLSimpleResultMiddle;
                     }else{
-                      innerHTMLSimpleResultMiddle += `<li class="list-group-item "><strong>`+objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].Choice+`</strong> With score <strong>`+objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].NilaiPreferensi+`</strong></li>`;
-                    };
+                      
+                    };*/
                     /*innerHTMLSimpleResultMiddle += `<li class="list-group-item "><strong>`+objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].Choice+`</strong> With score <strong>`+objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].NilaiPreferensi+`</strong></li>`;*/
               
                   };
