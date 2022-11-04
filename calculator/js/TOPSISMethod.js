@@ -314,97 +314,88 @@ function popup_result_TOPSIS() {
 
 
 
-  /*var fs = require("fs");*/
-  /*fs.writeFile ("./calculator/topsisDB.json", JSON.stringify(arrayIndicatorJSONData), function(err) {
-    if (err) throw err;
-    console.log('complete');
-    }
-  );*/
-
-
-  var innerHTMLSimpleResultFirst = `<!-- POPUP RESULT -->
-  <div class="container result_TOPSIS_container">
-    <div class="row">
-      <div class="col-12 header_result_close">
-        <div class="row">
-          <div class="col-10">
-            <h4>TOPSIS ANALYSIS</h4>
-          </div>
-          <div class="col closebtn">
-            <a href="javascript:void(0)" onclick="closeNav()">&times;</a>
-          </div>
-        </div>
-      </div>
-      <div class="col result_TOPSIS">
-        <div role="alert" class="alert alert-success">
-          Best Choice is <strong>`;
-          var innerHTMLSimpleResultMiddle = `
-          </div>
-          <div role="alert" class="alert alert-warning">
-          <ul class="list-group">`;
-          var innerHTMLSimpleResultLast = `</ul>
-          </div>
-          <!--<button type="button" data-toggle="modal" data-target="#topsisFullResult" class="btn btn-info btn-lg btn-block" onclick="openFullResult()">Full Calculation Result <span class="oi oi-eye "></span></button>-->
-          <a id="downloadJSON" onclick="exportJson(this);" type="button" data-toggle="modal" data-target="#topsisFullResult" class="btn btn-info btn-lg btn-block">Download File JSON <span class="oi oi-eye "></span></button></a>
-        </div>
-      </div>
-    </div>`;
-
-
-
-
-
-
-    var innerHTMLFullResultFirst = `<!-- POPUP RESULT -->
-  <div class="container result_TOPSIS_container">
-    <div class="row">
-      <div class="col-12 header_result_close">
-        <div class="row">
-          <div class="col-10">
-            <h4>TOPSIS FULL ANALYSIS</h4>
-          </div>
-          <div class="col closebtn">
-            <a href="javascript:void(0)" onclick="closeFullResult()">&times;</a>
-          </div>
-        </div>
-      </div>
-      <div class="col result_TOPSIS">
-        <div role="alert" class="alert alert-success">
-          Best Choice is <strong>`;
-          var innerHTMLFullResultMiddle = `
-          </div>
-          </div>
-      </div>
-    </div>
-          `;
-
-
-    for (let iChoicesLength = 1; iChoicesLength <= choicesArrayLength; iChoicesLength++) {
-      let allChoicesValue = new Array();
-      for (let iChoicesLength = 1; iChoicesLength <= choicesArrayLength; iChoicesLength++) {
-        allChoicesValue.push(objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].NilaiPreferensi);
-      };
-      let bestChoiceValue = Math.max.apply(Math, allChoicesValue);
-
-      if (bestChoiceValue == objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].NilaiPreferensi) {
-        var bestChoiceName = objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].Choice;
-        innerHTMLSimpleResultFirst += bestChoiceName+`</strong> With score <strong>`+bestChoiceValue+`</strong></br>`;
-      };
-
-      if (objIndicator.nilaiTernormalisasi[iChoicesLength-1].Value == 0.7071067811865475) {
-        innerHTMLSimpleResultMiddle = innerHTMLSimpleResultMiddle;
-      }else{
-        innerHTMLSimpleResultMiddle += `<li class="list-group-item "><strong>`+objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].Choice+`</strong> With score <strong>`+objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].NilaiPreferensi+`</strong></li>`;
-      };
-      /*innerHTMLSimpleResultMiddle += `<li class="list-group-item "><strong>`+objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].Choice+`</strong> With score <strong>`+objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].NilaiPreferensi+`</strong></li>`;*/
-
-    };
-
-
-  document.getElementById("popup_result").innerHTML = innerHTMLSimpleResultFirst+innerHTMLSimpleResultMiddle+innerHTMLSimpleResultLast;
-/*  document.getElementById("popup_full_result").innerHTML = ;*/
-};
-
+                var innerHTMLSimpleResultFirst = `<!-- POPUP RESULT -->
+                <div class="container result_TOPSIS_container">
+                  <div class="row">
+                    <div class="col-12 header_result_close">
+                      <div class="row">
+                        <div class="col-10">
+                          <h4>TOPSIS ANALYSIS</h4>
+                        </div>
+                        <div class="col closebtn">
+                          <a href="javascript:void(0)" onclick="closeNav()">&times;</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col result_TOPSIS">
+                      <div role="alert" class="alert alert-success">
+                        Best Choice is <strong>`;
+                        var innerHTMLSimpleResultMiddle = `
+                        </div>
+                        <div role="alert" class="alert alert-warning">
+                        <ul class="list-group">`;
+                        var innerHTMLSimpleResultLast = `</ul>
+                        </div>
+                        <!--<button type="button" data-toggle="modal" data-target="#topsisFullResult" class="btn btn-info btn-lg btn-block" onclick="openFullResult()">Full Calculation Result <span class="oi oi-eye "></span></button>-->
+                        <a id="downloadJSON" onclick="exportJson(this);" type="button" data-toggle="modal" data-target="#topsisFullResult" class="btn btn-info btn-lg btn-block">Download File JSON <span class="oi oi-eye "></span></button></a>
+                      </div>
+                    </div>
+                  </div>`;
+              
+              
+              
+              
+              
+              
+                  var innerHTMLFullResultFirst = `<!-- POPUP RESULT -->
+                <div class="container result_TOPSIS_container">
+                  <div class="row">
+                    <div class="col-12 header_result_close">
+                      <div class="row">
+                        <div class="col-10">
+                          <h4>TOPSIS FULL ANALYSIS</h4>
+                        </div>
+                        <div class="col closebtn">
+                          <a href="javascript:void(0)" onclick="closeFullResult()">&times;</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col result_TOPSIS">
+                      <div role="alert" class="alert alert-success">
+                        Best Choice is <strong>`;
+                        var innerHTMLFullResultMiddle = `
+                        </div>
+                        </div>
+                    </div>
+                  </div>
+                        `;
+              
+              
+                  for (let iChoicesLength = 1; iChoicesLength <= choicesArrayLength; iChoicesLength++) {
+                    let allChoicesValue = new Array();
+                    for (let iChoicesLength = 1; iChoicesLength <= choicesArrayLength; iChoicesLength++) {
+                      allChoicesValue.push(objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].NilaiPreferensi);
+                    };
+                    let bestChoiceValue = Math.max.apply(Math, allChoicesValue);
+              
+                    if (bestChoiceValue == objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].NilaiPreferensi) {
+                      var bestChoiceName = objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].Choice;
+                      innerHTMLSimpleResultFirst += bestChoiceName+`</strong> With score <strong>`+bestChoiceValue+`</strong></br>`;
+                    };
+              
+                    if (objIndicator.nilaiTernormalisasi[iChoicesLength-1].Value == 0.7071067811865475) {
+                      innerHTMLSimpleResultMiddle = innerHTMLSimpleResultMiddle;
+                    }else{
+                      innerHTMLSimpleResultMiddle += `<li class="list-group-item "><strong>`+objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].Choice+`</strong> With score <strong>`+objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].NilaiPreferensi+`</strong></li>`;
+                    };
+                    /*innerHTMLSimpleResultMiddle += `<li class="list-group-item "><strong>`+objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].Choice+`</strong> With score <strong>`+objIndicator.nilaiPreferensiAlternatif[iChoicesLength-1].NilaiPreferensi+`</strong></li>`;*/
+              
+                  };
+              
+              
+                document.getElementById("popup_result").innerHTML = innerHTMLSimpleResultFirst+innerHTMLSimpleResultMiddle+innerHTMLSimpleResultLast;
+              /*  document.getElementById("popup_full_result").innerHTML = ;*/
+              };
 
 
 
