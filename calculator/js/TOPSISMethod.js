@@ -440,6 +440,7 @@ function TOPSISMethod() {
 
 function closeNav() {
   document.getElementById("popup_result").style.width = "0%";
+  arrayIndicatorJSONData = '{"MatrixAll":[],"nilaiKuadratBasic":[],"nilaiTernormalisasi":[],"nilaiTerbobot":[],"maxMinPlusNegatifA":[],"nilaiPlusNegatifD":[],"nilaiPreferensiAlternatif":[]}';
 };
 
 function openFullResult() {
