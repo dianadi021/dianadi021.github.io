@@ -32,7 +32,7 @@ function popup_result_TOPSIS() {
 
 
 
-  /* LOOPING UNTUK MENYIMPAN DARI FORM KE DALAM ARRAY DALAM BENTUK BASIC KUADRAT*/
+  /* LOOPING UNTUK MENYIMPAN DARI FORM KE DALAM ARRAY DALAM BENTUK AWAL MATRIX*/
   for (let iIndicatorLength = 1; iIndicatorLength <= indicatorArrayLength; iIndicatorLength++) {
     var matrixName = 'Matrix_'+iIndicatorLength;
     var tempNameIndicator = document.getElementById("indicator-name-"+iIndicatorLength).value;
@@ -44,7 +44,7 @@ function popup_result_TOPSIS() {
       arrayIndicatorJSONData = JSON.stringify(objIndicator);
     };
   };
-  /* LOOPING UNTUK MENYIMPAN DARI FORM KE DALAM ARRAY DALAM BENTUK BASIC KUADRAT*/
+  /* LOOPING UNTUK MENYIMPAN DARI FORM KE DALAM ARRAY DALAM BENTUK AWAL MATRIX*/
                                   /* END*/
 
 
@@ -55,7 +55,7 @@ function popup_result_TOPSIS() {
 
 
 
-  /* LOOPING UNTUK MENGHITUNG KUADRAT PEMBAGI*/
+  /* LOOPING UNTUK MENGHITUNG KUADRAT MATRIX*/
   for (let iIndicatorLength = 1; iIndicatorLength <= indicatorArrayLength; iIndicatorLength++) {
     var matrixName = 'Matrix_'+iIndicatorLength;
     var tempNameIndicator = document.getElementById("indicator-name-"+iIndicatorLength).value;
@@ -73,7 +73,7 @@ function popup_result_TOPSIS() {
     arrayIndicatorJSONData = JSON.stringify(objIndicator);
     /*console.log(Math.sqrt(tempHitungKuadrat));*/
   };
-  /* LOOPING UNTUK MENGHITUNG KUADRAT PEMBAGI*/
+  /* LOOPING UNTUK MENGHITUNG KUADRAT MATRIX*/
                   /* END*/
   
 
@@ -90,7 +90,7 @@ function popup_result_TOPSIS() {
 
 
           
-  /* LOOPING UNTUK MENGHITUNG TERNORMALISASI*/       
+  /* LOOPING UNTUK MENGHITUNG KUADRAT PEMBAGI*/       
 
   for (let iIndicatorLength = 1; iIndicatorLength <= indicatorArrayLength; iIndicatorLength++) {
     var matrixName = 'Matrix_'+iIndicatorLength;
@@ -108,7 +108,7 @@ function popup_result_TOPSIS() {
     };
   };
 
-  /* LOOPING UNTUK MENGHITUNG TERNORMALISASI*/                
+  /* LOOPING UNTUK MENGHITUNG KUADRAT PEMBAGI*/                
                     /* END*/
 
 
