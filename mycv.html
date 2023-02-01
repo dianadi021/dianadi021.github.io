@@ -38,7 +38,7 @@
     -->
     <meta name="description" content="Website ini merupakan situs resmi yang dibuat oleh Dian Adi Nugroho sendiri, untuk kepentingannya sendiri, demi kesenangannya sendiri dan di develop sendiri." />
     <meta name="keywords" content="dianadi021, dian nugroho, dian skuad, dian adi nugroho" />
-    <meta name="image" content="./assets/img/speakme.JPG">
+    <meta name="image" content="./assets/img/speakme.JPG" />
     <meta name="author" content="Dian Nugroho" />
     <meta name="language" content="Indonesia" />
     <meta name="language" content="English" />
@@ -49,15 +49,15 @@
     <meta name="spiders" content="all" />
 
     <!-- meta fb og start -->
-    <meta property="og:title" content="Dian Nugroho | Official">
-    <meta property="og:description" content="ebsite ini merupakan situs resmi yang dibuat oleh Dian Adi Nugroho sendiri, untuk kepentingannya sendiri, demi kesenangannya sendiri dan di develop sendiri.">
-    <meta property="og:image" content="./assets/img/speakme.JPG">
-    <meta property="og:url" content="https://dianadi021.github.io/">
-    <meta property="og:site_name" content="Dian Nugroho | Official">
-    <meta property="og:locale" content="id_ID">
+    <meta property="og:title" content="Dian Nugroho | Official" />
+    <meta property="og:description" content="ebsite ini merupakan situs resmi yang dibuat oleh Dian Adi Nugroho sendiri, untuk kepentingannya sendiri, demi kesenangannya sendiri dan di develop sendiri." />
+    <meta property="og:image" content="./assets/img/speakme.JPG" />
+    <meta property="og:url" content="https://dianadi021.github.io/" />
+    <meta property="og:site_name" content="Dian Nugroho | Official" />
+    <meta property="og:locale" content="id_ID" />
     <!--<meta property="og:video" content="https://www.youtube.com/watch?v=rQryOSyfXmI">
     <meta property="fb:admins" content="443467622524287">-->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="website" />
     <!-- meta fb og end -->
 
     <!-- JQUERY v3.6.3-->
@@ -69,14 +69,240 @@
     <!-- MY OWN -->
     <link rel="stylesheet" href="./assets/css/mycv.css" media="all" />
     <script src="./assets/js/disableCursorSelector.js"></script>
-    <script src="./assets/js/jquery_index.js" defer></script>
+
+    <script>
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $(".scroll-to-top").fadeIn();
+        } else {
+          $(".scroll-to-top").fadeOut();
+        }
+      });
+      $(".scroll-to-top").click(function () {
+        $("html, body").animate(
+          {
+            scrollTop: 0,
+          },
+          600
+        );
+        return false;
+      });
+    </script>
   </head>
   <body id="page-top">
-    <div class="container">
-        <div class="row">
-            <div id="container_biodata" class="col"></div>
-            <div id="container_portfolio" class="col"></div>
+    <div class="menu">
+      <a href="index.html"><i class="fa-solid fa-home"></i></a>
+    </div>
+    <div id="mycv" class="container">
+      <div class="row">
+        <div id="container_biodata" class="col-5">
+          <div class="container">
+            <div class="row">
+              <div class="mt-3">
+                <div class="col col_mycv">
+                  <div id="hrBio"></div>
+                  <legend>biodata</legend>
+                  <div id="hrBio"></div>
+                </div>
+              </div>
+              <div class="justify-content-center photo_bio">
+                <div id="photo_bio">
+                  <img src="./assets/img/dianadinugroho.jpg" alt="" />
+                </div>
+                <h4 class="mt-3">Dian Adi Nugroho</h4>
+                <h6><i class="fa-solid fa-cake-candles"></i> Bandar Lampung, 11 Juli 2000</h6>
+                <h6><i class="fa-sharp fa-solid fa-headphones-simple"></i> Music <i class="fa-solid fa-gamepad"></i> Gaming <i class="fa-solid fa-keyboard"></i> Writing</h6>
+                <div class="col col_mycv">
+                  <div id="hrBio"></div>
+                  <legend class="col-6">contact person</legend>
+                  <div id="hrBio"></div>
+                </div>
+                <div class="col col_inline">
+                  <h6><i class="fa-solid fa-globe"></i><a href="https://dianadi021.github.io/"> dianadi021.github.io</a></h6>
+                  <h6><i class="fa-solid fa-mobile-screen-button"></i><a href="tel:+6285258966108"> (+62)852-5896-6108</a></h6>
+                  <h6><i class="fa-solid fa-envelope"></i><a href="mailto:contactmedianadi021@gmail.com"> contactmedianadi021@gmail.com</a></h6>
+                  <h6><i class="fa-solid fa-location-dot"></i> Kel. Sidoluhur, Kec. Godean, Kab. Sleman, D.I Yogyakarta 55264</h6>
+                </div>
+                <div class="col col_mycv">
+                  <div id="hrBio"></div>
+                  <legend class="col-6">media sosial</legend>
+                  <div id="hrBio"></div>
+                </div>
+                <div class="col col_inliner" id="sosmed_bio">
+                  <h6>@dianadi021</h6>
+                  <ul class="list-inline">
+                    <li class="list-inline-item">
+                      <a class="social-link rounded-circle text-white mr-3" href="https://www.youtube.com/c/diannugroho" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a class="social-link rounded-circle text-white mr-3" href="https://dianadi021.blogspot.com/" target="_blank">
+                        <i class="fab fa-blogger"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a class="social-link rounded-circle text-white mr-3" href="https://id.linkedin.com/in/dianadi021/" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a class="social-link rounded-circle text-white mr-3" href="https://web.facebook.com/dianadi021/" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                      </a>
+                    </li>
+                  </ul>
+                  <ul class="list-inline">
+                    <li class="list-inline-item">
+                      <a class="social-link rounded-circle text-white mr-3" href="https://instagram.com/dianadi021/" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a class="social-link rounded-circle text-white mr-3" href="https://twitter.com/dianadi021/" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a class="social-link rounded-circle text-white mr-3" href="https://bit.ly/joinSKUAD" target="_blank">
+                        <i class="fab fa-discord"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a class="social-link rounded-circle text-white" href="https://github.com/dianadi021/" target="_blank">
+                        <i class="fab fa-github"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col_mycv">
+                  <div id="hrBio"></div>
+                  <legend class="col-6">keahlian</legend>
+                  <div id="hrBio"></div>
+                </div>
+                <div class="col_inline" id="keahlian_bio">
+                  <h6>• Copywriting</h6>
+                  <h6>• Ms. Word</h6>
+                  <h6>• Ms. Excel</h6>
+                  <h6>• Adobe Premiere</h6>
+                  <h6>• Laravel</h6>
+                  <h6>• Vue Js</h6>
+                  <h6>• JavaScript/JQuery</h6>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <div id="container_portfolio" class="col">
+          <div class="container">
+            <div class="row" id="portfolio_content">
+              <div class="mt-3">
+                <div class="col col_mycv">
+                  <div id="hrPort"></div>
+                  <legend>tentang saya</legend>
+                  <div id="hrPort"></div>
+                </div>
+                <p>Saya mempunyai tekad dan keinginan yang kuat untuk menjadi yang terbaik. Dengan kerja keras dan ilmu yang sudah saya peroleh, dapat membuat saya menjadi lebih baik daripada sebelumnya. Dan saya sudah terbiasa dengan adanya perbedaan pendapat yang terjadi selama proses diskusi. Serta saya sudah terbiasa dalam bekerjasama dalam kelompok atau kerja tim.</p>
+              </div>
+              <div class="mt-3">
+                <div class="col col_mycv">
+                  <div id="hrPort"></div>
+                  <legend>pendidikan</legend>
+                  <div id="hrPort"></div>
+                </div>
+                <div class="row border_blue_portfolio">
+                  <div class="col">
+                    <div class="row">
+                      <div class="col-3">
+                        <h6>(2018 - 2023)</h6>
+                      </div>
+                      <div class="col-6">
+                        <h6>Universitas AMIKOM Yogyakarta</h6>
+                      </div>
+                    </div>
+                    <p>Berlokasi di Provinsi D.I Yogyakarta, Kabupaten Sleman, Kecamatan Condongcatur. Pada saat ini saya masih mengampu pelajaran di Fakultas Ilmu Komputer dengan memilih jurusan S1 - Informatika. Saya menjalani kehidupan perkuliahan sama dengan mahasiswa yang lainnya (normal). Namun kegiatan saya selama berada di kampus ini adalah mengikuti beberapa UKM secara normal.</p>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td><h6>Jurusan:</h6></td>
+                          <td><p>S1 - Informatika</p></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row border_blue_portfolio">
+                  <div class="col">
+                    <div class="row">
+                      <div class="col-3">
+                        <h6>(2015 - 2018)</h6>
+                      </div>
+                      <div class="col-6">
+                        <h6>SMK Muhammadiyah 1 Moyudan</h6>
+                      </div>
+                    </div>
+                    <p>Berlokasi di Provinsi D.I Yogyakarta, Kabupaten Sleman, Kecamatan Moyudan. Alhamdulillah saya menjalani kehidupan sekolah menengah kejuruan dengan lancar dan normal. Pada saat saya sekolah di kejuruan ini saya memilih jurusan Teknik Komputer dan Jaringan (TKJ). Saya juga pernah ditunjuk sebagai perwakilan siswa untuk mengikuti lomba desain web tingkat nasional Muhammadiyah.</p>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td><h6>Jurusan:</h6></td>
+                          <td><p>S1 - Teknik Jaringan Komputer</p></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-3">
+                <div class="col col_mycv">
+                  <div id="hrPort"></div>
+                  <legend>pengalaman kerja</legend>
+                  <div id="hrPort"></div>
+                </div>
+                <div class="row border_blue_portfolio">
+                  <div class="col">
+                    <div class="row">
+                      <div class="col-3">
+                        <h6>(2021 - Now)</h6>
+                      </div>
+                      <div class="col-6">
+                        <h6>Freelance</h6>
+                      </div>
+                    </div>
+                    <p>Melakukan kegiatan amatir pembuatan website dan developing server game. Kegiatan dilakukan secara mandiri maupun kelompok, mengerjakan hal tersebut sembari mengisi kekosongan dan mengasah kemampuan dalam bidang informatika.</p>
+                  </div>
+                </div>
+                <div class="row border_blue_portfolio">
+                  <div class="col">
+                    <div class="row">
+                      <div class="col-3">
+                        <h6>(2018 - 2019)</h6>
+                      </div>
+                      <div class="col-6">
+                        <h6>Pegawai PT. POS Indonesia</h6>
+                      </div>
+                    </div>
+                    <p>Bekerja sebagai pegawai loket di kantor pos Indonesia kurang lebih selama delapan (8) bulan lamanya. Berawal dari iseng - iseng melamar pekerjaan dengan alasan untuk mengisi liburan kelulusan SMK dengan bekerja. Selama bekerja saya dapat bertanggung jawab terhadap keuangan dari transaksi yang terjadi dalam sehari.</p>
+                  </div>
+                </div>
+                <div class="row border_blue_portfolio">
+                  <div class="col">
+                    <div class="row">
+                      <div class="col-3">
+                        <h6>(2017)</h6>
+                      </div>
+                      <div class="col-6">
+                        <h6>Teknisi Komputer</h6>
+                      </div>
+                    </div>
+                    <p>Menjadi seorang teknisi hardware (Komputer, Printer dan CCTV) pada saat sedang melakukan Pelatihan Kerja Lapangan (PKL) pada saat sekolah SMK. Pelatihan Kerja Lapangan (PKL) ini merupakan salah satu syarat siswa SMK untuk dapat lulus.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Scroll to Top Button-->

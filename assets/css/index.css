@@ -194,7 +194,7 @@ display: inline-flex;
 /* MAGNIFY IMG END */
 #projects{
   width: inherit;
-  height: 100vh;
+  height: auto;
 }
 /*MAIN CONTENT END*/
 /*FOOTER START */
