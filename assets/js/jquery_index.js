@@ -17,6 +17,10 @@ $(document).ready(function () {
   /* Community Content START */
   $("#community_content").append(innerCommunityContent());
   /* Community Content END */
+/* METHODS TOPSIS START */
+  $("#method_topsis_content").append(innerMethodTOPSIS());
+  $("#method_topsis_content").html(innerMethodTOPSIS());
+  /* METHODS TOPSIS END */
   /* Scroll START*/
   $(window).scroll(function () {
     if ($(this).scrollTop() > 100) {
@@ -127,10 +131,6 @@ $(document).ready(function () {
     });
   }
   /* MULTI CAROUSEL END */
-
-  /* METHODS TOPSIS START */
-  $("#method_topsis_content").append(innerMethodTOPSIS());
-  /* METHODS TOPSIS END */
 });
 /* SIMPLE JQUERY END*/
 
