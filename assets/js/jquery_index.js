@@ -129,7 +129,7 @@ $(document).ready(function () {
   /* MULTI CAROUSEL END */
 
   /* METHODS TOPSIS START */
-  $("#main_content").append(innerMethodTOPSIS());
+  $("#method_topsis_content").append(innerMethodTOPSIS());
   /* METHODS TOPSIS END */
 });
 /* SIMPLE JQUERY END*/
