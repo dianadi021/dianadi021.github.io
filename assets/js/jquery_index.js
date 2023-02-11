@@ -386,7 +386,7 @@ function innerProjects() {
                     <p class="card-text">Merupakan sebuah tools berbasis website yang berfungsi untuk melakukan perhitungan metode TOPSIS dan dapat mendownload file Ms. Excel.</p>
                   </div>
                   <div class="card-footer">
-                    <a href="https://dianadi021.github.io/methods/" target="_blank" class="btn btn-primary">Read More</a>
+                    <a href="https://dianadi021.github.io/topsis/" target="_blank" class="btn btn-primary">Read More</a>
                     <small class="text-muted">Last updated 02 Feb 2023</small>
                   </div>
                 </div>
