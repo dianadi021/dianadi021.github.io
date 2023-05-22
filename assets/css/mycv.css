@@ -161,7 +161,7 @@ a.scroll-to-top:hover {
   z-index: 100;
   display: inline-block;
 }
-.menu > a {
+.menu > a > i, .menu > a {
   color: whitesmoke;
   top: 15%;
   padding: 0.5em 0.75em;
@@ -254,4 +254,19 @@ a.scroll-to-top:hover {
 @media only screen and (max-width: 393px) {
 }
 @media only screen and (max-width: 360px) {
+}
+@media print {
+  * { margin: 0 !important; padding: 0 !important; }
+  #controls, .footer, .footerarea{ display: none; }
+  html, body {
+    /*changing width to 100% causes huge overflow and wrap*/
+    height:100%; 
+    overflow: hidden;
+    background: #FFF; 
+    font-size: 9.5pt;
+  }
+
+  .template { width: auto; left:0; top:0; }
+  img { width:100%; }
+  li { margin: 0 0 10px 20px !important;}
 }
