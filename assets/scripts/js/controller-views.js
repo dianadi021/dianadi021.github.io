@@ -1,7 +1,7 @@
 /** @format */
-$(document).ready(function () {
-  // const serverURL = `http://${window.location.host}/assets`;
-  const serverURL = 'https://dianadi021.github.io/assets';
+$(document).ready(() => {
+  const serverURL = `http://${window.location.host}/assets`;
+  // const serverURL = 'https://dianadi021.github.io/assets';
 
   $.getScript(serverURL + '/scripts/js/personal-function.js', function () {
     DisableRightClickOnMouse();
@@ -9,8 +9,8 @@ $(document).ready(function () {
     CertificateSwiper();
   });
 
-  $.getScript(serverURL + '/views/home.js', function () {
-    CommunityDisplay(serverURL);
-    ProjectsDisplay(serverURL);
+  $.getScript(serverURL + '/views/home.js', async () => {
+    await CommunityDisplay(serverURL);
+    await ProjectsDisplay(serverURL);
   });
 });

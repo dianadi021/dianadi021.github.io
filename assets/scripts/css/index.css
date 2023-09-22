@@ -358,14 +358,117 @@ footer #copyright a:hover {
     color: #ffb703;
 }
 
-#scroll-top{
+#scroll-top {
     position: fixed;
     right: 0;
     bottom: 0;
     margin: 1rem;
 }
 
-#scroll-top i{
+#scroll-top i {
     font-size: 1.5rem;
 }
+
 /*CSS FOR FOOTER END*/
+
+@media only screen and (max-width: 375px) {
+    #banner-swiper .swiper-wrapper .swiper-slide .carousel-caption {
+        height: 45%;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+    #banner-swiper .swiper-wrapper .swiper-slide .carousel-caption h6 {
+        font-size: 16px;
+    }
+
+    #banner-swiper .swiper-wrapper .swiper-slide .carousel-caption p {
+        font-size: 12px;
+    }
+
+    #banner-swiper .swiper-wrapper .swiper-slide .carousel-caption ul {
+        margin: 0;
+    }
+
+    #community {
+        display: flex;
+        padding: 2rem 0 2rem 0;
+    }
+
+    #certificate {
+        padding: 1rem;
+    }
+
+    .container-content {
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    #banner-swiper .swiper-wrapper .swiper-slide .carousel-caption {
+        height: 45%;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+    #banner-swiper .swiper-wrapper .swiper-slide .carousel-caption h6 {
+        font-size: 16px;
+    }
+
+    #banner-swiper .swiper-wrapper .swiper-slide .carousel-caption p {
+        font-size: 12px;
+    }
+
+    #banner-swiper .swiper-wrapper .swiper-slide .carousel-caption ul {
+        margin: 0;
+    }
+
+    #community {
+        display: flex;
+        padding: 2rem 0 2rem 0;
+    }
+
+    #certificate {
+        padding: 1rem;
+    }
+
+    .container-content {
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    #banner-swiper .swiper-wrapper .swiper-slide .carousel-caption {
+        height: 45%;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+    #banner-swiper .swiper-wrapper .swiper-slide .carousel-caption h6 {
+        font-size: 16px;
+    }
+
+    #banner-swiper .swiper-wrapper .swiper-slide .carousel-caption p {
+        font-size: 12px;
+    }
+
+    #banner-swiper .swiper-wrapper .swiper-slide .carousel-caption ul {
+        margin: 0;
+    }
+
+    #community {
+        display: flex;
+        padding: 2rem 0 2rem 0;
+    }
+
+    #certificate {
+        padding: 1rem;
+    }
+
+    .container-content {
+        margin: 0;
+    }
+}
