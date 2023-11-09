@@ -2,7 +2,7 @@
   "Community": [
     {
       "name": "SKUAD",
-      "img": "assets/images/skd.png",
+      "img": "src/assets/images/skd.png",
       "altIMG": "Logo SKUAD",
       "description": "Bermain, Bercanda, Belajar",
       "link": "http://bit.ly/joinSKUAD"
@@ -11,7 +11,7 @@
   "Projects": [
     {
       "name": "My Calculate",
-      "img": "assets/images/my-calculate.png",
+      "img": "src/assets/images/my-calculate.png",
       "altIMG": "Logo My Calculate",
       "description": "My Calculate untuk perhitungan Metode TOPSIS",
       "link": "topsis/"
