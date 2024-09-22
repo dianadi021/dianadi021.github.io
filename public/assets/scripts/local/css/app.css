@@ -1,0 +1,86 @@
+@import url("../../vendor/font-awesome/all.min.css");
+@import url("../../vendor/jquery/jquery-ui.css");
+@import url("../../vendor/jquery/jquery.datetimepicker.css");
+
+@media screen and (max-width: 1200px) {
+	body {
+		font-size: 16px;
+		padding: 20px;
+	}
+
+	.SwiperContentGallery {
+		display: none !important;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	body {
+		font-size: 14px;
+		padding: 15px;
+	}
+
+	.slider-captions .head-txt,
+	.slider-captions .sub-head-txt {
+		font-size: 1rem;
+	}
+
+	.slider-captions .desc-txt {
+		margin: 0 !important;
+		font-size: 1rem;
+	}
+
+	.slider-captions .sosmed-container {
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		width: 60%;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	body {
+		font-size: 12px;
+		padding: 10px;
+	}
+}
+
+@media screen and (max-width: 540px) {
+	.slider-captions .sosmed-container {
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	body {
+		font-size: 10px;
+		padding: 5px;
+	}
+}
+
+@media screen and (max-width: 413px) {
+	.slider-captions {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 391px) {
+	body {
+		font-size: 8px;
+		padding: 5px;
+	}
+
+	.slider-captions {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 376px) {
+	.slider-captions {
+		width: 100%;
+	}
+
+	.slider-captions .head-txt {
+		font-size: 1rem;
+	}
+}
