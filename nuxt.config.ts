@@ -24,6 +24,11 @@ export default defineNuxtConfig({
     }
   },
 
+  // Nuxt 4 Directory Structure & Features
+  future: {
+    compatibilityVersion: 4
+  },
+
   // Nuxt DevTools
   devtools: { enabled: true },
 
@@ -36,8 +41,20 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode'
   ],
 
-  // Load stylesheet utama Tailwind
-  css: ['~/assets/css/main.css'],
+  // Konfigurasi Tailwind CSS Module
+  tailwindcss: {
+    cssPath: ['~/assets/css/main.css', { injectPosition: 'first' }],
+    configPath: 'tailwind.config.ts',
+    viewer: false
+  },
+
+  // Konfigurasi PostCSS (dipindah ke sini karena postcss.config.js tidak didukung Nuxt 4)
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {}
+    }
+  },
 
   // Konfigurasi Tailwind & Color Mode (Dark/Light mode support)
   colorMode: {
