@@ -16,13 +16,13 @@ onMounted(() => {
   const handleScroll = () => {
     if (route.path !== '/') return
     const scrollPos = window.scrollY + 140
-    const projectsEl = document.getElementById('projects')
+    const experienceEl = document.getElementById('experience')
     const skillsEl = document.getElementById('skills')
 
     if (skillsEl && scrollPos >= skillsEl.offsetTop) {
       activeHash.value = '#skills'
-    } else if (projectsEl && scrollPos >= projectsEl.offsetTop) {
-      activeHash.value = '#projects'
+    } else if (experienceEl && scrollPos >= experienceEl.offsetTop) {
+      activeHash.value = '#experience'
     } else {
       activeHash.value = ''
     }
@@ -56,8 +56,8 @@ const toggleTheme = () => {
 
 <template>
   <div class="min-h-screen flex flex-col bg-[#faf8f5] text-[#023047] dark:bg-[#023047] dark:text-[#f8f9fa] transition-colors duration-300 font-sans selection:bg-[#8ECAE6]/40 selection:text-[#023047]">
-    <!-- Ghibli-Style Cloud & Warm Atmosphere Canvas Header -->
-    <header class="border-b border-[#8ECAE6]/30 dark:border-[#219EBC]/20 bg-[#faf8f5]/90 dark:bg-[#023047]/90 backdrop-blur-md sticky top-0 z-50 transition-colors">
+    <!-- Ghibli-Style Cloud & Warm Atmosphere Canvas Header (Hidden on Print for ATS) -->
+    <header class="border-b border-[#8ECAE6]/30 dark:border-[#219EBC]/20 bg-[#faf8f5]/90 dark:bg-[#023047]/90 backdrop-blur-md sticky top-0 z-50 transition-colors print:hidden">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between py-2">
         <!-- Logo & Personal Brand Brandmark -->
         <NuxtLink to="/" class="flex items-center space-x-3 group">
@@ -76,7 +76,7 @@ const toggleTheme = () => {
               </span>
             </div>
             <span class="text-xs text-[#219EBC] dark:text-[#8ECAE6] font-medium block mt-0.5">
-              Web & Backend Craftsman
+              Web & Backend Developer
             </span>
           </div>
         </NuxtLink>
@@ -93,14 +93,14 @@ const toggleTheme = () => {
             <span>Beranda</span>
           </NuxtLink>
 
-          <!-- Proyek (#projects) -->
+          <!-- Riwayat Industri (#experience) -->
           <NuxtLink
-            to="/#projects"
+            to="/#experience"
             class="px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 flex items-center gap-1.5"
-            :class="isNavActive('/', '#projects') ? 'bg-[#219EBC] text-white shadow-sm ring-2 ring-[#8ECAE6]/40' : 'text-[#023047] dark:text-[#8ECAE6] hover:bg-[#8ECAE6]/20 hover:text-[#023047] dark:hover:text-white'"
+            :class="isNavActive('/', '#experience') ? 'bg-[#219EBC] text-white shadow-sm ring-2 ring-[#8ECAE6]/40' : 'text-[#023047] dark:text-[#8ECAE6] hover:bg-[#8ECAE6]/20 hover:text-[#023047] dark:hover:text-white'"
           >
-            <span v-if="isNavActive('/', '#projects')" class="w-1.5 h-1.5 rounded-full bg-[#FFB703]"></span>
-            <span>Karya & Proyek</span>
+            <span v-if="isNavActive('/', '#experience')" class="w-1.5 h-1.5 rounded-full bg-[#FFB703]"></span>
+            <span>Riwayat Industri</span>
           </NuxtLink>
 
           <!-- Tech Stack (#skills) -->
@@ -166,8 +166,8 @@ const toggleTheme = () => {
       <slot />
     </main>
 
-    <!-- Ghibli-Style Cozy Footer -->
-    <footer class="border-t border-[#8ECAE6]/30 dark:border-[#219EBC]/20 bg-white/70 dark:bg-[#012232] py-10 text-xs transition-colors">
+    <!-- Ghibli-Style Cozy Footer (Hidden on Print for ATS) -->
+    <footer class="border-t border-[#8ECAE6]/30 dark:border-[#219EBC]/20 bg-white/70 dark:bg-[#012232] py-10 text-xs transition-colors print:hidden">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div class="flex items-center space-x-3">
@@ -180,9 +180,9 @@ const toggleTheme = () => {
           <div class="flex items-center gap-3 font-medium text-[#219EBC] dark:text-[#8ECAE6]">
             <NuxtLink to="/" class="hover:underline">Beranda</NuxtLink>
             <span>•</span>
-            <NuxtLink to="/#projects" class="hover:underline">Karya</NuxtLink>
+            <NuxtLink to="/#experience" class="hover:underline">Riwayat Industri</NuxtLink>
             <span>•</span>
-            <NuxtLink to="/mycv" class="text-[#FB8500] font-bold hover:underline">Curriculum Vitae</NuxtLink>
+            <NuxtLink to="/mycv" class="text-[#FB8500] font-bold hover:underline">Curriculum Vitae (ATS)</NuxtLink>
             <span>•</span>
             <NuxtLink to="/about" class="hover:underline">Showcase Library</NuxtLink>
           </div>
