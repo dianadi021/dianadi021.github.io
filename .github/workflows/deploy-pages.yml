@@ -25,13 +25,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: npm
+          cache: pnpm
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm ci
 
       - name: Generate static site
-        run: npm run generate
+        run: pnpm generate
         env:
           # Set the repository variable NUXT_APP_BASE_URL to '/' when using a
           # custom domain. The default handles https://<user>.github.io/<repo>/.
