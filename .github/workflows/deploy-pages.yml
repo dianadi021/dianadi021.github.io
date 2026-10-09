@@ -33,7 +33,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm add --workspace-root -D tailwindcss/nesting && pnpm install --frozen-lockfile
 
       - name: Generate static site
         run: pnpm generate
