@@ -59,6 +59,7 @@ flowchart TD
 ```
 
 ### Ringkasan Hubungan Komunitas (Community Hubs)
+
 - **Community 1 (Plugins and App Store):** Menyediakan jembatan utilitas (`$api`, `$dayjs`, `$swal`, `cn()`) dan store reaktif `useAppStore` yang diinjeksi ke seluruh aplikasi.
 - **Community 2 (About Page Demo Logic):** Mengintegrasikan interaksi form Zod, HTTP request simulasi via Axios, carousel Swiper, dan alert SweetAlert2.
 - **Community 6 (Default Layout Theme Toggle):** Mengatur tata letak global, navigasi, hidrasi tema tanpa flicker (`@nuxtjs/color-mode`), dan footer.
@@ -72,34 +73,34 @@ flowchart TD
 
 ### 1. Runtime Dependencies
 
-| Kategori | Package | Versi | Deskripsi & Peran dalam Sistem |
-| :--- | :--- | :--- | :--- |
-| **Framework Engine** | `nuxt` | `^4.5.2` | Framework inti berbasis Vue 3 dengan Nitro engine, file-based routing, dan auto-imports. |
-| **Reactivity & Routing** | `vue` / `vue-router` | `^3.5.43` / `^5.3.1` | Core reactive system dan client-side routing. |
-| **State Management** | `pinia` | `^4.0.3` | State management modular, type-safe, dan reaktif (digunakan di `app/stores/app.ts`). |
-| **Theme / Dark Mode** | `@nuxtjs/color-mode` | `^4.0.1` | Pengaturan mode gelap/terang otomatis (system/light/dark) bebas flicker saat SSR. |
-| **Composables Utility** | `@vueuse/nuxt` & `@vueuse/core` | `^15.0.0` | Kumpulan ratusan helper composable reaktif untuk API browser dan event handling. |
-| **Iconography** | `@nuxt/icon` | `^2.5.1` | Penyedia ikon on-demand universal (Iconify, Heroicons, Lucide). |
-| **UI Components** | `@headlessui/vue` | `^1.7.23` | Komponen antarmuka WAI-ARIA accessible tanpa styling bawaan (dialog, menu, listbox). |
-| **Touch Slider / Carousel** | `swiper` | `^14.3.0` | Komponen carousel modern untuk showcase proyek atau galeri portofolio responsif. |
-| **HTTP Client** | `axios` | `^1.20.0` | HTTP request client terpusat di `app/plugins/axios.ts` (`$api`) dengan interceptor. |
-| **Date Time** | `dayjs` | `^1.11.23` | Library manipulasi waktu ringan dengan plugin `relativeTime` dan konfigurasi locale ID. |
-| **Modal / Dialog** | `sweetalert2` | `^11.26.25` | Alert modal interaktif dan aman di client-side (`app/plugins/sweetalert2.client.ts`). |
-| **Class Helpers** | `clsx` & `tailwind-merge` | `^2.1.1` & `^3.7.0` | Membentuk helper `cn()` (`app/utils/cn.ts`) untuk menggabungkan class Tailwind tanpa bentrok. |
-| **Data Validation** | `zod` | `^4.6.5` | Skema validasi TypeScript-first untuk validasi input formulir dan data API. |
+| Kategori                    | Package                         | Versi                | Deskripsi & Peran dalam Sistem                                                                |
+| :-------------------------- | :------------------------------ | :------------------- | :-------------------------------------------------------------------------------------------- |
+| **Framework Engine**        | `nuxt`                          | `^4.5.2`             | Framework inti berbasis Vue 3 dengan Nitro engine, file-based routing, dan auto-imports.      |
+| **Reactivity & Routing**    | `vue` / `vue-router`            | `^3.5.43` / `^5.3.1` | Core reactive system dan client-side routing.                                                 |
+| **State Management**        | `pinia`                         | `^4.0.3`             | State management modular, type-safe, dan reaktif (digunakan di `app/stores/app.ts`).          |
+| **Theme / Dark Mode**       | `@nuxtjs/color-mode`            | `^4.0.1`             | Pengaturan mode gelap/terang otomatis (system/light/dark) bebas flicker saat SSR.             |
+| **Composables Utility**     | `@vueuse/nuxt` & `@vueuse/core` | `^15.0.0`            | Kumpulan ratusan helper composable reaktif untuk API browser dan event handling.              |
+| **Iconography**             | `@nuxt/icon`                    | `^2.5.1`             | Penyedia ikon on-demand universal (Iconify, Heroicons, Lucide).                               |
+| **UI Components**           | `@headlessui/vue`               | `^1.7.23`            | Komponen antarmuka WAI-ARIA accessible tanpa styling bawaan (dialog, menu, listbox).          |
+| **Touch Slider / Carousel** | `swiper`                        | `^14.3.0`            | Komponen carousel modern untuk showcase proyek atau galeri portofolio responsif.              |
+| **HTTP Client**             | `axios`                         | `^1.20.0`            | HTTP request client terpusat di `app/plugins/axios.ts` (`$api`) dengan interceptor.           |
+| **Date Time**               | `dayjs`                         | `^1.11.23`           | Library manipulasi waktu ringan dengan plugin `relativeTime` dan konfigurasi locale ID.       |
+| **Modal / Dialog**          | `sweetalert2`                   | `^11.26.25`          | Alert modal interaktif dan aman di client-side (`app/plugins/sweetalert2.client.ts`).         |
+| **Class Helpers**           | `clsx` & `tailwind-merge`       | `^2.1.1` & `^3.7.0`  | Membentuk helper `cn()` (`app/utils/cn.ts`) untuk menggabungkan class Tailwind tanpa bentrok. |
+| **Data Validation**         | `zod`                           | `^4.6.5`             | Skema validasi TypeScript-first untuk validasi input formulir dan data API.                   |
 
 ### 2. Developer Tooling & Plugins
 
-| Package | Versi | Deskripsi & Peran |
-| :--- | :--- | :--- |
-| `@nuxtjs/tailwindcss` | `^6.14.0` | Integrasi resmi Tailwind CSS v3 ke siklus kompilasi Nuxt. |
-| `@pinia/nuxt` | `^1.0.2` | Modul integrasi Pinia ke Nuxt dengan auto-import store hooks (`useAppStore`). |
-| `@tailwindcss/typography` | `^0.5.20` | Plugin styling kelas `prose` untuk rendering konten teks dan artikel. |
-| `@tailwindcss/forms` | `^0.5.11` | Normalisasi dan reset styling default elemen form HTML. |
-| `@tailwindcss/aspect-ratio`| `^0.4.2` | Utilitas rasio aspek proporsional untuk responsivitas gambar dan video. |
-| `typescript` | `^5.9.3` | Engine static typing untuk keamanan tipe di seluruh project. |
-| `@types/node` | `^26.6.4` | Definisi tipe TypeScript untuk API Node.js. |
-| `vue-tsc` | `^3.3.12` | Compiler typecheck khusus Vue SFC untuk memverifikasi integritas template dan script. |
+| Package                     | Versi     | Deskripsi & Peran                                                                     |
+| :-------------------------- | :-------- | :------------------------------------------------------------------------------------ |
+| `@nuxtjs/tailwindcss`       | `^6.14.0` | Integrasi resmi Tailwind CSS v3 ke siklus kompilasi Nuxt.                             |
+| `@pinia/nuxt`               | `^1.0.2`  | Modul integrasi Pinia ke Nuxt dengan auto-import store hooks (`useAppStore`).         |
+| `@tailwindcss/typography`   | `^0.5.20` | Plugin styling kelas `prose` untuk rendering konten teks dan artikel.                 |
+| `@tailwindcss/forms`        | `^0.5.11` | Normalisasi dan reset styling default elemen form HTML.                               |
+| `@tailwindcss/aspect-ratio` | `^0.4.2`  | Utilitas rasio aspek proporsional untuk responsivitas gambar dan video.               |
+| `typescript`                | `^5.9.3`  | Engine static typing untuk keamanan tipe di seluruh project.                          |
+| `@types/node`               | `^26.6.4` | Definisi tipe TypeScript untuk API Node.js.                                           |
+| `vue-tsc`                   | `^3.3.12` | Compiler typecheck khusus Vue SFC untuk memverifikasi integritas template dan script. |
 
 ---
 
@@ -206,7 +207,7 @@ const triggerNotification = () => {
     $swal.fire({
       title: 'Notifikasi',
       text: 'Aksi berhasil dieksekusi!',
-      icon: 'success'
+      icon: 'success',
     })
   }
 }
@@ -218,7 +219,9 @@ const triggerNotification = () => {
 ## 🚀 Panduan Deployment
 
 ### 1. Deploy ke GitHub Pages (SSG - dianadi021.github.io)
+
 Repository ini telah dilengkapi dengan GitHub Actions workflow `.github/workflows/deploy-pages.yml`.
+
 1. Pastikan pengaturan di GitHub: **Repository Settings → Pages → Build and deployment → Source: GitHub Actions**.
 2. Workflow akan secara otomatis menjalankan:
    ```bash
@@ -229,6 +232,7 @@ Repository ini telah dilengkapi dengan GitHub Actions workflow `.github/workflow
 4. Jika menggunakan custom domain atau base path kustom, atur environment variable `NUXT_APP_BASE_URL` (default: `/`).
 
 ### 2. Deploy ke Vercel / Node Server (SSR)
+
 1. Hubungkan repository ke dashboard Vercel.
 2. Vercel akan secara otomatis mengenali framework Nuxt dan menjalankan `npm run build`.
 3. Server Nitro akan menjalankan rendering SSR secara dinamis di edge/serverless runtime Vercel.
