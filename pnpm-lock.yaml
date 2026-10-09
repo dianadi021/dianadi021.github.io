@@ -82,7 +82,7 @@ importers:
         specifier: ^0.5.11
         version: 0.5.11(tailwindcss@3.4.19)
       '@tailwindcss/nesting':
-        specifier: 0.0.0-insiders.565cd3e
+        specifier: ^0.0.0-insiders.565cd3e
         version: 0.0.0-insiders.565cd3e(postcss@8.5.29)
       '@tailwindcss/typography':
         specifier: ^0.5.20
