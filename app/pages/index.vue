@@ -1,11 +1,10 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Dian Adi Nugroho | Web & Backend Developer',
-  description: 'Portofolio profesional dan engineering showcase Dian Adi Nugroho. Spesialisasi arsitektur backend, Laravel, Express.js, PostgreSQL, Oracle, Docker, dan ekosistem web modern.',
-  ogTitle: 'Dian Adi Nugroho | Web & Backend Developer',
-  ogDescription: 'Portofolio profesional dan engineering showcase Dian Adi Nugroho. Spesialisasi arsitektur backend, Laravel, Express.js, PostgreSQL, Oracle, Docker, dan ekosistem web modern.',
-  ogType: 'website',
-  twitterCard: 'summary_large_image'
+  title: 'Dian Adi Nugroho | Web & Backend Craftsman',
+  description: 'Portofolio personal dan galeri rekayasa Dian Adi Nugroho. Merajut sistem backend tangguh, REST API terproteksi, optimasi multi-database, dan aplikasi web modern dengan dedikasi.',
+  ogTitle: 'Dian Adi Nugroho | Web & Backend Craftsman',
+  ogDescription: 'Portofolio personal dan galeri rekayasa Dian Adi Nugroho. Merajut sistem backend tangguh, REST API terproteksi, optimasi multi-database, dan aplikasi web modern dengan dedikasi.',
+  ogType: 'website'
 })
 
 const { $dayjs, $swal } = useNuxtApp()
@@ -19,27 +18,27 @@ const currentTime = computed(() => {
 const activeTab = ref<'all' | 'backend' | 'database' | 'devops' | 'frontend'>('all')
 
 const skills = [
-  { name: 'Laravel', category: 'backend', role: 'Full-featured Backend Framework', icon: 'logos:laravel', highlight: 'Enterprise MVC & ORM' },
-  { name: 'PHP', category: 'backend', role: 'Core Server-Side Language', icon: 'logos:php', highlight: 'OOP, Composer, Standard PSR' },
-  { name: 'Express.js', category: 'backend', role: 'Minimalist Node.js Framework', icon: 'logos:express', highlight: 'RESTful API & Middleware' },
-  { name: 'CodeIgniter', category: 'backend', role: 'Lightweight PHP Framework', icon: 'logos:codeigniter-icon', highlight: 'Legacy & Fast Delivery' },
-  { name: 'Node.js', category: 'backend', role: 'JavaScript Runtime Environment', icon: 'logos:nodejs-icon', highlight: 'Asynchronous Event-driven' },
-  { name: 'Lua', category: 'backend', role: 'Embedded Scripting Language', icon: 'logos:lua', highlight: 'Automation & Scripting' },
-  
-  { name: 'PostgreSQL', category: 'database', role: 'Relational Database Management', icon: 'logos:postgresql', highlight: 'Advanced Indexing & ACID' },
-  { name: 'Oracle Database', category: 'database', role: 'Enterprise Database System', icon: 'logos:oracle', highlight: 'Mission-Critical Healthcare Data' },
-  { name: 'MySQL', category: 'database', role: 'Open Source Relational Database', icon: 'logos:mysql-icon', highlight: 'Optimized Querying & Relations' },
-  { name: 'MongoDB', category: 'database', role: 'Document-oriented NoSQL', icon: 'logos:mongodb-icon', highlight: 'Schema Design & Aggregation' },
+  { name: 'Laravel', category: 'backend', role: 'Full-featured Backend Framework', icon: 'logos:laravel', note: 'Arsitektur MVC & Keandalan Layanan' },
+  { name: 'PHP', category: 'backend', role: 'Bahasa Inti Server-Side', icon: 'logos:php', note: 'OOP, Composer, Standar PSR' },
+  { name: 'Express.js', category: 'backend', role: 'Minimalist Node.js Framework', icon: 'logos:express', note: 'RESTful API & Middleware Fleksibel' },
+  { name: 'CodeIgniter', category: 'backend', role: 'Lightweight PHP Framework', icon: 'logos:codeigniter-icon', note: 'Performa Cepat & Praktis' },
+  { name: 'Node.js', category: 'backend', role: 'JavaScript Runtime', icon: 'logos:nodejs-icon', note: 'Event-driven Asynchronous' },
+  { name: 'Lua', category: 'backend', role: 'Bahasa Skrip Ringan', icon: 'logos:lua', note: 'Otomasi & Logika Tertanam' },
 
-  { name: 'Docker', category: 'devops', role: 'Containerization Platform', icon: 'logos:docker-icon', highlight: 'Container Isolation & Compose' },
-  { name: 'Ubuntu Linux', category: 'devops', role: 'Production Server Environment', icon: 'logos:ubuntu', highlight: 'CLI, Cronjobs & Server Monitoring' },
-  { name: 'Git & GitHub', category: 'devops', role: 'Version Control System', icon: 'logos:git-icon', highlight: 'Branching Strategy & CI/CD' },
-  { name: 'Postman', category: 'devops', role: 'API Testing & Documentation', icon: 'logos:postman-icon', highlight: 'Automated Test Collections' },
+  { name: 'PostgreSQL', category: 'database', role: 'Relational Database Terpercaya', icon: 'logos:postgresql', note: 'Integritas Relasi & Skema Kompleks' },
+  { name: 'Oracle Database', category: 'database', role: 'Enterprise Database System', icon: 'logos:oracle', note: 'Manajemen Data Rumah Sakit Kritis' },
+  { name: 'MySQL', category: 'database', role: 'Basis Data Populer & Andal', icon: 'logos:mysql-icon', note: 'Optimasi Kueri & Transaksi' },
+  { name: 'MongoDB', category: 'database', role: 'Document-oriented NoSQL', icon: 'logos:mongodb-icon', note: 'Agregasi Fleksibel & Dinamis' },
 
-  { name: 'Vue.js 3', category: 'frontend', role: 'Progressive JavaScript Framework', icon: 'logos:vue', highlight: 'Composition API & Reusable UI' },
-  { name: 'Nuxt 4', category: 'frontend', role: 'Intuitive Full-Stack Framework', icon: 'logos:nuxt-icon', highlight: 'SSR, SSG & Nitro Engine' },
-  { name: 'TypeScript', category: 'frontend', role: 'Typed JavaScript Superscript', icon: 'logos:typescript-icon', highlight: 'End-to-End Type Safety' },
-  { name: 'Tailwind CSS', category: 'frontend', role: 'Utility-First CSS Framework', icon: 'logos:tailwindcss-icon', highlight: 'Modern Responsive Design System' }
+  { name: 'Docker', category: 'devops', role: 'Kontainerisasi Mandiri', icon: 'logos:docker-icon', note: 'Isolasi Lingkungan Bersih' },
+  { name: 'Ubuntu Linux', category: 'devops', role: 'Sistem Operasi Produksi', icon: 'logos:ubuntu', note: 'Server Monitoring & Daemon Systemd' },
+  { name: 'Git & GitHub', category: 'devops', role: 'Kendali Versi & Kolaborasi', icon: 'logos:git-icon', note: 'Alur Kerja Branching & CI/CD' },
+  { name: 'Postman', category: 'devops', role: 'Eksplorasi & Pengujian API', icon: 'logos:postman-icon', note: 'Koleksi Uji Terotomasi' },
+
+  { name: 'Vue.js 3', category: 'frontend', role: 'Progressive Web Framework', icon: 'logos:vue', note: 'Composition API Reaktif' },
+  { name: 'Nuxt 4', category: 'frontend', role: 'Framework Full-Stack Hibrida', icon: 'logos:nuxt-icon', note: 'SSR, SSG & Kecepatan Alami' },
+  { name: 'TypeScript', category: 'frontend', role: 'JavaScript Bertipe Statis', icon: 'logos:typescript-icon', note: 'Keamanan Tipe End-to-End' },
+  { name: 'Tailwind CSS', category: 'frontend', role: 'Sistem Gaya Berbasis Utilitas', icon: 'logos:tailwindcss-icon', note: 'Harmoni Warna & Responsif' }
 ]
 
 const filteredSkills = computed(() => {
@@ -47,85 +46,91 @@ const filteredSkills = computed(() => {
   return skills.filter(item => item.category === activeTab.value)
 })
 
-// Featured Projects Showcase
+// Featured Projects Showcase ala Ghibli Postcards
 const projects = [
   {
     title: 'Hospital & Healthcare Core Management System',
-    category: 'Enterprise Healthcare Backend',
-    description: 'Sistem informasi manajemen kesehatan berstandar tinggi yang menangani antrian pasien, rekam medis, dan pelaporan terintegrasi dengan database Oracle dan framework Laravel.',
-    features: [
-      'Server monitoring 24/7 & penanganan bug pada shifting operasional padat',
-      'Integrasi multi-tabel kompleks pada enterprise database Oracle',
-      'Deployment lingkungan produksi terisolasi dengan kontainer Docker',
-      'Arsitektur REST API aman untuk konsumsi client medis'
+    stamp: 'Kesehatan & Rumah Sakit',
+    stampNumber: 'EXP-01',
+    description: 'Sistem informasi manajemen kesehatan yang melayani aliran pasien, catatan medis, dan pelaporan terpadu dengan basis data Oracle berkeandalan tinggi.',
+    notes: [
+      'Pemantauan server harian tanpa henti & penanganan kendala cepat di bawah jadwal shifting padat',
+      'Integrasi multi-tabel kompleks pada sistem database Oracle enterprise',
+      'Lingkungan kerja terisolasi dan mudah direplikasi dengan kontainer Docker',
+      'Penyediaan layanan RESTful API aman bagi integrasi aplikasi pendukung'
     ],
     tech: ['Laravel', 'PHP', 'Oracle DB', 'Docker', 'Ubuntu Linux'],
-    badge: 'Production Proven',
-    accentColor: '#023047'
+    place: 'PT Medika Digital Nusantara',
+    stampColor: '#219EBC'
   },
   {
     title: 'Secure Multi-Tenant REST API Platform',
-    category: 'API Security & Microservices',
-    description: 'Platform API modular dengan desain skema database ganda (MongoDB & PostgreSQL), dilengkapi proteksi JSON Web Token (JWT), sanitasi request, dan role-based access control.',
-    features: [
-      'Skema basis data relasional (PostgreSQL) dan dokumen fleksibel (MongoDB)',
-      'Autentikasi berlapis JWT dengan mekanisme refresh token aman',
-      'Validasi request ketat untuk mencegah injeksi dan payload anomali',
-      'Koleksi pengujian otomatis via Postman test suite'
+    stamp: 'Keamanan API & Data',
+    stampNumber: 'EXP-02',
+    description: 'Pondasi API berlapis keamanan dengan arsitektur skema ganda (MongoDB & PostgreSQL), dilengkapi otorisasi peran pengguna dan proteksi token JWT.',
+    notes: [
+      'Perancangan skema relasional terstruktur (PostgreSQL) dan dokumen fleksibel (MongoDB)',
+      'Otentikasi aman dengan protokol JSON Web Token (JWT) dan token penyegar',
+      'Penyaringan ketat untuk menjamin keamanan setiap permintaan dari anomali payload',
+      'Uji coba menyeluruh terstruktur menggunakan koleksi pengujian Postman'
     ],
     tech: ['Express.js', 'Node.js', 'PostgreSQL', 'MongoDB', 'JWT', 'Postman'],
-    badge: 'API Architecture',
-    accentColor: '#219EBC'
+    place: 'Zettabyte Pte Ltd',
+    stampColor: '#FFB703'
   },
   {
-    title: 'Modern Fullstack SSR & Jamstack Ecosystem',
-    category: 'Frontend Engineering & DevTools',
-    description: 'Infrastruktur frontend portofolio modular berbasis Nuxt 4 dan Vue 3 dengan rendering hibrida (SSR/SSG), state management Pinia, Tailwind CSS design system, dan integrasi GitHub Pages CI/CD.',
-    features: [
-      'Arsitektur tanpa siklus impor diverifikasi oleh Graphify dependency report',
-      'Penyesuaian tema Dark/Light tanpa flicker hidrasi pada SSR',
-      'Validasi formulir strictly-typed dengan Zod dan Axios interceptor',
-      'Automasi build dan deployment static assets ke domain dianadi021.github.io'
+    title: 'Modern Fullstack SSR & Jamstack Living Ecosystem',
+    stamp: 'Arsitektur Web Modern',
+    stampNumber: 'EXP-03',
+    description: 'Ruang pamer karya personal berbasis Nuxt 4 dan Vue 3 yang mengutamakan kehangatan estetika, performa tinggi, dan alur integrasi nir-siklus.',
+    notes: [
+      'Arsitektur bersih diverifikasi oleh Graphify mapping tanpa adanya siklus ketergantungan impor',
+      'Peralihan tema siang dan malam berbintang tanpa kedipan hidrasi pada sisi server',
+      'Validasi formulir terstruktur dengan Zod dan interceptor Axios terpusat',
+      'Penerbitan otomatis halaman statis ke GitHub Pages melalui GitHub Actions'
     ],
-    tech: ['Nuxt 4', 'Vue.js 3', 'TypeScript', 'Tailwind CSS', 'Pinia', 'GitHub Actions'],
-    badge: 'Live Architecture',
-    accentColor: '#FB8500'
+    tech: ['Nuxt 4', 'Vue 3', 'TypeScript', 'Tailwind CSS', 'Pinia', 'GitHub Pages'],
+    place: 'dianadi021.github.io',
+    stampColor: '#FB8500'
   },
   {
-    title: 'Automated Server Monitoring & Scripting Routine',
-    category: 'DevOps & Systems Automation',
-    description: 'Rangkaian skrip otomasi menggunakan Lua dan Bash Shell untuk memantau performa daemon server Ubuntu, peringatan dini beban memori, dan backup data periodik.',
-    features: [
-      'Pemantauan status service background dan pembersihan log otomatis',
-      'Notifikasi peringatan dini beban CPU/RAM berbasis ambang batas',
-      'Eksekusi terjadwal via Linux cron dan systemd service units',
-      'Stabilitas operasional lingkungan produksi mandiri tanpa intervensi manual'
+    title: 'Automated Server Monitoring & Gentle Scripting',
+    stamp: 'Otomasi & Penjagaan',
+    stampNumber: 'EXP-04',
+    description: 'Serangkaian skrip otomasi menggunakan Lua dan Bash Shell untuk mendampingi server Ubuntu bekerja secara konsisten tanpa rasa cemas.',
+    notes: [
+      'Pemantauan berkala kesehatan layanan latar belakang dan pembersihan berkas log',
+      'Pemberitahuan dini saat kapasitas memori atau komputasi mendekati ambang batas',
+      'Penjadwalan otomatis berulang memanfaatkan cron dan unit layanan systemd',
+      'Ketenangan operasional tanpa perlu pemantauan manual yang melelahkan'
     ],
     tech: ['Lua', 'Bash Shell', 'Ubuntu Linux', 'Cron/Systemd', 'Docker'],
-    badge: 'DevOps Routine',
-    accentColor: '#FFB703'
+    place: 'Sleman Lab & Server Ops',
+    stampColor: '#023047'
   }
 ]
 
-// Interactive Actions with SweetAlert2
+// Interactive Action with SweetAlert2
 const copyEmail = async () => {
   const email = 'contactmedianadi021@gmail.com'
   try {
     await navigator.clipboard.writeText(email)
     if ($swal) {
       $swal.fire({
-        title: 'Email Berhasil Disalin!',
-        text: `${email} telah tersimpan di clipboard Anda. Siap untuk kolaborasi!`,
+        title: 'Alamat Surat Tersalin ✉️',
+        text: `${email} telah tersimpan di papan klip Anda. Mari bercerita dan membangun sesuatu yang bermakna!`,
         icon: 'success',
         confirmButtonColor: '#219EBC',
-        timer: 3000,
+        background: '#faf8f5',
+        color: '#023047',
+        timer: 3500,
         timerProgressBar: true
       })
     }
   } catch {
     if ($swal) {
       $swal.fire({
-        title: 'Kontak Email',
+        title: 'Alamat Surel',
         text: email,
         icon: 'info',
         confirmButtonColor: '#219EBC'
@@ -134,272 +139,337 @@ const copyEmail = async () => {
   }
 }
 
-const showBackendStatusAlert = () => {
+const showHeartwarmStatus = () => {
   if ($swal) {
     $swal.fire({
-      title: 'Backend Systems Ready',
+      title: 'Studio Catatan Sistem 🌿',
       html: `
-        <div class="text-left text-sm space-y-2 text-slate-700">
-          <p>🟢 <strong>Node Engine:</strong> Active & Responsive</p>
-          <p>🟢 <strong>Database Connectors:</strong> PostgreSQL, MySQL, Oracle, MongoDB configured</p>
-          <p>🟢 <strong>Architecture:</strong> Zero Import Cycles (Graphify verified)</p>
-          <p>🟢 <strong>Base URL:</strong> dianadi021.github.io</p>
+        <div class="text-left text-xs sm:text-sm space-y-2.5 p-1 text-[#023047]">
+          <p class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#198754]"></span>
+            <span><strong>Kondisi Mesin:</strong> Berjalan tenang dan teratur.</span>
+          </p>
+          <p class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#219EBC]"></span>
+            <span><strong>Basis Data:</strong> Oracle, PostgreSQL, MongoDB, MySQL siap digunakan.</span>
+          </p>
+          <p class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#FFB703]"></span>
+            <span><strong>Harmoni Arsitektur:</strong> 0 Siklus Impor (Terverifikasi Graphify).</span>
+          </p>
+          <p class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#FB8500]"></span>
+            <span><strong>Lab Rumah:</strong> Sleman, D.I. Yogyakarta, Indonesia.</span>
+          </p>
         </div>
       `,
-      icon: 'success',
-      confirmButtonText: 'Mantap!',
-      confirmButtonColor: '#023047'
+      confirmButtonText: 'Terima Kasih',
+      confirmButtonColor: '#023047',
+      background: '#faf8f5'
     })
   }
 }
 </script>
 
 <template>
-  <div class="space-y-24 py-6 sm:py-10">
-    <!-- HERO SECTION -->
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <!-- Text & Branding Column -->
+  <div class="space-y-24 py-8 sm:py-14 relative overflow-hidden">
+    <!-- Atmospheric Decorative Floating Clouds (Ghibli Sky Feel) -->
+    <div class="absolute top-12 left-1/10 w-72 h-36 bg-[#8ECAE6]/15 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
+    <div class="absolute top-36 right-1/12 w-96 h-48 bg-[#FFB703]/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <div class="absolute top-1/2 left-1/3 w-80 h-40 bg-[#219EBC]/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+    <!-- 1. HERO SECTION: THE CRAFTSMAN'S WORKSHOP -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <!-- Storytelling & Branding Column -->
         <div class="lg:col-span-7 space-y-6 text-left">
-          <!-- Availability Badge -->
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-[#219EBC]/10 text-[#023047] dark:text-[#8ECAE6] border border-[#219EBC]/30 shadow-sm">
-            <span class="w-2 h-2 rounded-full bg-[#198754] animate-pulse"></span>
-            <span>Tersedia untuk Peran Backend & Fullstack Engineer</span>
+          <!-- Nature & Availability Badge -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#8ECAE6]/25 dark:bg-[#034363] text-[#023047] dark:text-[#8ECAE6] border border-[#219EBC]/40 shadow-xs">
+            <span class="text-sm">🍃</span>
+            <span>Terbuka untuk Peran Rekayasa Backend & Kolaborasi Penuh</span>
           </div>
 
-          <!-- Main Headline -->
+          <!-- Hero Headline -->
           <div class="space-y-3">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
-              Membangun Sistem <br class="hidden sm:inline" />
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#219EBC] via-[#023047] to-[#FB8500] dark:from-[#8ECAE6] dark:via-[#219EBC] dark:to-[#FFB703]">
-                Backend Tangguh
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#023047] dark:text-white leading-[1.18]">
+              Merajut Sistem <br />
+              <span class="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#219EBC] via-[#023047] to-[#FB8500] dark:from-[#8ECAE6] dark:via-[#219EBC] dark:to-[#FFB703]">
+                Backend yang Tenang
+                <svg class="absolute -bottom-2 left-0 w-full h-3 text-[#FFB703] opacity-80" viewBox="0 0 100 12" preserveAspectRatio="none">
+                  <path d="M0,7 Q25,12 50,7 T100,7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                </svg>
               </span> <br />
-              & Web Modern.
+              namun Kokoh & Skalabel.
             </h1>
-            <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed">
-              Halo, saya <span class="font-bold text-[#023047] dark:text-[#8ECAE6]">Dian Adi Nugroho</span>. Web & Backend Developer dari Yogyakarta dengan pengalaman membangun RESTful API terproteksi, optimasi multi-database (Oracle, PostgreSQL, MongoDB), dan otomasi kontainer Docker.
+            <p class="text-base sm:text-lg text-slate-700 dark:text-slate-300 max-w-xl leading-relaxed pt-1">
+              Saya <strong class="text-[#023047] dark:text-[#8ECAE6] font-bold">Dian Adi Nugroho</strong> — pengrajin web & rekayasa backend dari Yogyakarta. Menenun logika data yang stabil, REST API terproteksi, dan infrastruktur kontainer teratur di balik layar agar pengguna merasakan pengalaman yang damai.
             </p>
           </div>
 
-          <!-- Quick Tech Pill Highlights -->
-          <div class="flex flex-wrap items-center gap-2 pt-1 text-xs font-medium text-slate-700 dark:text-slate-300">
-            <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Laravel / PHP</span>
-            <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Express.js / Node.js</span>
-            <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">PostgreSQL & Oracle</span>
-            <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Docker & Linux</span>
-            <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Vue.js & Nuxt 4</span>
+          <!-- Signature Highlights (Parchment Tags) -->
+          <div class="flex flex-wrap items-center gap-2 pt-1 text-xs font-medium">
+            <span class="px-3 py-1 rounded-full bg-white/80 dark:bg-[#034363]/80 border border-[#8ECAE6]/50 dark:border-[#219EBC]/40 text-[#023047] dark:text-[#8ECAE6] shadow-xs">
+              🌾 Laravel & PHP
+            </span>
+            <span class="px-3 py-1 rounded-full bg-white/80 dark:bg-[#034363]/80 border border-[#8ECAE6]/50 dark:border-[#219EBC]/40 text-[#023047] dark:text-[#8ECAE6] shadow-xs">
+              🌊 PostgreSQL & Oracle
+            </span>
+            <span class="px-3 py-1 rounded-full bg-white/80 dark:bg-[#034363]/80 border border-[#8ECAE6]/50 dark:border-[#219EBC]/40 text-[#023047] dark:text-[#8ECAE6] shadow-xs">
+              ⚓ Docker & Linux
+            </span>
+            <span class="px-3 py-1 rounded-full bg-white/80 dark:bg-[#034363]/80 border border-[#8ECAE6]/50 dark:border-[#219EBC]/40 text-[#023047] dark:text-[#8ECAE6] shadow-xs">
+              ✨ Vue 3 & Nuxt 4
+            </span>
           </div>
 
-          <!-- CTA Buttons -->
-          <div class="flex flex-wrap items-center gap-3 pt-3">
+          <!-- Call to Action Buttons -->
+          <div class="flex flex-wrap items-center gap-3.5 pt-3">
             <a
               href="#projects"
-              class="px-6 py-3 rounded-xl font-semibold text-white bg-[#FB8500] hover:bg-[#FB8500]/90 transition shadow-md shadow-[#FB8500]/20 flex items-center gap-2 text-sm"
+              class="px-6 py-3.5 rounded-2xl font-bold text-white bg-[#FB8500] hover:bg-[#FB8500]/90 transition shadow-md shadow-[#FB8500]/25 flex items-center gap-2 text-sm hover:-translate-y-0.5"
             >
-              <Icon name="heroicons:rocket-launch-20-solid" class="w-4 h-4" />
-              Eksplorasi Proyek
+              <Icon name="heroicons:map-20-solid" class="w-4 h-4 text-[#FFB703]" />
+              <span>Jelajahi Lembar Karya</span>
             </a>
 
             <NuxtLink
               to="/mycv"
-              class="px-5 py-3 rounded-xl font-semibold text-[#023047] dark:text-[#8ECAE6] bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 transition flex items-center gap-2 text-sm"
+              class="px-5 py-3.5 rounded-2xl font-bold text-[#023047] dark:text-[#8ECAE6] bg-white/90 dark:bg-[#034363] hover:bg-[#8ECAE6]/20 border border-[#219EBC]/40 transition flex items-center gap-2 text-sm shadow-xs hover:-translate-y-0.5"
             >
-              <Icon name="heroicons:document-text-20-solid" class="w-4 h-4 text-[#219EBC]" />
-              Detail CV & Biodata (/mycv)
+              <Icon name="heroicons:book-open-20-solid" class="w-4 h-4 text-[#219EBC]" />
+              <span>Buku Riwayat & CV (/mycv)</span>
             </NuxtLink>
 
             <button
               type="button"
               @click="copyEmail"
-              class="px-4 py-3 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-[#219EBC] dark:hover:text-[#8ECAE6] transition flex items-center gap-1.5"
-              title="Salin alamat email"
+              class="px-4 py-3.5 rounded-2xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-[#219EBC] dark:hover:text-[#8ECAE6] hover:bg-[#8ECAE6]/15 transition flex items-center gap-1.5"
+              title="Salin alamat surel"
             >
-              <Icon name="heroicons:clipboard-document-check-20-solid" class="w-4 h-4" />
-              <span>Salin Email</span>
+              <Icon name="heroicons:paper-airplane-20-solid" class="w-4 h-4 text-[#FB8500]" />
+              <span>Kirim Surel</span>
             </button>
           </div>
 
-          <!-- Quick Social Links -->
-          <div class="flex items-center gap-4 pt-2 text-sm text-slate-500 dark:text-slate-400">
-            <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Hubungkan:</span>
-            <a href="https://github.com/dianadi021" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 dark:hover:text-white flex items-center gap-1 transition">
-              <Icon name="simple-icons:github" class="w-4 h-4" />
-              <span>GitHub</span>
-            </a>
-            <span>•</span>
-            <a href="mailto:contactmedianadi021@gmail.com" class="hover:text-[#219EBC] flex items-center gap-1 transition">
-              <Icon name="heroicons:envelope-20-solid" class="w-4 h-4 text-[#219EBC]" />
-              <span>Email</span>
-            </a>
-            <span>•</span>
-            <span class="flex items-center gap-1 text-slate-600 dark:text-slate-300">
+          <!-- Warm Personal Notes -->
+          <div class="flex flex-wrap items-center gap-4 pt-2 text-xs text-slate-600 dark:text-slate-400">
+            <span class="flex items-center gap-1.5">
               <Icon name="heroicons:map-pin-20-solid" class="w-4 h-4 text-[#FB8500]" />
-              <span>Sleman, Yogyakarta</span>
+              <span>Sleman, D.I. Yogyakarta</span>
+            </span>
+            <span>•</span>
+            <a href="https://github.com/dianadi021" target="_blank" rel="noopener noreferrer" class="hover:text-[#219EBC] flex items-center gap-1 transition">
+              <Icon name="simple-icons:github" class="w-3.5 h-3.5" />
+              <span>github.com/dianadi021</span>
+            </a>
+            <span>•</span>
+            <button type="button" @click="showHeartwarmStatus" class="text-[#219EBC] hover:underline font-semibold flex items-center gap-1">
+              <span>Status Studio</span>
+              <span>↗</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Visual Column: The Ghibli Postcard & Field Notebook -->
+        <div class="lg:col-span-5">
+          <div class="relative group">
+            <!-- Decorative Wooden/Stamp Border Aura -->
+            <div class="absolute -inset-2 bg-gradient-to-r from-[#219EBC]/20 via-[#FFB703]/20 to-[#FB8500]/20 rounded-3xl blur-lg opacity-70 group-hover:opacity-100 transition duration-500"></div>
+
+            <!-- Field Postcard Card -->
+            <div class="relative rounded-3xl bg-white dark:bg-[#034363] border-2 border-[#8ECAE6]/50 dark:border-[#219EBC]/40 p-6 sm:p-7 shadow-xl space-y-5 text-left">
+              <!-- Postcard Header with Postage Stamp -->
+              <div class="flex items-start justify-between border-b border-[#8ECAE6]/30 dark:border-[#219EBC]/30 pb-4">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xl">📫</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#219EBC] dark:text-[#8ECAE6]">
+                      Catatan Pengrajin Digital
+                    </span>
+                  </div>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                    No. Arsip: YK-2026 / dianadi021.github.io
+                  </p>
+                </div>
+
+                <!-- Vintage Postage Stamp -->
+                <div class="w-14 h-16 rounded-md border-2 border-dashed border-[#FB8500] bg-[#FFB703]/10 p-1 flex flex-col items-center justify-between text-center rotate-3 shadow-xs">
+                  <span class="text-[9px] font-bold text-[#FB8500] uppercase tracking-tighter">POS YOGYA</span>
+                  <span class="text-sm">🏮</span>
+                  <span class="text-[8px] font-mono text-[#023047] dark:text-slate-200">#021</span>
+                </div>
+              </div>
+
+              <!-- Postcard Note Body -->
+              <div class="space-y-3 text-xs leading-relaxed text-slate-700 dark:text-slate-200">
+                <p class="italic text-slate-600 dark:text-slate-300">
+                  "Menghidupkan baris kode bagaikan merawat taman bunga di tepi bukit. Setiap tabel, rute, dan kontainer harus saling berpadu harmonis tanpa kebisingan yang mengganggu."
+                </p>
+
+                <!-- Status Notebook Lines -->
+                <div class="p-3.5 rounded-2xl bg-[#faf8f5] dark:bg-[#023047]/60 border border-[#8ECAE6]/40 dark:border-[#219EBC]/30 space-y-2">
+                  <div class="flex items-center justify-between">
+                    <span class="font-semibold text-[#023047] dark:text-[#8ECAE6]">Pengrajin:</span>
+                    <span class="font-bold">Dian Adi Nugroho</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="font-semibold text-[#023047] dark:text-[#8ECAE6]">Spesialisasi:</span>
+                    <span>Backend Architect & Web Systems</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="font-semibold text-[#023047] dark:text-[#8ECAE6]">Infrastruktur:</span>
+                    <span>Laravel, Oracle, PostgreSQL, Docker</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="font-semibold text-[#023047] dark:text-[#8ECAE6]">Waktu Studio:</span>
+                    <span class="text-[11px] text-[#FB8500] font-medium">{{ currentTime }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Stamp Button -->
+              <div class="pt-2 flex items-center justify-between">
+                <div class="flex items-center gap-1.5 text-[11px] text-[#198754] font-medium">
+                  <span class="w-2 h-2 rounded-full bg-[#198754]"></span>
+                  <span>Sistem Siap Berlayar</span>
+                </div>
+                <button
+                  type="button"
+                  @click="showHeartwarmStatus"
+                  class="px-3 py-1.5 rounded-full text-xs font-semibold bg-[#219EBC]/15 text-[#023047] dark:text-[#8ECAE6] hover:bg-[#219EBC]/30 transition"
+                >
+                  Buka Buku Catatan ↗
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. FOUR PILLARS OF CRAFTSMANSHIP (SHOW OFF METRICS & VALUES) -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Pillar 1 -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-[#034363]/80 border-2 border-[#8ECAE6]/30 dark:border-[#219EBC]/30 shadow-xs hover:border-[#219EBC] transition space-y-2 text-left">
+          <div class="w-10 h-10 rounded-2xl bg-[#8ECAE6]/25 flex items-center justify-center text-xl">
+            🏛️
+          </div>
+          <div class="text-2xl font-black text-[#023047] dark:text-white">4+ Basis Data</div>
+          <div class="text-xs font-bold uppercase tracking-wider text-[#219EBC]">Penyimpanan Memori</div>
+          <p class="text-xs text-slate-600 dark:text-slate-300">
+            Keahlian mengelola Oracle, PostgreSQL, MongoDB, dan MySQL dengan skema yang teruji.
+          </p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-[#034363]/80 border-2 border-[#8ECAE6]/30 dark:border-[#219EBC]/30 shadow-xs hover:border-[#219EBC] transition space-y-2 text-left">
+          <div class="w-10 h-10 rounded-2xl bg-[#FFB703]/25 flex items-center justify-center text-xl">
+            🛡️
+          </div>
+          <div class="text-2xl font-black text-[#023047] dark:text-white">REST & JWT</div>
+          <div class="text-xs font-bold uppercase tracking-wider text-[#FFB703]">Gerbang Terlindungi</div>
+          <p class="text-xs text-slate-600 dark:text-slate-300">
+            Protokol autentikasi berlapis peran, enkripsi payload, dan sanitasi permintaan ketat.
+          </p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-[#034363]/80 border-2 border-[#8ECAE6]/30 dark:border-[#219EBC]/30 shadow-xs hover:border-[#219EBC] transition space-y-2 text-left">
+          <div class="w-10 h-10 rounded-2xl bg-[#FB8500]/25 flex items-center justify-center text-xl">
+            🌿
+          </div>
+          <div class="text-2xl font-black text-[#023047] dark:text-white">24/7 Monitoring</div>
+          <div class="text-xs font-bold uppercase tracking-wider text-[#FB8500]">Penjagaan Setia</div>
+          <p class="text-xs text-slate-600 dark:text-slate-300">
+            Pengalaman nyata menjaga detak server kesehatan pada PT Medika Digital Nusantara.
+          </p>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-[#034363]/80 border-2 border-[#8ECAE6]/30 dark:border-[#219EBC]/30 shadow-xs hover:border-[#219EBC] transition space-y-2 text-left">
+          <div class="w-10 h-10 rounded-2xl bg-[#219EBC]/25 flex items-center justify-center text-xl">
+            ⛵
+          </div>
+          <div class="text-2xl font-black text-[#023047] dark:text-white">Docker & Linux</div>
+          <div class="text-xs font-bold uppercase tracking-wider text-[#219EBC]">Pelayaran Mandiri</div>
+          <p class="text-xs text-slate-600 dark:text-slate-300">
+            Isolasi kontainer bersih dan manajemen server Ubuntu mandiri tanpa ketergantungan rapuh.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. FEATURED PROJECTS: POSTCARDS FROM THE JOURNEY -->
+    <section id="projects" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-dashed border-[#8ECAE6]/40 dark:border-[#219EBC]/30 pb-6 text-left">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xl">📜</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-[#219EBC] dark:text-[#8ECAE6]">
+              Ekspedisi & Rekayasa
             </span>
           </div>
-        </div>
-
-        <!-- Terminal / Live Mockup Card Column -->
-        <div class="lg:col-span-5">
-          <div class="rounded-2xl border border-slate-700 bg-[#023047] text-slate-200 shadow-2xl overflow-hidden font-mono text-xs">
-            <!-- Window Bar -->
-            <div class="px-4 py-3 bg-[#012232] border-b border-slate-700/80 flex items-center justify-between">
-              <div class="flex items-center space-x-2">
-                <span class="w-3 h-3 rounded-full bg-danger block"></span>
-                <span class="w-3 h-3 rounded-full bg-warning block"></span>
-                <span class="w-3 h-3 rounded-full bg-success block"></span>
-              </div>
-              <div class="text-[11px] text-[#8ECAE6] font-semibold flex items-center gap-1">
-                <Icon name="heroicons:command-line-20-solid" class="w-3.5 h-3.5" />
-                <span>dianadi@dev-server:~</span>
-              </div>
-              <button
-                type="button"
-                @click="showBackendStatusAlert"
-                class="text-[10px] px-2 py-0.5 rounded bg-[#219EBC]/20 text-[#8ECAE6] hover:bg-[#219EBC]/30 transition"
-              >
-                Inspect
-              </button>
-            </div>
-
-            <!-- Terminal Body -->
-            <div class="p-5 space-y-3 leading-relaxed">
-              <div class="text-[#8ECAE6]">
-                <span class="text-[#FB8500] font-bold">➜</span> <span class="text-white">whoami --verbose</span>
-              </div>
-              <div class="pl-3 border-l-2 border-[#219EBC]/40 space-y-1 text-slate-300">
-                <p><span class="text-[#FFB703]">name:</span> "Dian Adi Nugroho"</p>
-                <p><span class="text-[#FFB703]">role:</span> "Web Developer / Backend Developer"</p>
-                <p><span class="text-[#FFB703]">location:</span> "Kab. Sleman, D.I. Yogyakarta"</p>
-                <p><span class="text-[#FFB703]">domain:</span> "dianadi021.github.io"</p>
-              </div>
-
-              <div class="text-[#8ECAE6] pt-1">
-                <span class="text-[#FB8500] font-bold">➜</span> <span class="text-white">cat stack.runtime.json</span>
-              </div>
-              <div class="pl-3 border-l-2 border-[#219EBC]/40 text-slate-300">
-                <p class="text-emerald-400">// Core Stack Matrix</p>
-                <p>"backend": ["Laravel", "PHP", "Express.js", "Node.js", "Lua"],</p>
-                <p>"databases": ["PostgreSQL", "Oracle", "MySQL", "MongoDB"],</p>
-                <p>"devops": ["Docker", "Ubuntu Linux", "Git", "Postman"],</p>
-                <p>"frontend": ["Vue.js 3", "Nuxt 4", "Tailwind CSS", "TypeScript"]</p>
-              </div>
-
-              <div class="text-[#8ECAE6] pt-1">
-                <span class="text-[#FB8500] font-bold">➜</span> <span class="text-white">uptime --status</span>
-              </div>
-              <div class="pl-3 border-l-2 border-[#198754] text-emerald-400">
-                <p>● Status: 100% Operational | Zero Downtime Mindset</p>
-                <p class="text-[10px] text-slate-400">{{ currentTime }}</p>
-              </div>
-            </div>
-
-            <!-- Terminal Footer Action -->
-            <div class="px-5 py-2.5 bg-[#011c2a] border-t border-slate-800 text-[11px] flex items-center justify-between text-slate-400">
-              <span class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                <span>Active Session</span>
-              </span>
-              <button
-                type="button"
-                @click="showBackendStatusAlert"
-                class="text-[#8ECAE6] hover:underline"
-              >
-                Click to Test Health Check ↗
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- METRICS & IMPACT BAR -->
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 shadow-sm">
-        <div class="space-y-1 text-center md:text-left">
-          <div class="text-3xl font-extrabold text-[#023047] dark:text-[#8ECAE6]">4+</div>
-          <div class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">RDBMS & NoSQL</div>
-          <div class="text-xs text-slate-600 dark:text-slate-400">Oracle, Postgres, Mongo, MySQL</div>
-        </div>
-        <div class="space-y-1 text-center md:text-left">
-          <div class="text-3xl font-extrabold text-[#219EBC]">24/7</div>
-          <div class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Server Monitoring</div>
-          <div class="text-xs text-slate-600 dark:text-slate-400">Healthcare high-reliability infra</div>
-        </div>
-        <div class="space-y-1 text-center md:text-left">
-          <div class="text-3xl font-extrabold text-[#FB8500]">REST & JWT</div>
-          <div class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Secure Architecture</div>
-          <div class="text-xs text-slate-600 dark:text-slate-400">Multi-tenant role authentication</div>
-        </div>
-        <div class="space-y-1 text-center md:text-left">
-          <div class="text-3xl font-extrabold text-[#198754]">Dockerized</div>
-          <div class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">DevOps & Linux</div>
-          <div class="text-xs text-slate-600 dark:text-slate-400">Ubuntu Server & container isolation</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FEATURED PROJECTS SHOWCASE -->
-    <section id="projects" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-20">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-[#219EBC] dark:text-[#8ECAE6]">Engineering Portfolio</span>
-          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
-            Proyek & Rekayasa Sistem Unggulan
+          <h2 class="text-3xl font-extrabold text-[#023047] dark:text-white mt-1">
+            Karya Pilihan & Cerita Sistem
           </h2>
         </div>
-        <p class="text-sm text-slate-500 dark:text-slate-400 max-w-md">
-          Implementasi nyata pada sistem skala enterprise, manajemen data kesehatan, dan arsitektur web modern.
+        <p class="text-sm text-slate-600 dark:text-slate-400 max-w-md">
+          Dokumentasi jejak nyata membangun solusi andal untuk skala fasilitas kesehatan, platform multi-tenant, dan arsitektur web modern.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Postcards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
         <div
           v-for="(project, idx) in projects"
           :key="idx"
-          class="group rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 p-6 shadow-sm hover:shadow-xl hover:border-[#219EBC]/60 transition-all duration-300 flex flex-col justify-between space-y-6"
+          class="rounded-3xl bg-white dark:bg-[#034363] border-2 border-[#8ECAE6]/40 dark:border-[#219EBC]/30 p-7 shadow-sm hover:shadow-xl hover:border-[#219EBC] transition-all duration-300 flex flex-col justify-between space-y-6 relative overflow-hidden group"
         >
+          <!-- Corner Wax Stamp Accent -->
+          <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#8ECAE6]/20 to-transparent pointer-events-none rounded-bl-full"></div>
+
           <div class="space-y-4">
-            <!-- Badge & Category -->
+            <!-- Stamp Top Bar -->
             <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#8ECAE6]/20 text-[#023047] dark:text-[#8ECAE6]">
-                {{ project.category }}
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-[#8ECAE6]/25 dark:bg-[#023047] text-[#023047] dark:text-[#8ECAE6] border border-[#219EBC]/30">
+                {{ project.stamp }}
               </span>
-              <span class="text-[11px] font-bold px-2 py-0.5 rounded border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
-                {{ project.badge }}
+              <span class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-[#023047] text-slate-500 dark:text-slate-400">
+                {{ project.stampNumber }} · {{ project.place }}
               </span>
             </div>
 
-            <!-- Title & Description -->
+            <!-- Title & Narrative -->
             <div class="space-y-2">
-              <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-[#219EBC] transition">
+              <h3 class="text-xl font-extrabold text-[#023047] dark:text-white group-hover:text-[#219EBC] transition">
                 {{ project.title }}
               </h3>
-              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
                 {{ project.description }}
               </p>
             </div>
 
-            <!-- Bullet Features -->
-            <div class="space-y-1.5 pt-2 border-t border-slate-100 dark:border-slate-700/60">
+            <!-- Handcrafted Note Points -->
+            <div class="space-y-2 pt-2 border-t border-[#8ECAE6]/30 dark:border-[#219EBC]/30">
               <div
-                v-for="(feat, fIdx) in project.features"
-                :key="fIdx"
+                v-for="(n, nIdx) in project.notes"
+                :key="nIdx"
                 class="flex items-start gap-2 text-xs text-slate-600 dark:text-slate-300"
               >
-                <Icon name="heroicons:check-circle-20-solid" class="w-4 h-4 text-[#219EBC] shrink-0 mt-0.5" />
-                <span>{{ feat }}</span>
+                <span class="text-[#219EBC] dark:text-[#8ECAE6] text-sm shrink-0">🍃</span>
+                <span>{{ n }}</span>
               </div>
             </div>
           </div>
 
-          <!-- Tech Tags -->
-          <div class="pt-4 border-t border-slate-100 dark:border-slate-700/60">
+          <!-- Bottom Technology Ribbon -->
+          <div class="pt-4 border-t border-[#8ECAE6]/30 dark:border-[#219EBC]/30">
             <div class="flex flex-wrap gap-1.5">
               <span
                 v-for="t in project.tech"
                 :key="t"
-                class="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-700/70 text-slate-700 dark:text-slate-300"
+                class="text-[11px] font-medium px-2.5 py-1 rounded-full bg-[#faf8f5] dark:bg-[#023047] text-[#023047] dark:text-slate-200 border border-[#8ECAE6]/30"
               >
                 {{ t }}
               </span>
@@ -409,175 +479,182 @@ const showBackendStatusAlert = () => {
       </div>
     </section>
 
-    <!-- CORE TECHNICAL STACK & CAPABILITIES -->
-    <section id="skills" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-20">
+    <!-- 4. THE ARTISAN'S TOOLKIT (#skills) -->
+    <section id="skills" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
       <div class="text-center max-w-2xl mx-auto space-y-2">
-        <span class="text-xs font-bold uppercase tracking-wider text-[#FB8500]">Capabilities & Stack</span>
-        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">
-          Keahlian Teknis & Alat Rekayasa
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#FB8500]">
+          <span>🧰</span>
+          <span>Perlengkapan & Piranti</span>
+        </div>
+        <h2 class="text-3xl font-extrabold text-[#023047] dark:text-white">
+          Koleksi Perkakas Sang Pengrajin
         </h2>
         <p class="text-sm text-slate-600 dark:text-slate-400">
-          Daftar framework, bahasa pemrograman, basis data, dan infrastruktur yang digunakan dalam proses rekayasa perangkat lunak.
+          Bahasa, kerangka kerja, basis data, dan sarana komputasi yang diasah dengan cermat untuk menghidupkan arsitektur aplikasi.
         </p>
       </div>
 
-      <!-- Category Filter Tabs -->
+      <!-- Filter Tabs ala Ghibli Wooden Slats -->
       <div class="flex flex-wrap items-center justify-center gap-2">
         <button
           type="button"
           @click="activeTab = 'all'"
-          class="px-4 py-2 rounded-xl text-xs font-semibold transition"
-          :class="activeTab === 'all' ? 'bg-[#023047] text-white shadow-sm' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'"
+          class="px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 shadow-xs"
+          :class="activeTab === 'all' ? 'bg-[#023047] text-white ring-2 ring-[#8ECAE6]' : 'bg-white dark:bg-[#034363] text-slate-700 dark:text-slate-300 hover:bg-[#8ECAE6]/20'"
         >
-          Semua (16)
+          Semua Perkakas (16)
         </button>
         <button
           type="button"
           @click="activeTab = 'backend'"
-          class="px-4 py-2 rounded-xl text-xs font-semibold transition"
-          :class="activeTab === 'backend' ? 'bg-[#023047] text-white shadow-sm' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'"
+          class="px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 shadow-xs"
+          :class="activeTab === 'backend' ? 'bg-[#023047] text-white ring-2 ring-[#8ECAE6]' : 'bg-white dark:bg-[#034363] text-slate-700 dark:text-slate-300 hover:bg-[#8ECAE6]/20'"
         >
-          Backend & Runtime
+          Mesin Backend & Skrip
         </button>
         <button
           type="button"
           @click="activeTab = 'database'"
-          class="px-4 py-2 rounded-xl text-xs font-semibold transition"
-          :class="activeTab === 'database' ? 'bg-[#023047] text-white shadow-sm' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'"
+          class="px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 shadow-xs"
+          :class="activeTab === 'database' ? 'bg-[#023047] text-white ring-2 ring-[#8ECAE6]' : 'bg-white dark:bg-[#034363] text-slate-700 dark:text-slate-300 hover:bg-[#8ECAE6]/20'"
         >
-          Basis Data (SQL & NoSQL)
+          Basis Data & Penyimpanan
         </button>
         <button
           type="button"
           @click="activeTab = 'devops'"
-          class="px-4 py-2 rounded-xl text-xs font-semibold transition"
-          :class="activeTab === 'devops' ? 'bg-[#023047] text-white shadow-sm' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'"
+          class="px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 shadow-xs"
+          :class="activeTab === 'devops' ? 'bg-[#023047] text-white ring-2 ring-[#8ECAE6]' : 'bg-white dark:bg-[#034363] text-slate-700 dark:text-slate-300 hover:bg-[#8ECAE6]/20'"
         >
-          DevOps & Infrastruktur
+          Infrastruktur & DevOps
         </button>
         <button
           type="button"
           @click="activeTab = 'frontend'"
-          class="px-4 py-2 rounded-xl text-xs font-semibold transition"
-          :class="activeTab === 'frontend' ? 'bg-[#023047] text-white shadow-sm' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'"
+          class="px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 shadow-xs"
+          :class="activeTab === 'frontend' ? 'bg-[#023047] text-white ring-2 ring-[#8ECAE6]' : 'bg-white dark:bg-[#034363] text-slate-700 dark:text-slate-300 hover:bg-[#8ECAE6]/20'"
         >
-          Frontend Modern
+          Antarmuka Web Modern
         </button>
       </div>
 
-      <!-- Skills Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Skills Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
         <div
           v-for="skill in filteredSkills"
           :key="skill.name"
-          class="p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 shadow-sm hover:border-[#219EBC] hover:-translate-y-0.5 transition-all duration-200 space-y-2"
+          class="p-5 rounded-3xl bg-white dark:bg-[#034363] border-2 border-[#8ECAE6]/30 dark:border-[#219EBC]/30 shadow-xs hover:border-[#219EBC] hover:-translate-y-1 transition-all duration-200 space-y-2.5"
         >
           <div class="flex items-center justify-between">
-            <span class="font-bold text-base text-slate-900 dark:text-white">{{ skill.name }}</span>
+            <span class="font-extrabold text-base text-[#023047] dark:text-white">{{ skill.name }}</span>
             <Icon :name="skill.icon" class="w-6 h-6" />
           </div>
           <div class="text-xs text-slate-500 dark:text-slate-400">
             {{ skill.role }}
           </div>
-          <div class="text-[11px] font-medium text-[#219EBC] dark:text-[#8ECAE6] bg-[#8ECAE6]/10 px-2 py-1 rounded">
-            {{ skill.highlight }}
+          <div class="text-[11px] font-semibold text-[#023047] dark:text-[#8ECAE6] bg-[#8ECAE6]/20 dark:bg-[#023047] px-3 py-1 rounded-full inline-block">
+            🌱 {{ skill.note }}
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CAREER HIGHLIGHTS TIMELINE (SUMMARY) -->
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
+    <!-- 5. CAREER TIMELINE HIGHLIGHTS & CV INVITATION -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-left">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-dashed border-[#8ECAE6]/40 dark:border-[#219EBC]/30 pb-6">
         <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-[#219EBC]">Rekam Jejak</span>
-          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
-            Pengalaman Karir & Industri
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🗺️</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-[#219EBC]">Jejak Langkah</span>
+          </div>
+          <h2 class="text-3xl font-extrabold text-[#023047] dark:text-white mt-1">
+            Riwayat Singkat di Industri
           </h2>
         </div>
         <NuxtLink
           to="/mycv"
-          class="text-xs font-bold text-[#FB8500] hover:underline flex items-center gap-1 self-start sm:self-auto"
+          class="text-xs font-bold text-[#FB8500] hover:underline flex items-center gap-1.5 self-start sm:self-auto"
         >
-          <span>Buka CV Lengkap & Pendidikan</span>
+          <span>Buka CV Lengkap & Pendidikan (/mycv)</span>
           <Icon name="heroicons:arrow-right-20-solid" class="w-4 h-4" />
         </NuxtLink>
       </div>
 
       <div class="space-y-6">
         <!-- Experience 1 -->
-        <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col md:flex-row md:items-start justify-between gap-4">
-          <div class="space-y-2 max-w-3xl">
+        <div class="p-7 rounded-3xl bg-white dark:bg-[#034363] border-2 border-[#8ECAE6]/40 dark:border-[#219EBC]/30 shadow-xs flex flex-col md:flex-row md:items-start justify-between gap-6">
+          <div class="space-y-3 max-w-3xl">
             <div class="flex items-center gap-2">
-              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#023047] text-[#8ECAE6]">
-                Healthcare Tech
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-[#023047] text-[#8ECAE6]">
+                Teknologi Medis
               </span>
-              <span class="text-xs text-slate-400">PT Medika Digital Nusantara</span>
+              <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">PT Medika Digital Nusantara</span>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 dark:text-white">
+            <h3 class="text-xl font-bold text-[#023047] dark:text-white">
               Web Developer
             </h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Bertanggung jawab atas pemantauan server harian, mitigasi bug cepat, pengembangan fitur berbasis Laravel & PHP, pengelolaan database Oracle skala enterprise, serta kontainerisasi lingkungan aplikasi dengan Docker di bawah jadwal kerja shifting.
+            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+              Bertanggung jawab memelihara kesehatan server operasional, menangani anomali secara tanggap di bawah jadwal kerja shifting, mengembangkan fitur layanan berbasis Laravel & PHP, serta merawat integritas basis data Oracle skala enterprise dalam kontainer Docker.
             </p>
-            <div class="flex flex-wrap gap-2 pt-2">
-              <span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Laravel</span>
-              <span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Oracle Database</span>
-              <span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Docker</span>
-              <span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Server Monitoring</span>
+            <div class="flex flex-wrap gap-2 pt-1 text-xs">
+              <span class="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-[#023047] text-slate-700 dark:text-slate-300">Laravel / PHP</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-[#023047] text-slate-700 dark:text-slate-300">Oracle Database</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-[#023047] text-slate-700 dark:text-slate-300">Docker</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-[#023047] text-slate-700 dark:text-slate-300">Server Monitoring</span>
             </div>
           </div>
-          <div class="text-xs font-medium text-slate-500 shrink-0">
+          <div class="text-xs font-bold text-slate-400 shrink-0">
             Sleman, D.I. Yogyakarta
           </div>
         </div>
 
         <!-- Experience 2 -->
-        <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col md:flex-row md:items-start justify-between gap-4">
-          <div class="space-y-2 max-w-3xl">
+        <div class="p-7 rounded-3xl bg-white dark:bg-[#034363] border-2 border-[#8ECAE6]/40 dark:border-[#219EBC]/30 shadow-xs flex flex-col md:flex-row md:items-start justify-between gap-6">
+          <div class="space-y-3 max-w-3xl">
             <div class="flex items-center gap-2">
-              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#219EBC]/20 text-[#219EBC] dark:text-[#8ECAE6]">
-                Software Engineering
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-[#219EBC]/20 text-[#219EBC] dark:text-[#8ECAE6]">
+                Rekayasa Perangkat Lunak
               </span>
-              <span class="text-xs text-slate-400">Zettabyte Pte Ltd</span>
+              <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Zettabyte Pte Ltd</span>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 dark:text-white">
+            <h3 class="text-xl font-bold text-[#023047] dark:text-white">
               Backend Developer (Trainee)
             </h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Mempelajari dan menerapkan perancangan skema basis data relational (PostgreSQL) serta NoSQL (MongoDB), implementasi keamanan REST API dengan protokol JWT, dan penulisan endpoints yang teruji secara komprehensif.
+            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+              Mempelajari dan menerapkan rancangan skema basis data relasional (PostgreSQL) serta dokumen (MongoDB), mengimplementasikan lapisan keamanan API berbasis JSON Web Token (JWT), dan menyusun koleksi uji endpoint yang aman.
             </p>
-            <div class="flex flex-wrap gap-2 pt-2">
-              <span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">PostgreSQL</span>
-              <span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">MongoDB</span>
-              <span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">REST API Security</span>
-              <span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">JWT Auth</span>
+            <div class="flex flex-wrap gap-2 pt-1 text-xs">
+              <span class="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-[#023047] text-slate-700 dark:text-slate-300">PostgreSQL</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-[#023047] text-slate-700 dark:text-slate-300">MongoDB</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-[#023047] text-slate-700 dark:text-slate-300">Keamanan REST API</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-[#023047] text-slate-700 dark:text-slate-300">JWT Auth</span>
             </div>
           </div>
-          <div class="text-xs font-medium text-slate-500 shrink-0">
+          <div class="text-xs font-bold text-slate-400 shrink-0">
             Yogyakarta
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CALL TO ACTION & CONTACT SECTION -->
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="rounded-3xl bg-gradient-to-br from-[#023047] via-[#034363] to-[#011a27] text-white p-8 sm:p-12 shadow-2xl relative overflow-hidden">
-        <!-- Background Accent Glow -->
-        <div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-[#219EBC]/20 blur-3xl pointer-events-none"></div>
-        <div class="absolute -left-16 -bottom-16 w-64 h-64 rounded-full bg-[#FB8500]/20 blur-3xl pointer-events-none"></div>
+    <!-- 6. CONTACT & TWILIGHT LANTERN (WARM GHIBLI INVITATION) -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+      <div class="rounded-3xl bg-gradient-to-br from-[#023047] via-[#034363] to-[#011a27] text-white p-8 sm:p-12 shadow-xl relative overflow-hidden border border-[#219EBC]/30">
+        <!-- Warm Lantern Firefly Glow -->
+        <div class="absolute -right-10 -top-10 w-60 h-60 rounded-full bg-[#FFB703]/25 blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-10 -bottom-10 w-60 h-60 rounded-full bg-[#FB8500]/25 blur-3xl pointer-events-none"></div>
 
         <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div class="lg:col-span-8 space-y-4">
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#8ECAE6]/20 text-[#8ECAE6] border border-[#8ECAE6]/30">
-              Mari Berkolaborasi
-            </span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              Siap Membantu Mewujudkan Sistem yang Handal & Skalabel.
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#8ECAE6]/20 text-[#8ECAE6] border border-[#8ECAE6]/30">
+              <span>🏮</span>
+              <span>Lentera Sambung Rasa</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-white leading-tight">
+              Mari Berbincang & Membangun Sesuatu yang Berkesan.
             </h2>
-            <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
-              Apakah Anda membutuhkan pengembang backend untuk merancang REST API terproteksi, optimasi arsitektur database, atau membangun frontend modern berbasis Vue / Nuxt? Silakan hubungi saya langsung.
+            <p class="text-slate-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
+              Apakah Anda membutuhkan rekan pengembang untuk merajut arsitektur backend yang tangguh, merawat basis data, atau membangun antarmuka web modern? Pintu studio selalu terbuka untuk kolaborasi yang hangat.
             </p>
             <div class="flex flex-wrap items-center gap-4 pt-2 text-xs text-slate-300">
               <span class="flex items-center gap-1.5">
@@ -595,17 +672,17 @@ const showBackendStatusAlert = () => {
           <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center">
             <a
               href="mailto:contactmedianadi021@gmail.com"
-              class="w-full text-center px-6 py-3.5 rounded-xl font-bold text-white bg-[#FB8500] hover:bg-[#FB8500]/90 transition shadow-lg shadow-[#FB8500]/30 text-sm flex items-center justify-center gap-2"
+              class="w-full text-center px-6 py-3.5 rounded-2xl font-bold text-white bg-[#FB8500] hover:bg-[#FB8500]/90 transition shadow-md shadow-[#FB8500]/30 text-sm flex items-center justify-center gap-2 hover:-translate-y-0.5"
             >
-              <Icon name="heroicons:paper-airplane-20-solid" class="w-4 h-4" />
-              Kirim Email Sekarang
+              <Icon name="heroicons:paper-airplane-20-solid" class="w-4 h-4 text-[#FFB703]" />
+              <span>Kirimkan Surat Digital</span>
             </a>
             <NuxtLink
               to="/mycv"
-              class="w-full text-center px-6 py-3.5 rounded-xl font-bold text-[#8ECAE6] bg-white/10 hover:bg-white/20 border border-white/20 transition text-sm flex items-center justify-center gap-2"
+              class="w-full text-center px-6 py-3.5 rounded-2xl font-bold text-[#8ECAE6] bg-white/10 hover:bg-white/20 border border-white/25 transition text-sm flex items-center justify-center gap-2 hover:-translate-y-0.5"
             >
-              <Icon name="heroicons:user-badge-20-solid" class="w-4 h-4" />
-              Buka Halaman CV (/mycv)
+              <Icon name="heroicons:document-text-20-solid" class="w-4 h-4 text-[#8ECAE6]" />
+              <span>Buka CV & Biodata (/mycv)</span>
             </NuxtLink>
           </div>
         </div>
