@@ -120,9 +120,9 @@ const toggleTheme = () => {
             :class="isNavActive('/mycv') ? 'bg-[#FB8500] text-white shadow-sm ring-2 ring-[#FFB703]/50' : 'text-[#023047] dark:text-[#8ECAE6] hover:bg-[#8ECAE6]/20 hover:text-[#023047] dark:hover:text-white'"
           >
             <span v-if="isNavActive('/mycv')" class="w-1.5 h-1.5 rounded-full bg-[#FFB703]"></span>
-            <span>Jejak Karir</span>
-            <span class="text-[9px] px-1.5 py-0.2 rounded-full font-extrabold uppercase" :class="isNavActive('/mycv') ? 'bg-[#023047] text-[#FFB703]' : 'bg-[#FB8500] text-white'">
-              CV
+            <span>Curriculum Vitae</span>
+            <span class="text-[9px] px-1.5 py-0.5 rounded-full font-extrabold uppercase" :class="isNavActive('/mycv') ? 'bg-[#023047] text-[#FFB703]' : 'bg-[#FB8500] text-white'">
+              ATS
             </span>
           </NuxtLink>
 
@@ -138,26 +138,70 @@ const toggleTheme = () => {
         </nav>
 
         <!-- Right Side Controls -->
-        <div class="flex items-center space-x-3">
+        <div class="flex items-center space-x-2 sm:space-x-3">
           <!-- Atmosphere Badge -->
           <div class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium bg-[#8ECAE6]/20 border border-[#219EBC]/30 text-[#023047] dark:text-[#8ECAE6]">
             <span class="w-1.5 h-1.5 rounded-full bg-[#198754] animate-ping"></span>
-            <span>{{ isHydrated ? 'Siap Berlayar' : 'Memuat...' }}</span>
+            <span>{{ isHydrated ? 'Sistem Aktif' : 'Memuat...' }}</span>
           </div>
 
           <!-- Ghibli Sun/Moon Theme Toggle -->
           <button
             type="button"
-            class="w-9 h-9 rounded-full bg-white dark:bg-[#034363] border border-[#8ECAE6]/50 dark:border-[#219EBC]/40 shadow-xs flex items-center justify-center text-[#FB8500] dark:text-[#FFB703] hover:scale-105 transition-transform"
+            class="w-9 h-9 rounded-full bg-white dark:bg-[#034363] border border-[#8ECAE6]/50 dark:border-[#219EBC]/40 shadow-sm flex items-center justify-center text-[#FB8500] dark:text-[#FFB703] hover:scale-105 transition-transform"
             :title="`Ubah ke tema ${colorMode.value === 'dark' ? 'siang terang' : 'malam berbintang'}`"
             @click="toggleTheme"
           >
-            <Icon
-              :name="colorMode.value === 'dark' ? 'heroicons:sun-20-solid' : 'heroicons:moon-20-solid'"
-              class="w-4 h-4"
-            />
+            <ClientOnly>
+              <Icon
+                :name="colorMode.value === 'dark' ? 'heroicons:sun-20-solid' : 'heroicons:moon-20-solid'"
+                class="w-4 h-4"
+              />
+              <template #fallback>
+                <span class="w-4 h-4 block" />
+              </template>
+            </ClientOnly>
           </button>
         </div>
+      </div>
+
+      <!-- Mobile Navigation Bar (Horizontal Scrollable) -->
+      <div class="flex md:hidden border-t border-[#8ECAE6]/30 dark:border-[#219EBC]/20 px-4 py-2 overflow-x-auto gap-2 bg-white/70 dark:bg-[#023047]/70">
+        <NuxtLink
+          to="/"
+          class="px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-colors"
+          :class="isNavActive('/') ? 'bg-[#219EBC] text-white shadow-sm' : 'text-[#023047] dark:text-[#8ECAE6]'"
+        >
+          Beranda
+        </NuxtLink>
+        <NuxtLink
+          to="/#experience"
+          class="px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-colors"
+          :class="isNavActive('/', '#experience') ? 'bg-[#219EBC] text-white shadow-sm' : 'text-[#023047] dark:text-[#8ECAE6]'"
+        >
+          Riwayat Industri
+        </NuxtLink>
+        <NuxtLink
+          to="/#skills"
+          class="px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-colors"
+          :class="isNavActive('/', '#skills') ? 'bg-[#219EBC] text-white shadow-sm' : 'text-[#023047] dark:text-[#8ECAE6]'"
+        >
+          Perkakas
+        </NuxtLink>
+        <NuxtLink
+          to="/mycv"
+          class="px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-colors"
+          :class="isNavActive('/mycv') ? 'bg-[#FB8500] text-white shadow-sm' : 'text-[#023047] dark:text-[#8ECAE6]'"
+        >
+          CV (ATS)
+        </NuxtLink>
+        <NuxtLink
+          to="/about"
+          class="px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-colors"
+          :class="isNavActive('/about') ? 'bg-[#219EBC] text-white shadow-sm' : 'text-slate-500 dark:text-slate-400'"
+        >
+          Showcase
+        </NuxtLink>
       </div>
     </header>
 

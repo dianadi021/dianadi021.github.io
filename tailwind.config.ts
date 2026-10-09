@@ -7,6 +7,11 @@ export default <Partial<Config>>{
   darkMode: 'class',
   content: [
     './app/**/*.{vue,js,ts,jsx,tsx}',
+    './app/components/**/*.{vue,js,ts,jsx,tsx}',
+    './app/layouts/**/*.{vue,js,ts,jsx,tsx}',
+    './app/pages/**/*.{vue,js,ts,jsx,tsx}',
+    './app/plugins/**/*.{js,ts}',
+    './app/app.vue',
     './components/**/*.{vue,js,ts,jsx,tsx}',
     './layouts/**/*.{vue,js,ts,jsx,tsx}',
     './pages/**/*.{vue,js,ts,jsx,tsx}',
@@ -16,7 +21,93 @@ export default <Partial<Config>>{
   ],
   theme: {
     extend: {
+      spacing: {
+        18: '4.5rem'
+      },
+      boxShadow: {
+        xs: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
+      },
       colors: {
+        // Palet Warna Kustom Sesuai CONTEXT.md & Ghibli Atmosphere
+        prussian: {
+          DEFAULT: '#023047',
+          light: '#034363',
+          dark: '#011c2a',
+          50: '#f0f7fb',
+          100: '#dbeaf3',
+          200: '#bad8e7',
+          300: '#8ac0d7',
+          400: '#52a1c2',
+          500: '#219ebc',
+          600: '#1b809d',
+          700: '#18677f',
+          800: '#17566a',
+          900: '#023047',
+          950: '#011c2a'
+        },
+        cerulean: {
+          DEFAULT: '#219EBC',
+          light: '#3db2d1',
+          dark: '#1b809d',
+          50: '#f0f9fc',
+          100: '#ddf2f8',
+          200: '#bfe6f2',
+          300: '#91d4e8',
+          400: '#5abada',
+          500: '#219ebc',
+          600: '#1a7fa0',
+          700: '#196682',
+          800: '#19556b',
+          900: '#19475a'
+        },
+        ice: {
+          DEFAULT: '#8ECAE6',
+          light: '#bce0f1',
+          dark: '#6eb5d6',
+          50: '#f5fafc',
+          100: '#eaf4f9',
+          200: '#d4eaf3',
+          300: '#b2dbeb',
+          400: '#8ecae6',
+          500: '#5faecf',
+          600: '#4892b3',
+          700: '#3c7692',
+          800: '#356379',
+          900: '#2f5264'
+        },
+        amber: {
+          DEFAULT: '#FFB703',
+          light: '#ffc32e',
+          dark: '#d99c02',
+          50: '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#fbbf24',
+          500: '#ffb703',
+          600: '#d97706',
+          700: '#b45309',
+          800: '#92400e',
+          900: '#78350f'
+        },
+        'ut-orange': {
+          DEFAULT: '#FB8500',
+          light: '#ff9829',
+          dark: '#d67100',
+          50: '#fff8ed',
+          100: '#ffeed5',
+          200: '#ffd9aa',
+          300: '#ffbd73',
+          400: '#ff9838',
+          500: '#fb8500',
+          600: '#ea6c00',
+          700: '#c24e02',
+          800: '#9a3e0a',
+          900: '#7d350d'
+        },
+        'ghibli-parchment': '#faf8f5',
+        'ghibli-dark': '#023047',
+
         // Palet warna format Bootstrap
         primary: {
           DEFAULT: '#0d6efd',
@@ -79,6 +170,41 @@ export default <Partial<Config>>{
       }
     }
   },
+  // Safelist: Tailwind JIT tidak dapat mendeteksi class yang dibangun secara dinamis
+  // (mis: dari cn(), :class binding conditional, atau string yang tidak statis).
+  // Semua varian warna Bootstrap di about.vue harus disafelisted secara eksplisit.
+  safelist: [
+    // --- Background Colors (solid) ---
+    'bg-primary', 'bg-secondary', 'bg-warning', 'bg-danger', 'bg-info', 'bg-success',
+    'bg-secondary-white', 'bg-secondary-black',
+
+    // --- Background Opacity Modifiers (mis: bg-primary/10, bg-info/20) ---
+    'bg-primary/10', 'bg-primary/20',
+    'bg-info/20', 'bg-warning/20',
+
+    // --- Hover Background Shades ---
+    'hover:bg-primary-600', 'hover:bg-danger-600', 'hover:bg-info-600',
+    'hover:bg-success-600', 'hover:bg-warning-600', 'hover:bg-secondary-600',
+
+    // --- Text Colors ---
+    'text-primary', 'text-secondary', 'text-warning', 'text-danger', 'text-info', 'text-success',
+    'text-secondary-white', 'text-secondary-black',
+
+    // --- Text Shade Variants (mis: text-info-700, text-warning-700) ---
+    'text-primary-700', 'text-info-700', 'text-warning-700',
+    'text-danger-700', 'text-success-700',
+
+    // --- Border Colors ---
+    'border-primary', 'border-danger', 'border-warning', 'border-info', 'border-success',
+    'border-secondary',
+    'border-primary/20',
+
+    // --- Ring / Focus Ring ---
+    'ring-primary', 'ring-danger', 'ring-warning', 'ring-info', 'ring-success',
+    'focus:ring-primary', 'focus:ring-danger', 'focus:ring-warning',
+    'focus:ring-info', 'focus:ring-success',
+  ],
+
   plugins: [
     forms,
     typography,
