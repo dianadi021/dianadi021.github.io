@@ -2,7 +2,8 @@ import { defineStore } from 'pinia'
 
 export const useAppStore = defineStore('app', {
   state: () => ({
-    appName: 'Nuxt Frontend Template',
+    appName: 'Dian Adi Nugroho',
+    roleName: 'Web & Backend Developer',
     isSidebarOpen: false,
     counter: 0
   }),
