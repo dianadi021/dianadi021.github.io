@@ -52,7 +52,7 @@ const skills = [
   { name: 'Vue.js 3', category: 'frontend', role: 'Progressive Web Framework', icon: 'logos:vue', note: 'Composition API Reaktif & Komponen Modular' },
   { name: 'Nuxt 4', category: 'frontend', role: 'Full-Stack Framework Hibrida', icon: 'logos:nuxt-icon', note: 'SSR, SSG Prerender & Performa Alami' },
   { name: 'Tailwind CSS', category: 'frontend', role: 'Utility-First CSS Framework', icon: 'logos:tailwindcss-icon', note: 'Sistem Desain Responsif & Tema Gelap/Terang' },
-  { name: 'HTML5 & CSS3', category: 'frontend', role: 'Fondasi Struktur & Gaya Web', icon: 'logos:html-5', note: 'Semantik Aksesibel & Layout Fleksibel' }
+  { name: 'Bootstrap 5', category: 'frontend', role: 'CSS Framework & Grid System', icon: 'logos:bootstrap', note: 'Komponen Responsif & Palet Warna' }
 ]
 
 const filteredSkills = computed(() => {
@@ -177,7 +177,7 @@ const showHeartwarmStatus = () => {
 </script>
 
 <template>
-  <div class="space-y-24 py-8 sm:py-14 relative overflow-hidden">
+  <div class="py-8 sm:py-14 relative overflow-hidden">
     <!-- Atmospheric Clouds (Ghibli Sky Feel) -->
     <div class="absolute top-12 left-1/10 w-72 h-36 bg-[#8ECAE6]/15 rounded-full blur-3xl pointer-events-none -z-10"></div>
     <div class="absolute top-1/2 left-1/3 w-80 h-40 bg-[#219EBC]/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
@@ -558,59 +558,6 @@ const showHeartwarmStatus = () => {
           </div>
           <div class="text-[11px] font-semibold text-[#023047] dark:text-[#8ECAE6] bg-[#8ECAE6]/20 dark:bg-[#023047] px-3 py-1 rounded-full inline-block">
             🌱 {{ skill.note }}
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. CONTACT & COLLABORATION INVITATION (CLEAN & ELEGANT) -->
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
-      <div class="rounded-3xl bg-[#023047] text-white p-8 sm:p-12 shadow-xl border-2 border-[#219EBC]/40">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div class="lg:col-span-8 space-y-4">
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#8ECAE6]/20 text-[#8ECAE6] border border-[#8ECAE6]/30">
-              <span>🏮</span>
-              <span>Lentera Sambung Rasa & Kolaborasi</span>
-            </div>
-            <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-white leading-tight">
-              Mari Berbincang & Membangun Sistem yang Kokoh.
-            </h2>
-            <p class="text-slate-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
-              Apakah tim Anda membutuhkan pengembang backend untuk merancang REST API terproteksi, mengoptimasi skema basis data, atau membangun aplikasi web modern? Pintu diskusi selalu terbuka untuk kolaborasi profesional.
-            </p>
-            <div class="flex flex-wrap items-center gap-4 pt-2 text-xs text-slate-300">
-              <span class="flex items-center gap-1.5">
-                <Icon name="heroicons:envelope-20-solid" class="w-4 h-4 text-[#8ECAE6]" />
-                <span>contactmedianadi021@gmail.com</span>
-              </span>
-              <span>•</span>
-              <span class="flex items-center gap-1.5">
-                <Icon name="heroicons:phone-20-solid" class="w-4 h-4 text-[#8ECAE6]" />
-                <span>+62851-7999-7321</span>
-              </span>
-              <span>•</span>
-              <span class="flex items-center gap-1.5">
-                <Icon name="heroicons:map-pin-20-solid" class="w-4 h-4 text-[#8ECAE6]" />
-                <span>Sleman, Yogyakarta</span>
-              </span>
-            </div>
-          </div>
-
-          <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center">
-            <a
-              href="mailto:contactmedianadi021@gmail.com"
-              class="w-full text-center px-6 py-3.5 rounded-2xl font-bold text-white bg-[#FB8500] hover:bg-[#FB8500]/90 transition shadow-md shadow-[#FB8500]/30 text-sm flex items-center justify-center gap-2 hover:-translate-y-0.5"
-            >
-              <Icon name="heroicons:paper-airplane-20-solid" class="w-4 h-4 text-[#FFB703]" />
-              <span>Kirimkan Surel Langsung</span>
-            </a>
-            <NuxtLink
-              to="/mycv"
-              class="w-full text-center px-6 py-3.5 rounded-2xl font-bold text-[#8ECAE6] bg-white/10 hover:bg-white/20 border border-white/25 transition text-sm flex items-center justify-center gap-2 hover:-translate-y-0.5"
-            >
-              <Icon name="heroicons:document-text-20-solid" class="w-4 h-4 text-[#8ECAE6]" />
-              <span>Buka Format CV ATS (/mycv)</span>
-            </NuxtLink>
           </div>
         </div>
       </div>

@@ -120,7 +120,7 @@ const printResume = () => {
           </div>
           <div>
             <strong class="font-bold text-slate-950">Styling & UI Library:</strong>
-            <span> Tailwind CSS, Headless UI, Bootstrap Colors</span>
+            <span> Tailwind CSS, Bootstrap 5, Headless UI</span>
           </div>
         </div>
       </section>
