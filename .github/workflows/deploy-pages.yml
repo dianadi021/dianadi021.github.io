@@ -38,9 +38,10 @@ jobs:
       - name: Generate static site
         run: pnpm generate
         env:
-          # Set the repository variable NUXT_APP_BASE_URL to '/' when using a
-          # custom domain. The default handles https://<user>.github.io/<repo>/.
-          NUXT_APP_BASE_URL: ${{ vars.NUXT_APP_BASE_URL || format('/{0}/', github.event.repository.name) }}
+          # User/organization Pages repositories are served from the domain root.
+          # Project Pages repositories are served from /<repository>/.
+          # Set the repository variable NUXT_APP_BASE_URL to override either default.
+          NUXT_APP_BASE_URL: ${{ vars.NUXT_APP_BASE_URL || (endsWith(github.event.repository.name, '.github.io') && '/' || format('/{0}/', github.event.repository.name)) }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
