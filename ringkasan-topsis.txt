@@ -1,0 +1,37 @@
+RINGKASAN PROYEK TOPSIS
+=======================
+
+Sumber yang dipelajari: https://github.com/dianadi021/topsis
+Deskripsi repository: aplikasi web JavaScript untuk menghitung metode TOPSIS.
+
+IMPLEMENTASI PORTOFOLIO
+----------------------
+Halaman kalkulator tersedia pada route Nuxt:
+  /portofolio/topsis
+
+Fitur:
+- Mengubah nama kriteria, bobot, dan jenis benefit/cost.
+- Mengubah nilai matriks keputusan dan nama alternatif.
+- Menambah atau menghapus kriteria dan alternatif.
+- Menghitung normalisasi vektor, matriks normalisasi terbobot,
+  solusi ideal positif/negatif, jarak Euclidean, skor preferensi,
+  dan peringkat alternatif.
+- Menampilkan rekomendasi dan daftar peringkat secara langsung.
+- Mengunduh hasil sebagai CSV.
+- Menampilkan ringkasan yang diperbarui otomatis pada panel bergaya
+  Notepad, menyalin ringkasan, atau mengunduhnya sebagai berkas .txt.
+
+DATA CONTOH
+-----------
+Kalkulator dibuka dengan lima alternatif contoh (Model A sampai Model E)
+dan empat kriteria: Korelasi, R-Squared, RMSE, serta Akurasi.
+RMSE ditandai sebagai cost; kriteria lainnya benefit. Ganti data contoh
+sebelum memakai hasil untuk pengambilan keputusan nyata.
+
+METODE
+------
+1. Normalisasi setiap kolom dengan akar jumlah kuadrat nilainya.
+2. Kalikan nilai normalisasi dengan bobot yang sudah dinormalisasi.
+3. Bentuk solusi ideal positif dan negatif menurut tipe benefit/cost.
+4. Hitung jarak Euclidean dari tiap alternatif ke kedua solusi ideal.
+5. Hitung skor kedekatan relatif dan urutkan skor tertinggi sebagai rank 1.

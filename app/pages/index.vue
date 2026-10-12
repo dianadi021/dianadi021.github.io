@@ -856,4 +856,23 @@ const showHeartwarmStatus = () => {
       </div>
     </section>
   </div>
+    <section id="portofolio" class="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="mb-6">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-[#219EBC]">Proyek Pilihan</p>
+        <h2 class="mt-2 text-2xl font-extrabold text-[#023047] dark:text-white sm:text-3xl">Portofolio</h2>
+        <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">Eksplorasi proyek dan alat yang saya kembangkan.</p>
+      </div>
+      <NuxtLink to="/portofolio/topsis" class="group block max-w-xl overflow-hidden rounded-2xl border border-[#8ECAE6]/60 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#219EBC] hover:shadow-lg dark:border-[#219EBC]/30 dark:bg-[#034363]">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <span class="inline-flex rounded-full bg-[#8ECAE6]/20 px-3 py-1 text-xs font-bold uppercase tracking-wide text-[#023047] dark:text-[#8ECAE6]">Decision Support</span>
+            <h3 class="mt-4 text-xl font-bold text-[#023047] group-hover:text-[#219EBC] dark:text-white">Kalkulator TOPSIS</h3>
+          </div>
+          <span aria-hidden="true" class="text-2xl text-[#FB8500] transition-transform group-hover:translate-x-1">↗</span>
+        </div>
+        <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">Aplikasi pengambilan keputusan multikriteria untuk membandingkan alternatif berdasarkan bobot, kriteria benefit atau cost, dan peringkat TOPSIS.</p>
+        <div class="mt-5 flex flex-wrap gap-2"><span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600 dark:bg-[#023047] dark:text-slate-300">TOPSIS</span><span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600 dark:bg-[#023047] dark:text-slate-300">Decision Analysis</span><span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600 dark:bg-[#023047] dark:text-slate-300">Interactive Tool</span></div>
+        <span class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#219EBC]">Buka proyek <span aria-hidden="true">→</span></span>
+      </NuxtLink>
+    </section>
 </template>
