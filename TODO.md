@@ -6,7 +6,7 @@ Daftar tugas terstruktur berdasarkan hasil **SDLC Audit**, **SDLC Planning**, **
 
 ## 🎯 Status Progres Keseluruhan
 - [x] **Fase 0: Spesifikasi Kontrak & Kristalisasi CONTEXT.md** *(Selesai)*
-- [ ] **Fase 1: P1 Blocker — Type Safety & Build Integrity (`topsis.vue`)**
+- [x] **Fase 1: P1 Blocker — Type Safety & Build Integrity (`topsis.vue`)** *(Selesai)*
 - [ ] **Fase 2: P2 Quality Gate CI/CD & Automasi Pengujian**
 - [ ] **Fase 3: P3 Stabilitas Lifecycle, Memory Leak & Reaktivitas**
 - [ ] **Fase 4: P4 Dekomposisi Layout & Rekayasa Komponen Modular**
@@ -28,14 +28,14 @@ Daftar tugas terstruktur berdasarkan hasil **SDLC Audit**, **SDLC Planning**, **
 
 ---
 
-## 🚨 Fase 1: P1 Blocker — Type Safety & Build Integrity (`topsis.vue`)
-- [ ] **Selesaikan 14 Error Kompilasi pada [`app/pages/portofolio/topsis.vue`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/portofolio/topsis.vue#L33-L74)**
-  - [ ] Implementasikan defensive indexing `(row[column] ?? 0) ** 2` untuk mengatasi `TS2532: Object is possibly 'undefined'`.
-  - [ ] Pasang guard normalisasi pembagi nol `norms[column] ?? 1` dan validasi bobot kriteria `criteria.value[column]`.
-  - [ ] Filter array `values` dengan fallback numerik (`row[column] ?? 0`) sebelum passing ke `Math.max` / `Math.min` (`TS2345`).
-  - [ ] Terapkan type narrowing pada `results.value[0]` sebelum membaca properti `.name` dan `.score` (`TS18048`).
-  - [ ] Tambahkan defensive guard pada mutasi `alternatives.value[alternativeIndex]`.
-  - [ ] Jalankan verifikasi statis `pnpm run typecheck` hingga lulus 100% dengan status 0 error.
+## ✅ Fase 1: P1 Blocker — Type Safety & Build Integrity (`topsis.vue`) (SELESAI)
+- [x] **Selesaikan 14 Error Kompilasi pada [`app/pages/portofolio/topsis.vue`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/portofolio/topsis.vue#L33-L74)**
+  - [x] Implementasikan defensive indexing `(row[column] ?? 0) ** 2` untuk mengatasi `TS2532: Object is possibly 'undefined'`.
+  - [x] Pasang guard normalisasi pembagi nol `norms[column] ?? 1` dan validasi bobot kriteria `criteria.value[column]`.
+  - [x] Filter array `values` dengan fallback numerik (`row[column] ?? 0`) sebelum passing ke `Math.max` / `Math.min` (`TS2345`).
+  - [x] Terapkan type narrowing pada `results.value[0]` sebelum membaca properti `.name` dan `.score` (`TS18048`).
+  - [x] Tambahkan defensive guard pada mutasi `alternatives.value[alternativeIndex]`.
+  - [x] Jalankan verifikasi statis `pnpm run typecheck` hingga lulus 100% dengan status 0 error.
 
 ---
 

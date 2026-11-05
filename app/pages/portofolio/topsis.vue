@@ -1,7 +1,5 @@
 <script setup lang="ts">
-type Criterion = { name: string; weight: number; impact: 'benefit' | 'cost' }
-type Alternative = { name: string; values: number[] }
-type RankedAlternative = Alternative & { score: number; rank: number; positiveDistance: number; negativeDistance: number }
+import type { Criterion, Alternative, RankedAlternative } from '~/types/topsis'
 
 useSeoMeta({
   title: 'Kalkulator TOPSIS | Dian Adi Nugroho',
@@ -27,23 +25,39 @@ const totalWeight = computed(() => criteria.value.reduce((sum, criterion) => sum
 const results = computed<RankedAlternative[]>(() => {
   if (!criteria.value.length || alternatives.value.length < 2) return []
   if (totalWeight.value <= 0 || criteria.value.some((criterion) => Number(criterion.weight) < 0)) return []
-  const matrix = alternatives.value.map((alternative) => criteria.value.map((_, index) => Number(alternative.values[index])))
+  const matrix = alternatives.value.map((alternative) =>
+    criteria.value.map((_, index) => Number(alternative.values[index] ?? 0))
+  )
   if (matrix.some((row) => row.some((value) => !Number.isFinite(value)))) return []
 
-  const norms = criteria.value.map((_, column) => Math.sqrt(matrix.reduce((sum, row) => sum + row[column] ** 2, 0)))
+  const norms = criteria.value.map((_, column) =>
+    Math.sqrt(matrix.reduce((sum, row) => sum + (row[column] ?? 0) ** 2, 0))
+  )
   if (norms.some((norm) => norm === 0)) return []
-  const normalized = matrix.map((row) => row.map((value, column) => (value / norms[column]) * (Number(criteria.value[column].weight) / totalWeight.value)))
+  const normalized = matrix.map((row) =>
+    row.map((value, column) => {
+      const norm = norms[column] ?? 1
+      const criterion = criteria.value[column]
+      const weight = criterion ? Number(criterion.weight) : 0
+      return norm === 0 ? 0 : (value / norm) * (weight / totalWeight.value)
+    })
+  )
   const idealPositive = criteria.value.map((criterion, column) => {
-    const values = normalized.map((row) => row[column])
+    const values = normalized.map((row) => row[column] ?? 0)
     return criterion.impact === 'benefit' ? Math.max(...values) : Math.min(...values)
   })
   const idealNegative = criteria.value.map((criterion, column) => {
-    const values = normalized.map((row) => row[column])
+    const values = normalized.map((row) => row[column] ?? 0)
     return criterion.impact === 'benefit' ? Math.min(...values) : Math.max(...values)
   })
   const scored = alternatives.value.map((alternative, index) => {
-    const positiveDistance = Math.sqrt(normalized[index].reduce((sum, value, column) => sum + (value - idealPositive[column]) ** 2, 0))
-    const negativeDistance = Math.sqrt(normalized[index].reduce((sum, value, column) => sum + (value - idealNegative[column]) ** 2, 0))
+    const rowNorm = normalized[index] ?? []
+    const positiveDistance = Math.sqrt(
+      rowNorm.reduce((sum, value, column) => sum + (value - (idealPositive[column] ?? 0)) ** 2, 0)
+    )
+    const negativeDistance = Math.sqrt(
+      rowNorm.reduce((sum, value, column) => sum + (value - (idealNegative[column] ?? 0)) ** 2, 0)
+    )
     const score = positiveDistance + negativeDistance === 0 ? 0 : negativeDistance / (positiveDistance + negativeDistance)
     return { ...alternative, score, positiveDistance, negativeDistance, rank: 0 }
   }).sort((a, b) => b.score - a.score)
@@ -52,12 +66,15 @@ const results = computed<RankedAlternative[]>(() => {
 
 const best = computed(() => results.value[0])
 const summary = computed(() => {
-  if (!results.value.length) return 'Belum ada hasil. Pastikan bobot dan nilai kriteria valid, tidak semuanya nol, dan tersedia minimal dua alternatif.'
+  const bestAlternative = best.value
+  if (!results.value.length || !bestAlternative) {
+    return 'Belum ada hasil. Pastikan bobot dan nilai kriteria valid, tidak semuanya nol, dan tersedia minimal dua alternatif.'
+  }
   const lines = [
     'RINGKASAN ANALISIS TOPSIS',
     '=========================',
-    `Alternatif terbaik: ${best.value.name}`,
-    `Skor preferensi: ${best.value.score.toFixed(6)}`,
+    `Alternatif terbaik: ${bestAlternative.name}`,
+    `Skor preferensi: ${bestAlternative.score.toFixed(6)}`,
     `Jumlah alternatif: ${alternatives.value.length}`,
     `Jumlah kriteria: ${criteria.value.length}`,
     `Total bobot: ${totalWeight.value.toFixed(3)} (dinormalisasi otomatis)`,
@@ -71,7 +88,10 @@ const summary = computed(() => {
 })
 
 const updateValue = (alternativeIndex: number, criterionIndex: number, value: string | number) => {
-  alternatives.value[alternativeIndex].values[criterionIndex] = value === '' ? Number.NaN : Number(value)
+  const targetAlternative = alternatives.value[alternativeIndex]
+  if (targetAlternative) {
+    targetAlternative.values[criterionIndex] = value === '' ? Number.NaN : Number(value)
+  }
 }
 const addCriterion = () => {
   criteria.value.push({ name: `Kriteria ${criteria.value.length + 1}`, weight: 1, impact: 'benefit' })
