@@ -59,6 +59,7 @@ export default defineNuxtConfig({
   // Konfigurasi PostCSS (dipindah ke sini karena postcss.config.js tidak didukung Nuxt 4)
   postcss: {
     plugins: {
+      'tailwindcss/nesting': false,
       tailwindcss: {},
       autoprefixer: {}
     }

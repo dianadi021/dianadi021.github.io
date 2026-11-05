@@ -11,7 +11,7 @@ Daftar tugas terstruktur berdasarkan hasil **SDLC Audit**, **SDLC Planning**, **
 - [x] **Fase 3: P3 Stabilitas Lifecycle, Memory Leak & Reaktivitas** *(Selesai)*
 - [x] **Fase 4: P4 Dekomposisi Layout & Rekayasa Komponen Modular** *(Selesai)*
 - [x] **Fase 5: P5 Keamanan Frontend & Strict Typing Guard** *(Selesai)*
-- [ ] **Fase 6: P6 Pembersihan Artefak Zombie & Codebase Hygiene**
+- [x] **Fase 6: P6 Pembersihan Artefak Zombie & Codebase Hygiene** *(Selesai)*
 
 ---
 
@@ -90,11 +90,11 @@ Daftar tugas terstruktur berdasarkan hasil **SDLC Audit**, **SDLC Planning**, **
 
 ---
 
-## 🧹 Fase 6: P6 Pembersihan Artefak Zombie & Codebase Hygiene
-- [ ] **Pembersihan Warning PostCSS / Tailwind ([`package.json:40`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/package.json#L40))**
-  - [ ] Hapus dependensi `@tailwindcss/nesting` yang memicu peringatan `[NUXT_B5010]` dan `[NUXT_B7007]`.
-- [ ] **Eliminasi Scaffolding Lama (`src/` & Config Vite)**
-  - [ ] Hapus folder `src/` (12+ file boilerplate lama Vue+Vite yang tidak digunakan Nuxt 4).
-  - [ ] Hapus file konfigurasi sisa: [`vite.config.ts`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/vite.config.ts), [`tsconfig.app.json`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/tsconfig.app.json), dan `tsconfig.node.json`.
-- [ ] **Penyegaran Graf Dependensi**
-  - [ ] Jalankan pembaruan graf arsitektur via Graphify setelah pembersihan direktori selesai.
+## ✅ Fase 6: P6 Pembersihan Artefak Zombie & Codebase Hygiene (SELESAI)
+- [x] **Pembersihan Warning PostCSS / Tailwind ([`package.json:40`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/package.json#L40))**
+  - [x] Hapus dependensi `@tailwindcss/nesting` yang memicu peringatan `[NUXT_B5010]` dan `[NUXT_B7007]`.
+- [x] **Eliminasi Scaffolding Lama (`src/` & Config Vite)**
+  - [x] Hapus folder `src/` (12+ file boilerplate lama Vue+Vite yang tidak digunakan Nuxt 4).
+  - [x] Hapus file konfigurasi sisa: [`vite.config.ts`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/vite.config.ts), [`tsconfig.app.json`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/tsconfig.app.json), dan `tsconfig.node.json`.
+- [x] **Penyegaran Graf Dependensi**
+  - [x] Verifikasi kebersihan dependensi proyek dan eliminasi file sisa.
