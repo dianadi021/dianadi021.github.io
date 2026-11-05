@@ -24,6 +24,7 @@ import {
   TransitionChild
 } from '@headlessui/vue'
 import { z } from 'zod'
+import axios from 'axios'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { A11y, Navigation, Pagination } from 'swiper/modules'
 import 'swiper/css'
@@ -54,14 +55,29 @@ const isModalOpen = ref(false)
 
 // 4. Axios Demo State
 const axiosLoading = ref(false)
-const axiosResponse = ref<any>(null)
+const axiosResponse = ref<Record<string, unknown> | null>(null)
+let abortController: AbortController | null = null
+
+onBeforeUnmount(() => {
+  if (abortController) {
+    abortController.abort()
+  }
+})
+
 const fetchDemoData = async () => {
+  if (abortController) {
+    abortController.abort()
+  }
+  abortController = new AbortController()
+
   axiosLoading.value = true
   axiosResponse.value = null
   try {
     // Memanfaatkan instance Axios ($api) yang telah dikonfigurasi interceptor & baseURL
-    const res = await $api.get('https://jsonplaceholder.typicode.com/todos/1')
-    axiosResponse.value = res.data
+    const res = await $api.get('https://jsonplaceholder.typicode.com/todos/1', {
+      signal: abortController.signal
+    })
+    axiosResponse.value = res.data as Record<string, unknown>
     if ($swal) {
       $swal.fire({
         icon: 'success',
@@ -70,8 +86,12 @@ const fetchDemoData = async () => {
         confirmButtonColor: '#0d6efd'
       })
     }
-  } catch (error: any) {
-    axiosResponse.value = { error: error.message }
+  } catch (error: unknown) {
+    if (axios.isCancel(error) || (error instanceof DOMException && error.name === 'AbortError')) {
+      return
+    }
+    const message = error instanceof Error ? error.message : 'Terjadi kesalahan sistem'
+    axiosResponse.value = { error: message }
   } finally {
     axiosLoading.value = false
   }

@@ -108,6 +108,10 @@ const removeAlternative = (index: number) => {
   alternatives.value.splice(index, 1)
 }
 
+const { start: resetNoticeTimeout } = useTimeoutFn(() => {
+  notice.value = ''
+}, 2500, { immediate: false })
+
 const copySummary = async () => {
   try {
     await navigator.clipboard.writeText(summary.value)
@@ -115,7 +119,7 @@ const copySummary = async () => {
   } catch {
     notice.value = 'Clipboard tidak tersedia. Pilih teks ringkasan lalu salin secara manual.'
   }
-  setTimeout(() => (notice.value = ''), 2500)
+  resetNoticeTimeout()
 }
 const downloadFile = (content: string, filename: string, type: string) => {
   const url = URL.createObjectURL(new Blob([content], { type }))

@@ -6,30 +6,30 @@ const route = useRoute()
 const isHydrated = ref(false)
 const activeHash = ref('')
 
+// Scroll listener to update active section on home page
+const handleScroll = () => {
+  if (route.path !== '/') return
+  const scrollPos = window.scrollY + 140
+  const experienceEl = document.getElementById('experience')
+  const skillsEl = document.getElementById('skills')
+
+  if (skillsEl && scrollPos >= skillsEl.offsetTop) {
+    activeHash.value = '#skills'
+  } else if (experienceEl && scrollPos >= experienceEl.offsetTop) {
+    activeHash.value = '#experience'
+  } else {
+    activeHash.value = ''
+  }
+}
+
 onMounted(() => {
   isHydrated.value = true
   if (route.hash) {
     activeHash.value = route.hash
   }
-
-  // Scroll listener to update active section on home page
-  const handleScroll = () => {
-    if (route.path !== '/') return
-    const scrollPos = window.scrollY + 140
-    const experienceEl = document.getElementById('experience')
-    const skillsEl = document.getElementById('skills')
-
-    if (skillsEl && scrollPos >= skillsEl.offsetTop) {
-      activeHash.value = '#skills'
-    } else if (experienceEl && scrollPos >= experienceEl.offsetTop) {
-      activeHash.value = '#experience'
-    } else {
-      activeHash.value = ''
-    }
-  }
-
-  window.addEventListener('scroll', handleScroll, { passive: true })
 })
+
+useEventListener('scroll', handleScroll, { passive: true })
 
 watch(() => route.hash, (newVal) => {
   activeHash.value = newVal || ''

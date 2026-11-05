@@ -8,7 +8,7 @@ Daftar tugas terstruktur berdasarkan hasil **SDLC Audit**, **SDLC Planning**, **
 - [x] **Fase 0: Spesifikasi Kontrak & Kristalisasi CONTEXT.md** *(Selesai)*
 - [x] **Fase 1: P1 Blocker — Type Safety & Build Integrity (`topsis.vue`)** *(Selesai)*
 - [x] **Fase 2: P2 Quality Gate CI/CD & Automasi Pengujian** *(Selesai)*
-- [ ] **Fase 3: P3 Stabilitas Lifecycle, Memory Leak & Reaktivitas**
+- [x] **Fase 3: P3 Stabilitas Lifecycle, Memory Leak & Reaktivitas** *(Selesai)*
 - [ ] **Fase 4: P4 Dekomposisi Layout & Rekayasa Komponen Modular**
 - [ ] **Fase 5: P5 Keamanan Frontend & Strict Typing Guard**
 - [ ] **Fase 6: P6 Pembersihan Artefak Zombie & Codebase Hygiene**
@@ -48,14 +48,14 @@ Daftar tugas terstruktur berdasarkan hasil **SDLC Audit**, **SDLC Planning**, **
 
 ---
 
-## ⚡ Fase 3: P3 Stabilitas Lifecycle, Memory Leak & Reaktivitas
-- [ ] **Pencegahan Memory Leak pada Layout ([`app/layouts/default.vue:31`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/layouts/default.vue#L31))**
-  - [ ] Ganti `window.addEventListener('scroll', ...)` dengan `useEventListener(window, 'scroll', ...)` dari `@vueuse/core` atau pasang pembersihan simetris di `onUnmounted`.
-- [ ] **Pencegahan Floating Response & Timer Leak**
-  - [ ] Bungkus reset timer clipboard di [`app/pages/portofolio/topsis.vue:98`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/portofolio/topsis.vue#L98) dengan `useTimeoutFn` dari `@vueuse/core`.
-  - [ ] Pasang `AbortController` pada pemanggilan `$api.get(...)` di [`app/pages/about.vue:63`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/about.vue#L63) untuk membatalkan request saat unmount.
-- [ ] **Perbaikan Reaktivitas Jam Sistem ([`app/pages/index.vue:23-25`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/index.vue#L23-L25))**
-  - [ ] Ganti `computed` waktu statis dengan composable `useNow()` + Day.js di dalam tag `<ClientOnly>` untuk mencegah SSR/SSG hydration mismatch.
+## ✅ Fase 3: P3 Stabilitas Lifecycle, Memory Leak & Reaktivitas (SELESAI)
+- [x] **Pencegahan Memory Leak pada Layout ([`app/layouts/default.vue:31`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/layouts/default.vue#L31))**
+  - [x] Ganti `window.addEventListener('scroll', ...)` dengan `useEventListener(window, 'scroll', ...)` dari `@vueuse/core` atau pasang pembersihan simetris di `onUnmounted`.
+- [x] **Pencegahan Floating Response & Timer Leak**
+  - [x] Bungkus reset timer clipboard di [`app/pages/portofolio/topsis.vue:98`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/portofolio/topsis.vue#L98) dengan `useTimeoutFn` dari `@vueuse/core`.
+  - [x] Pasang `AbortController` pada pemanggilan `$api.get(...)` di [`app/pages/about.vue:63`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/about.vue#L63) untuk membatalkan request saat unmount.
+- [x] **Perbaikan Reaktivitas Jam Sistem ([`app/pages/index.vue:23-25`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/index.vue#L23-L25))**
+  - [x] Ganti `computed` waktu statis dengan composable `useNow()` + Day.js di dalam tag `<ClientOnly>` untuk mencegah SSR/SSG hydration mismatch.
 
 ---
 

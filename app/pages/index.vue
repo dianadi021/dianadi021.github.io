@@ -19,9 +19,10 @@ useSeoMeta({
 
 const { $dayjs, $swal } = useNuxtApp()
 
-// Real-time formatted date using dayjs locale
+// Real-time formatted date using dayjs locale and VueUse useNow
+const now = useNow()
 const currentTime = computed(() => {
-  return $dayjs().format('dddd, DD MMMM YYYY · HH:mm:ss')
+  return $dayjs(now.value).format('dddd, DD MMMM YYYY · HH:mm:ss')
 })
 
 // Skill category tabs
@@ -541,7 +542,12 @@ const showHeartwarmStatus = () => {
                     <span class="font-semibold text-[#023047] dark:text-[#8ECAE6]"
                       >Waktu Sistem:</span
                     >
-                    <span class="text-[11px] text-[#FB8500] font-medium">{{ currentTime }}</span>
+                    <ClientOnly>
+                      <span class="text-[11px] text-[#FB8500] font-medium">{{ currentTime }}</span>
+                      <template #fallback>
+                        <span class="text-[11px] text-[#FB8500] font-medium">Memuat waktu...</span>
+                      </template>
+                    </ClientOnly>
                   </div>
                 </div>
               </div>
