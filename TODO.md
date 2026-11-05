@@ -10,7 +10,7 @@ Daftar tugas terstruktur berdasarkan hasil **SDLC Audit**, **SDLC Planning**, **
 - [x] **Fase 2: P2 Quality Gate CI/CD & Automasi Pengujian** *(Selesai)*
 - [x] **Fase 3: P3 Stabilitas Lifecycle, Memory Leak & Reaktivitas** *(Selesai)*
 - [x] **Fase 4: P4 Dekomposisi Layout & Rekayasa Komponen Modular** *(Selesai)*
-- [ ] **Fase 5: P5 Keamanan Frontend & Strict Typing Guard**
+- [x] **Fase 5: P5 Keamanan Frontend & Strict Typing Guard** *(Selesai)*
 - [ ] **Fase 6: P6 Pembersihan Artefak Zombie & Codebase Hygiene**
 
 ---
@@ -79,14 +79,14 @@ Daftar tugas terstruktur berdasarkan hasil **SDLC Audit**, **SDLC Planning**, **
 
 ---
 
-## 🛡️ Fase 5: P5 Keamanan Frontend & Strict Typing Guard
-- [ ] **Mitigasi CSV Formula Injection (CWE-1236) ([`app/pages/portofolio/topsis.vue:112`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/portofolio/topsis.vue#L112))**
-  - [ ] Tambahkan sanitasi prefix kutip satu (`'`) pada sel teks yang diawali karakter formula (`=`, `+`, `-`, `@`, `\t`, `\r`) saat export CSV.
-- [ ] **Eliminasi Penggunaan Tipe Longgar `any` & Error Narrowing**
-  - [ ] Refactor `catch (error: any)` di [`app/pages/about.vue:73`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/about.vue#L73) menjadi `catch (error: unknown)` dengan safe narrowing `error instanceof Error`.
-  - [ ] Refactor `ref<any>(null)` di [`app/pages/about.vue:57`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/about.vue#L57) menjadi typed response DTO.
-- [ ] **Validasi Lingkungan Runtime ([`nuxt.config.ts:8,72`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/nuxt.config.ts#L8))**
-  - [ ] Berikan penanganan fallback bertipe ketat pada pembacaan `process.env`.
+## ✅ Fase 5: P5 Keamanan Frontend & Strict Typing Guard (SELESAI)
+- [x] **Mitigasi CSV Formula Injection (CWE-1236) ([`app/pages/portofolio/topsis.vue:112`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/portofolio/topsis.vue#L112))**
+  - [x] Tambahkan sanitasi prefix kutip satu (`'`) pada sel teks yang diawali karakter formula (`=`, `+`, `-`, `@`, `\t`, `\r`) saat export CSV.
+- [x] **Eliminasi Penggunaan Tipe Longgar `any` & Error Narrowing**
+  - [x] Refactor `catch (error: any)` di [`app/pages/about.vue:73`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/about.vue#L73) menjadi `catch (error: unknown)` dengan safe narrowing `error instanceof Error`.
+  - [x] Refactor `ref<any>(null)` di [`app/pages/about.vue:57`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/about.vue#L57) menjadi typed response DTO.
+- [x] **Validasi Lingkungan Runtime ([`nuxt.config.ts:8,72`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/nuxt.config.ts#L8))**
+  - [x] Berikan penanganan fallback bertipe ketat pada pembacaan `process.env`.
 
 ---
 
