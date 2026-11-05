@@ -1,91 +1,36 @@
 <script setup lang="ts">
-import type { Criterion, Alternative, RankedAlternative } from '~/types/topsis'
+import type { Criterion, Alternative } from '~/types/topsis'
 
 useSeoMeta({
   title: 'Kalkulator TOPSIS | Dian Adi Nugroho',
   description: 'Kalkulator pengambilan keputusan multikriteria menggunakan metode TOPSIS.',
 })
 
+const { calculate } = useTopsis()
+
+let nextId = 1
+const generateId = (prefix: string) => `${prefix}-${nextId++}`
+
 const criteria = ref<Criterion[]>([
-  { name: 'Korelasi', weight: 0.25, impact: 'benefit' },
-  { name: 'R-Squared', weight: 0.25, impact: 'benefit' },
-  { name: 'RMSE', weight: 0.25, impact: 'cost' },
-  { name: 'Akurasi (%)', weight: 0.25, impact: 'benefit' },
+  { id: generateId('crit'), name: 'Korelasi', weight: 0.25, impact: 'benefit' },
+  { id: generateId('crit'), name: 'R-Squared', weight: 0.25, impact: 'benefit' },
+  { id: generateId('crit'), name: 'RMSE', weight: 0.25, impact: 'cost' },
+  { id: generateId('crit'), name: 'Akurasi (%)', weight: 0.25, impact: 'benefit' },
 ])
 const alternatives = ref<Alternative[]>([
-  { name: 'Model A', values: [0.79, 0.62, 1.25, 60.89] },
-  { name: 'Model B', values: [0.66, 0.44, 2.89, 63.07] },
-  { name: 'Model C', values: [0.56, 0.31, 1.57, 62.87] },
-  { name: 'Model D', values: [0.82, 0.67, 2.68, 70.19] },
-  { name: 'Model E', values: [0.75, 0.56, 1.30, 80.39] },
+  { id: generateId('alt'), name: 'Model A', values: [0.79, 0.62, 1.25, 60.89] },
+  { id: generateId('alt'), name: 'Model B', values: [0.66, 0.44, 2.89, 63.07] },
+  { id: generateId('alt'), name: 'Model C', values: [0.56, 0.31, 1.57, 62.87] },
+  { id: generateId('alt'), name: 'Model D', values: [0.82, 0.67, 2.68, 70.19] },
+  { id: generateId('alt'), name: 'Model E', values: [0.75, 0.56, 1.30, 80.39] },
 ])
 const notice = ref('')
-const totalWeight = computed(() => criteria.value.reduce((sum, criterion) => sum + (Number(criterion.weight) || 0), 0))
 
-const results = computed<RankedAlternative[]>(() => {
-  if (!criteria.value.length || alternatives.value.length < 2) return []
-  if (totalWeight.value <= 0 || criteria.value.some((criterion) => Number(criterion.weight) < 0)) return []
-  const matrix = alternatives.value.map((alternative) =>
-    criteria.value.map((_, index) => Number(alternative.values[index] ?? 0))
-  )
-  if (matrix.some((row) => row.some((value) => !Number.isFinite(value)))) return []
-
-  const norms = criteria.value.map((_, column) =>
-    Math.sqrt(matrix.reduce((sum, row) => sum + (row[column] ?? 0) ** 2, 0))
-  )
-  if (norms.some((norm) => norm === 0)) return []
-  const normalized = matrix.map((row) =>
-    row.map((value, column) => {
-      const norm = norms[column] ?? 1
-      const criterion = criteria.value[column]
-      const weight = criterion ? Number(criterion.weight) : 0
-      return norm === 0 ? 0 : (value / norm) * (weight / totalWeight.value)
-    })
-  )
-  const idealPositive = criteria.value.map((criterion, column) => {
-    const values = normalized.map((row) => row[column] ?? 0)
-    return criterion.impact === 'benefit' ? Math.max(...values) : Math.min(...values)
-  })
-  const idealNegative = criteria.value.map((criterion, column) => {
-    const values = normalized.map((row) => row[column] ?? 0)
-    return criterion.impact === 'benefit' ? Math.min(...values) : Math.max(...values)
-  })
-  const scored = alternatives.value.map((alternative, index) => {
-    const rowNorm = normalized[index] ?? []
-    const positiveDistance = Math.sqrt(
-      rowNorm.reduce((sum, value, column) => sum + (value - (idealPositive[column] ?? 0)) ** 2, 0)
-    )
-    const negativeDistance = Math.sqrt(
-      rowNorm.reduce((sum, value, column) => sum + (value - (idealNegative[column] ?? 0)) ** 2, 0)
-    )
-    const score = positiveDistance + negativeDistance === 0 ? 0 : negativeDistance / (positiveDistance + negativeDistance)
-    return { ...alternative, score, positiveDistance, negativeDistance, rank: 0 }
-  }).sort((a, b) => b.score - a.score)
-  return scored.map((alternative, index) => ({ ...alternative, rank: index + 1 }))
-})
-
-const best = computed(() => results.value[0])
-const summary = computed(() => {
-  const bestAlternative = best.value
-  if (!results.value.length || !bestAlternative) {
-    return 'Belum ada hasil. Pastikan bobot dan nilai kriteria valid, tidak semuanya nol, dan tersedia minimal dua alternatif.'
-  }
-  const lines = [
-    'RINGKASAN ANALISIS TOPSIS',
-    '=========================',
-    `Alternatif terbaik: ${bestAlternative.name}`,
-    `Skor preferensi: ${bestAlternative.score.toFixed(6)}`,
-    `Jumlah alternatif: ${alternatives.value.length}`,
-    `Jumlah kriteria: ${criteria.value.length}`,
-    `Total bobot: ${totalWeight.value.toFixed(3)} (dinormalisasi otomatis)`,
-    '',
-    'PERINGKAT',
-    ...results.value.map((item) => `${item.rank}. ${item.name} — skor ${item.score.toFixed(6)}`),
-    '',
-    'Metode: normalisasi vektor, pembobotan, solusi ideal positif/negatif, jarak Euclidean, lalu skor kedekatan relatif.',
-  ]
-  return lines.join('\n')
-})
+const calculation = computed(() => calculate(criteria.value, alternatives.value))
+const totalWeight = computed(() => calculation.value.totalWeight)
+const results = computed(() => calculation.value.rankedAlternatives)
+const best = computed(() => calculation.value.bestAlternative)
+const summary = computed(() => calculation.value.summary)
 
 const updateValue = (alternativeIndex: number, criterionIndex: number, value: string | number) => {
   const targetAlternative = alternatives.value[alternativeIndex]
@@ -94,7 +39,7 @@ const updateValue = (alternativeIndex: number, criterionIndex: number, value: st
   }
 }
 const addCriterion = () => {
-  criteria.value.push({ name: `Kriteria ${criteria.value.length + 1}`, weight: 1, impact: 'benefit' })
+  criteria.value.push({ id: generateId('crit'), name: `Kriteria ${criteria.value.length + 1}`, weight: 1, impact: 'benefit' })
   alternatives.value.forEach((alternative) => alternative.values.push(0))
 }
 const removeCriterion = (index: number) => {
@@ -102,7 +47,7 @@ const removeCriterion = (index: number) => {
   criteria.value.splice(index, 1)
   alternatives.value.forEach((alternative) => alternative.values.splice(index, 1))
 }
-const addAlternative = () => alternatives.value.push({ name: `Alternatif ${alternatives.value.length + 1}`, values: criteria.value.map(() => 0) })
+const addAlternative = () => alternatives.value.push({ id: generateId('alt'), name: `Alternatif ${alternatives.value.length + 1}`, values: criteria.value.map(() => 0) })
 const removeAlternative = (index: number) => {
   if (alternatives.value.length <= 2) return
   alternatives.value.splice(index, 1)
@@ -130,10 +75,18 @@ const downloadFile = (content: string, filename: string, type: string) => {
   URL.revokeObjectURL(url)
 }
 const downloadSummary = () => downloadFile(summary.value, 'ringkasan-topsis.txt', 'text/plain;charset=utf-8')
+
+const sanitizeCsvCell = (val: unknown): string => {
+  const str = String(val ?? '')
+  const escaped = str.replaceAll('"', '""')
+  // Mitigate CSV Formula Injection (CWE-1236)
+  return /^[=+\-@\t\r]/.test(str) ? `"'${escaped}"` : `"${escaped}"`
+}
+
 const downloadCsv = () => {
   const header = ['Peringkat', 'Alternatif', ...criteria.value.map((criterion) => criterion.name), 'Skor TOPSIS']
   const rows = results.value.map((result) => [result.rank, result.name, ...result.values, result.score.toFixed(8)])
-  const csv = [header, ...rows].map((row) => row.map((cell) => `"${String(cell).replaceAll('"', '""')}"`).join(',')).join('\r\n')
+  const csv = [header, ...rows].map((row) => row.map(sanitizeCsvCell).join(',')).join('\r\n')
   downloadFile(`\uFEFF${csv}`, 'hasil-topsis.csv', 'text/csv;charset=utf-8')
 }
 
@@ -177,7 +130,7 @@ const formatScore = (score: number) => score.toFixed(4)
             <button type="button" class="rounded-lg border border-[#219EBC]/40 px-3 py-2 text-sm font-semibold text-[#219EBC] hover:bg-[#8ECAE6]/20" @click="addCriterion">+ Tambah kriteria</button>
           </div>
           <div class="space-y-2">
-            <div v-for="(criterion, index) in criteria" :key="index" class="grid grid-cols-[1fr_6rem_7.5rem_2rem] items-center gap-2">
+            <div v-for="(criterion, index) in criteria" :key="criterion.id || index" class="grid grid-cols-[1fr_6rem_7.5rem_2rem] items-center gap-2">
               <input v-model="criterion.name" :aria-label="`Nama kriteria ${index + 1}`" class="min-w-0 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm dark:border-slate-600 dark:bg-[#023047]" />
               <input v-model.number="criterion.weight" type="number" min="0" step="0.05" :aria-label="`Bobot ${criterion.name}`" class="w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-2 text-sm dark:border-slate-600 dark:bg-[#023047]" />
               <select v-model="criterion.impact" :aria-label="`Tipe ${criterion.name}`" class="w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-2 text-sm dark:border-slate-600 dark:bg-[#023047]"><option value="benefit">Benefit ↑</option><option value="cost">Cost ↓</option></select>
@@ -196,7 +149,7 @@ const formatScore = (score: number) => score.toFixed(4)
             <table class="w-full min-w-max text-left text-sm">
               <thead class="bg-[#023047] text-xs uppercase tracking-wide text-white"><tr><th class="px-3 py-3">Alternatif</th><th v-for="criterion in criteria" :key="criterion.name" class="px-3 py-3">{{ criterion.name }}</th><th class="px-2 py-3"><span class="sr-only">Aksi</span></th></tr></thead>
               <tbody class="divide-y divide-slate-100 dark:divide-slate-600">
-                <tr v-for="(alternative, rowIndex) in alternatives" :key="rowIndex">
+                <tr v-for="(alternative, rowIndex) in alternatives" :key="alternative.id || rowIndex">
                   <td class="p-2"><input v-model="alternative.name" :aria-label="`Nama alternatif ${rowIndex + 1}`" class="w-36 rounded-md border border-slate-200 bg-slate-50 px-2.5 py-2 dark:border-slate-600 dark:bg-[#023047]" /></td>
                   <td v-for="(criterion, columnIndex) in criteria" :key="criterion.name" class="p-2"><input :value="alternative.values[columnIndex]" type="number" step="any" :aria-label="`${alternative.name}, ${criterion.name}`" class="w-28 rounded-md border border-slate-200 bg-slate-50 px-2.5 py-2 dark:border-slate-600 dark:bg-[#023047]" @input="updateValue(rowIndex, columnIndex, ($event.target as HTMLInputElement).value)" /></td>
                   <td class="p-2"><button type="button" :disabled="alternatives.length <= 2" class="rounded px-2 py-1 text-slate-400 hover:text-red-500 disabled:opacity-30" :aria-label="`Hapus ${alternative.name}`" @click="removeAlternative(rowIndex)">×</button></td>

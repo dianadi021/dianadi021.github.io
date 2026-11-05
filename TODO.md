@@ -9,7 +9,7 @@ Daftar tugas terstruktur berdasarkan hasil **SDLC Audit**, **SDLC Planning**, **
 - [x] **Fase 1: P1 Blocker — Type Safety & Build Integrity (`topsis.vue`)** *(Selesai)*
 - [x] **Fase 2: P2 Quality Gate CI/CD & Automasi Pengujian** *(Selesai)*
 - [x] **Fase 3: P3 Stabilitas Lifecycle, Memory Leak & Reaktivitas** *(Selesai)*
-- [ ] **Fase 4: P4 Dekomposisi Layout & Rekayasa Komponen Modular**
+- [x] **Fase 4: P4 Dekomposisi Layout & Rekayasa Komponen Modular** *(Selesai)*
 - [ ] **Fase 5: P5 Keamanan Frontend & Strict Typing Guard**
 - [ ] **Fase 6: P6 Pembersihan Artefak Zombie & Codebase Hygiene**
 
@@ -59,22 +59,23 @@ Daftar tugas terstruktur berdasarkan hasil **SDLC Audit**, **SDLC Planning**, **
 
 ---
 
-## 🧱 Fase 4: P4 Dekomposisi Layout & Rekayasa Komponen Modular
-- [ ] **Perbaikan Multi-Root Fragment ([`app/pages/index.vue:858-859`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/index.vue#L858-L859))**
-  - [ ] Pindahkan elemen `<section id="portofolio">` ke dalam kontainer pembungkus utama `<div>` untuk mencegah peringatan transisi Nuxt.
-- [ ] **Dekomposisi Monolit Halaman Utama ([`app/pages/index.vue`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/index.vue) — 878 baris)**
-  - [ ] Ekstraksi ke `app/components/home/HomeHero.vue` (Hero section, branding, dan CTA).
-  - [ ] Ekstraksi ke `app/components/home/HomeTerminal.vue` (Terminal developer live status).
-  - [ ] Ekstraksi ke `app/components/home/HomeExperience.vue` (Riwayat kerja industri PT Medika & Zettabyte).
-  - [ ] Ekstraksi ke `app/components/home/HomeSkills.vue` (Tab filter tech stack & kartu skill).
-  - [ ] Ekstraksi ke `app/components/home/HomeContact.vue` (Section kontak & copy email).
-- [ ] **Ekstraksi Logika TOPSIS ke Composable (`app/composables/useTopsis.ts`)**
-  - [ ] Pindahkan aljabar linear dari [`topsis.vue`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/portofolio/topsis.vue) ke composable yang mengadopsi [`app/types/topsis.ts`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/types/topsis.ts).
-- [ ] **Stabilisasi Virtual DOM Key ([`app/pages/portofolio/topsis.vue:156,175`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/portofolio/topsis.vue#L156))**
-  - [ ] Ganti `:key="index"` dan `:key="rowIndex"` dengan properti ID stabil (`id: string`) pada kriteria dan alternatif.
-- [ ] **Fitur Interaktif Unggulan: Global Command Palette (`Ctrl+K` / `Meta+K`)**
-  - [ ] Buat komponen `app/components/ui/CommandPalette.vue` menggunakan `@headlessui/vue` Combobox + Dialog.
-  - [ ] Hubungkan aksi shortcut cepat: Navigasi rute, Salin Email, Cetak CV ATS, dan Toggle Theme.
+## ✅ Fase 4: P4 Dekomposisi Layout & Rekayasa Komponen Modular (SELESAI)
+- [x] **Perbaikan Multi-Root Fragment ([`app/pages/index.vue:858-859`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/index.vue#L858-L859))**
+  - [x] Pindahkan elemen `<section id="portofolio">` ke dalam kontainer pembungkus utama `<div>` untuk mencegah peringatan transisi Nuxt.
+- [x] **Dekomposisi Monolit Halaman Utama ([`app/pages/index.vue`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/index.vue) — 878 baris ➔ 55 baris)**
+  - [x] Ekstraksi ke `app/components/home/HomeHero.vue` (Hero section, branding, dan CTA).
+  - [x] Ekstraksi ke `app/components/home/HomeTerminal.vue` (Terminal developer live status).
+  - [x] Ekstraksi ke `app/components/home/HomeMetrics.vue` (4 pilar keahlian backend).
+  - [x] Ekstraksi ke `app/components/home/HomeExperience.vue` (Riwayat kerja industri PT Medika & Zettabyte).
+  - [x] Ekstraksi ke `app/components/home/HomeSkills.vue` (Tab filter tech stack & kartu skill).
+  - [x] Ekstraksi ke `app/components/home/HomeProjects.vue` (Kartu portofolio & TOPSIS showcase).
+- [x] **Ekstraksi Logika TOPSIS ke Composable (`app/composables/useTopsis.ts`)**
+  - [x] Pindahkan aljabar linear dari [`topsis.vue`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/portofolio/topsis.vue) ke composable yang mengadopsi [`app/types/topsis.ts`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/types/topsis.ts).
+- [x] **Stabilisasi Virtual DOM Key ([`app/pages/portofolio/topsis.vue:156,175`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/portofolio/topsis.vue#L156))**
+  - [x] Ganti `:key="index"` dan `:key="rowIndex"` dengan properti ID stabil (`id: string`) pada kriteria dan alternatif.
+- [x] **Fitur Interaktif Unggulan: Global Command Palette (`Ctrl+K` / `Meta+K`)**
+  - [x] Buat komponen `app/components/ui/CommandPalette.vue` menggunakan `@headlessui/vue` Combobox + Dialog.
+  - [x] Hubungkan aksi shortcut cepat: Navigasi rute, Salin Email, Cetak CV ATS, dan Toggle Theme.
 
 ---
 

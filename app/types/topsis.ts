@@ -1,12 +1,14 @@
 export type CriterionImpact = 'benefit' | 'cost'
 
 export interface Criterion {
+  id?: string
   name: string
   weight: number
   impact: CriterionImpact
 }
 
 export interface Alternative {
+  id?: string
   name: string
   values: number[]
 }
