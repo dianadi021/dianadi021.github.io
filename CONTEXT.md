@@ -85,3 +85,39 @@ Use Tailwind CSS classes or CSS variables based on this custom palette, but stil
    - Tech Stack & Skills (grouped by category)
    - Projects / Showcase
    - Contact & Social Links
+
+## 7. Stack Verification Commands (Quality Gate)
+- **Typecheck**: `pnpm run typecheck` (`nuxt typecheck`) — Wajib lolos 0 error sebelum merge/delivery.
+- **Build Server**: `CI=true pnpm run build` (`nuxt build`) — Kompilasi Nitro server node.
+- **Generate Static**: `CI=true pnpm run generate` (`nuxt generate`) — Prerender SSG Jamstack untuk GitHub Pages.
+
+## 8. Domain Entities & TOPSIS State Machine
+
+### A. Domain Entities (`app/types/topsis.ts`)
+- **`Criterion`**: `{ name: string, weight: number, impact: 'benefit' | 'cost' }`
+- **`Alternative`**: `{ name: string, values: number[] }`
+- **`RankedAlternative`**: `Alternative & { score: number, rank: number, positiveDistance: number, negativeDistance: number }`
+- **`TopsisCalculationResult`**: `{ state: TopsisState, rankedAlternatives: RankedAlternative[], bestAlternative: RankedAlternative | null, totalWeight: number, summary: string, errorMessage?: string }`
+
+### B. State Machine Transitions (`TopsisState`)
+```text
+[INSUFFICIENT_DATA]
+  │ (Guard: criteria.length >= 1 && alternatives.length >= 2)
+  ▼
+[DATA_INPUT]
+  │ (Guard: totalWeight > 0 && all weights >= 0 && matrix is finite && column norms > 0)
+  ├──(Failed Guards)──► [INVALID_PARAMETERS]
+  ▼
+[READY_AND_RANKED]
+  │ (Actions: Sort descending by score, assign rank 1..N, guarantee bestAlternative != null)
+  ▼
+(Display table, recommendation card, and formatted summary export)
+```
+- **Transisi Terlarang**: Dilarang mengeksekusi normalisasi vektor atau perhitungan jarak Euclidean jika status berada di `INSUFFICIENT_DATA` atau `INVALID_PARAMETERS`.
+
+## 9. Critical Technical & Domain Invariants
+1. **TOPSIS Invariant 1 (Strict Matrix Bounds & Cardinality)**: Minimal 1 kriteria dan minimal 2 alternatif. Total bobot kriteria wajib berangka riil positif (`totalWeight > 0`) dengan setiap bobot non-negatif.
+2. **TOPSIS Invariant 2 (Vector Normalization & Zero-Divisor Guard)**: Setiap kolom kriteria pada matriks keputusan wajib memiliki norma vektor > 0 (`norm !== 0`). Dilarang membagi dengan nol (`division by zero` / `NaN`). Jika norma kolom 0, status kalkulasi diturunkan menjadi `INVALID_PARAMETERS`.
+3. **TOPSIS Invariant 3 (Strict Indexing & Null Safety)**: Akses elemen matriks dua dimensi (`row[c] ?? 0`) wajib memiliki fallback safe indexing untuk mematuhi konfigurasi `strict: true` / `noUncheckedIndexedAccess`. Objek `bestAlternative` wajib di-narrowing sebelum membaca properti `.name` atau `.score`.
+4. **Lifecycle & Memory Cleanup Invariant**: Seluruh browser-level event listener (`window.addEventListener`) wajib dibersihkan secara simetris pada `onUnmounted` / `onBeforeUnmount`, atau dibungkus menggunakan helper reaktif auto-cleanup (`useEventListener` dari VueUse).
+5. **CI Quality Gate Invariant**: Pipeline GitHub Actions (`deploy-pages.yml`) wajib mengeksekusi perintah `pnpm run typecheck` sebelum fase packaging `pnpm generate` untuk mencegah regresi lolos ke production.
