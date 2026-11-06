@@ -1,17 +1,17 @@
-# Graph Report - dianadi021.github.io  (2026-11-05)
+# Graph Report - dianadi021.github.io  (2026-11-07)
 
 ## Corpus Check
-- 33 files · ~202,107 words
+- 30 files · ~198,510 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 9 file(s) not represented in the graph (top: (none) 4, .css 3, .example 1)
 
 ## Summary
-- 317 nodes · 430 edges · 26 communities (17 shown, 9 thin omitted)
-- Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 33 edges (avg confidence: 0.9)
+- 274 nodes · 376 edges · 23 communities (14 shown, 9 thin omitted)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 19 edges (avg confidence: 0.86)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f7f01864`
+- Built from commit: `30ec27f9`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -19,17 +19,14 @@
 - Minified Icon Library Bundle
 - Plugins and App Store
 - About Page Demo Logic
-- topsis.ts
 - Runtime Dependencies
 - Dev Dependencies and Tooling
 - Default Layout Theme Toggle
 - NPM Scripts
 - TypeScript Config
-- Nuxt Frontend Starter Template & Portfolio Architecture
+- Ringkasan Review, Refactor & Setup Template Nuxt.js
 - topsis.vue
-- 3. Project Tooling & Package Ecosystem (from package.json & Graphify Mapping)
 - CommandPalette.vue
-- 📋 Engineering TODO & Quality Roadmap
 - HomeTerminal.vue
 - .prettierrc.json
 - HomeSkills.vue
@@ -44,27 +41,21 @@
 4. `d()` - 10 edges
 5. `y2()` - 10 edges
 6. `X2()` - 10 edges
-7. `Developer Context & Design System` - 10 edges
-8. `📋 Engineering TODO & Quality Roadmap` - 9 edges
-9. `p2()` - 8 edges
-10. `W2()` - 8 edges
+7. `p2()` - 8 edges
+8. `W2()` - 8 edges
+9. `🚀 AGENTS.md - Standar Profesional Rekayasa Perangkat Lunak` - 8 edges
+10. `Ringkasan Review, Refactor & Setup Template Nuxt.js` - 8 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `✅ Fase 0: Spesifikasi Kontrak & Perencanaan (SELESAI)` --references--> `TopsisCalculatorFn`  [INFERRED]
-  TODO.md → app/types/topsis.ts
-- `C. UI, Styling & Visual Presentation (Community 0, 3, 5)` --references--> `cn()`  [INFERRED]
-  CONTEXT.md → app/utils/cn.ts
-- `1. Runtime Dependencies` --references--> `cn()`  [INFERRED]
-  README.md → app/utils/cn.ts
-- `Ringkasan Hubungan Komunitas (Community Hubs)` --references--> `cn()`  [INFERRED]
-  README.md → app/utils/cn.ts
 - `7. Rute Showcase `/about` & Layout Aktif` --references--> `cn()`  [INFERRED]
+  SETUP_SUMMARY.md → app/utils/cn.ts
+- `B. Package Tambahan yang Diinstal (Additive)` --references--> `cn()`  [INFERRED]
   SETUP_SUMMARY.md → app/utils/cn.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (26 total, 9 thin omitted)
+## Communities (23 total, 9 thin omitted)
 
 ### Community 0 - "Minified Icon Library Bundle"
 Cohesion: 0.08
@@ -77,10 +68,6 @@ Nodes (32): useAppStore, allowScripts, esbuild@0.28.2, name, private, type, clsx
 ### Community 2 - "About Page Demo Logic"
 Cohesion: 0.06
 Nodes (24): appStore, axiosLoading, axiosResponse, colorMode, { $dayjs, $swal, $api }, formData, formErrors, formSuccess (+16 more)
-
-### Community 3 - "topsis.ts"
-Cohesion: 0.30
-Nodes (11): Alternative, Criterion, CriterionImpact, RankedAlternative, TopsisCalculationResult, TopsisCalculatorFn, TopsisState, 8. Domain Entities & TOPSIS State Machine (+3 more)
 
 ### Community 4 - "Runtime Dependencies"
 Cohesion: 0.12
@@ -98,25 +85,17 @@ Nodes (6): activeHash, appStore, colorMode, commandPaletteRef, isHydrated, route
 Cohesion: 0.29
 Nodes (7): scripts, build, dev, generate, postinstall, preview, typecheck
 
-### Community 12 - "Nuxt Frontend Starter Template & Portfolio Architecture"
-Cohesion: 0.08
-Nodes (25): cn(), C. UI, Styling & Visual Presentation (Community 0, 3, 5), 1. Deploy ke GitHub Pages (SSG - dianadi021.github.io), 1. Runtime Dependencies, 2. Deploy ke Vercel / Node Server (SSR), 2. Developer Tooling & Plugins, 🚀 Fitur & Package yang Terintegrasi (`package.json`), 🧩 Injeksi Plugin & Context Usage (+17 more)
+### Community 12 - "Ringkasan Review, Refactor & Setup Template Nuxt.js"
+Cohesion: 0.18
+Nodes (11): cn(), 1. Masalah Awal yang Ditemukan & Diperbaiki, 2. Status Package & Library, 3. Palet Warna Format Bootstrap pada Tailwind CSS, 4. Struktur File Setup Baru & Yang Disesuaikan, 5. Dukungan Mode Rendering (SSR & CSR), 6. Hasil Verifikasi & Pengujian, 7. Rute Showcase `/about` & Layout Aktif (+3 more)
 
 ### Community 13 - "topsis.vue"
-Cohesion: 0.11
-Nodes (17): addAlternative(), addCriterion(), alternatives, best, { calculate }, calculation, criteria, downloadCsv() (+9 more)
-
-### Community 14 - "3. Project Tooling & Package Ecosystem (from package.json & Graphify Mapping)"
-Cohesion: 0.13
-Nodes (14): 1. Profile Overview, 2. Core Technical Stack, 3. Project Tooling & Package Ecosystem (from package.json & Graphify Mapping), 4. Experience Highlights, 5. Design System & Theme, 6. Agent Rules for Code & Content Generation, 7. Stack Verification Commands (Quality Gate), 9. Critical Technical & Domain Invariants (+6 more)
+Cohesion: 0.08
+Nodes (24): addAlternative(), addCriterion(), alternatives, best, { calculate }, calculation, criteria, downloadCsv() (+16 more)
 
 ### Community 15 - "CommandPalette.vue"
 Cohesion: 0.18
 Nodes (9): colorMode, CommandItem, commands, filteredCommands, isOpen, query, router, { $swal } (+1 more)
-
-### Community 16 - "📋 Engineering TODO & Quality Roadmap"
-Cohesion: 0.22
-Nodes (8): 📋 Engineering TODO & Quality Roadmap, ✅ Fase 1: P1 Blocker — Type Safety & Build Integrity (`topsis.vue`) (SELESAI), ✅ Fase 2: P2 Quality Gate CI/CD & Automasi (SELESAI), ✅ Fase 3: P3 Stabilitas Lifecycle, Memory Leak & Reaktivitas (SELESAI), ✅ Fase 4: P4 Dekomposisi Layout & Rekayasa Komponen Modular (SELESAI), ✅ Fase 5: P5 Keamanan Frontend & Strict Typing Guard (SELESAI), ✅ Fase 6: P6 Pembersihan Artefak Zombie & Codebase Hygiene (SELESAI), 🎯 Status Progres Keseluruhan
 
 ### Community 17 - "HomeTerminal.vue"
 Cohesion: 0.40
@@ -136,22 +115,22 @@ Nodes (8): 1. Core Operating Principles, 2. Separation of Concerns Architecture,
 
 ## Knowledge Gaps
 - **16 isolated node(s):** `@nuxt/icon`, `@nuxtjs/color-mode`, `@vueuse/core`, `@vueuse/nuxt`, `nuxt` (+11 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 198 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 171 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **9 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `cn()` connect `Nuxt Frontend Starter Template & Portfolio Architecture` to `Plugins and App Store`?**
-  _High betweenness centrality (0.241) - this node is a cross-community bridge._
+- **Why does `dependencies` connect `Runtime Dependencies` to `Plugins and App Store`?**
+  _High betweenness centrality (0.052) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `q2()` (e.g. with `C()` and `E1()`) actually correct?**
   _`q2()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `@nuxt/icon`, `@nuxtjs/color-mode`, `@vueuse/core` to the rest of the system?**
   _16 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Minified Icon Library Bundle` be split into smaller, more focused modules?**
   _Cohesion score 0.08243727598566308 - nodes in this community are weakly interconnected._
-- **Why does `3. Project Tooling & Package Ecosystem (from package.json & Graphify Mapping)` connect `3. Project Tooling & Package Ecosystem (from package.json & Graphify Mapping)` to `Nuxt Frontend Starter Template & Portfolio Architecture`?**
-  _High betweenness centrality (0.181) - this node is a cross-community bridge._
+- **Why does `@headlessui/vue` connect `CommandPalette.vue` to `Plugins and App Store`, `About Page Demo Logic`?**
+  _High betweenness centrality (0.049) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `a()` (e.g. with `C()` and `f2()`) actually correct?**
   _`a()` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Plugins and App Store` be split into smaller, more focused modules?**

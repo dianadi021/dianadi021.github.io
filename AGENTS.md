@@ -14,8 +14,9 @@ Dokumen ini adalah *Permanent Rules & Behavioral Constitution* yang selalu aktif
 ## 2. Separation of Concerns Architecture
 Sistem memisahkan tanggung jawab menjadi 3 lapisan:
 1. **Rules (`AGENTS.md`):** Konstitusi permanen yang mengatur disiplin kode, keamanan, dan protokol verifikasi (Always-On).
-2. **Domain State (`CONTEXT.md`):** Single Source of Truth spesifik proyek yang memuat batasan entitas, invarian bisnis unik, dan string perintah verifikasi otomatis (test/lint). Disusun/diperbarui pada tahap Planning (via [`sdlc-planning`](./.agents/skills/sdlc-planning/SKILL.md)), lalu menjadi acuan mutlak (*immutable reference*) selama tahap Delivery. Agen dilarang memodifikasi isi `CONTEXT.md` di luar fase Planning tanpa instruksi eksplisit.
+2. **Domain State (`CONTEXT.md`):** Single Source of Truth spesifik proyek yang memuat batasan entitas, invarian bisnis unik, dan string perintah verifikasi otomatis (test/lint). Disusun/diperbarui pada tahap Planning (via [`sdlc-planning`](./.agents/skills/sdlc-planning/SKILL.md); inisialisasi dari template jika belum ada), lalu menjadi acuan mutlak (*immutable reference*) selama tahap Delivery. Agen dilarang memodifikasi isi `CONTEXT.md` di luar fase Planning tanpa instruksi eksplisit.
 3. **Workflow Procedures (`.agents/skills/`):** Prosedur bertahap yang dimuat secara *on-demand* sesuai intensi tugas:
+   - [`trend-research`](./.agents/skills/trend-research/SKILL.md): Riset eksternal, pemindaian Google Trends, berita realtime, dan sentimen komunitas/sosial media (Reddit/HN).
    - [`sdlc-brainstorming`](./.agents/skills/sdlc-brainstorming/SKILL.md): Tahap discovery, brainstorming 5W+1H, eksplorasi alternatif, analisis kebutuhan, dan deteksi ambiguitas.
    - [`sdlc-planning`](./.agents/skills/sdlc-planning/SKILL.md): Tahap arsitektur, domain modeling, kontrak interface, dan skema migrasi.
    - [`sdlc-delivery`](./.agents/skills/sdlc-delivery/SKILL.md): Tahap implementasi kode, automated testing, dan release/commit.
@@ -44,7 +45,8 @@ Sistem memisahkan tanggung jawab menjadi 3 lapisan:
   - *Lingkup Mutasi:* Transaksi dibuka HANYA saat operasi tulis (CREATE, UPDATE, DELETE) dimulai.
   - *Mutasi dalam Loop:* Utamakan mutasi massal (*bulk/batch*). Mutasi per-item di dalam loop hanya diizinkan jika ada kebutuhan bisnis unik (validasi baris per baris / event hooks terisolasi).
   - *Proteksi Rollback:* Wajib menggunakan closure (`DB::transaction(...)`) atau `try ... catch { DB::rollBack(); throw; }`.
-- **Anti-Deadlock Locking:** Penguncian baris konkuren (*pessimistic lock*) wajib terurut deterministik (misal: `ORDER BY id ASC FOR UPDATE`).
+  - *Post-Commit Side Effects:* Job antrean, event bus, atau notifikasi eksternal dilarang dieksekusi sebelum transaksi commit (wajib gunakan hook `afterCommit` atau transaction-aware dispatch).
+- **Anti-Deadlock Locking:** Penguncian baris konkuren (*pessimistic lock*) wajib terurut deterministik per-baris (misal: `ORDER BY id ASC FOR UPDATE`) serta konsisten mengikuti hierarki penguncian antar-tabel secara global.
 - **Query Optimization & Bounded Scope:** Hindari subquery berlebih (*excessive subqueries*); gunakan `JOIN` terindeks. Dilarang query koleksi terbuka tanpa batas pagination (`LIMIT`).
 - **Security & Anti-IDOR:** Setiap query mutasi/baca wajib menyertakan filter batas otentikasi (`tenant_id` / `user_id` dari sesi auth). Dilarang menyambung string query mentah (wajib *parameter binding*).
 - **Presisi Finansial:** Dilarang menggunakan tipe `float` untuk moneter; gunakan `decimal` atau `bigint` (satuan sen).

@@ -1,0 +1,324 @@
+{
+  "communities": {
+    "0": [
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_a2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_a4",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_b",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_c2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_c2_c",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_d",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_d1",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_d2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_e",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_e1",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_e2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_f",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_f2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_g",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_g2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_h2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_i",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_j",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_j1",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_k1",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_l2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_m",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_m2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_n1",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_o1",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_p1",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_q1",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_q2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_r1",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_r2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_r4",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_s2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_t1",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_u1",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_u2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_v1",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_v2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_w",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_x1",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_y2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_z",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_z1",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_z2"
+    ],
+    "1": [
+      "app_plugins_axios",
+      "app_plugins_dayjs",
+      "app_plugins_sweetalert2_client",
+      "app_stores_app",
+      "app_stores_app_useappstore",
+      "app_utils_cn",
+      "app_utils_cn_cn",
+      "package",
+      "package_name",
+      "package_private",
+      "package_type",
+      "ref_axios",
+      "ref_clsx",
+      "ref_dayjs",
+      "ref_headlessui_vue",
+      "ref_nuxt",
+      "ref_nuxt_icon",
+      "ref_nuxtjs_color_mode",
+      "ref_nuxtjs_tailwindcss",
+      "ref_pinia",
+      "ref_pinia_nuxt",
+      "ref_sweetalert2",
+      "ref_swiper",
+      "ref_tailwind_merge",
+      "ref_tailwindcss",
+      "ref_tailwindcss_aspect_ratio",
+      "ref_tailwindcss_forms",
+      "ref_tailwindcss_typography",
+      "ref_types_node",
+      "ref_typescript",
+      "ref_vue",
+      "ref_vue_router",
+      "ref_vue_tsc",
+      "ref_vueuse_core",
+      "ref_vueuse_nuxt",
+      "ref_zod",
+      "tailwind_config"
+    ],
+    "2": [
+      "app_pages_about",
+      "app_pages_about_appstore",
+      "app_pages_about_axiosloading",
+      "app_pages_about_axiosresponse",
+      "app_pages_about_colormode",
+      "app_pages_about_dayjs_swal_api",
+      "app_pages_about_fetchdemodata",
+      "app_pages_about_formdata",
+      "app_pages_about_formerrors",
+      "app_pages_about_formsuccess",
+      "app_pages_about_futuretime",
+      "app_pages_about_handlezodsubmit",
+      "app_pages_about_isbuttondanger",
+      "app_pages_about_ismodalopen",
+      "app_pages_about_isonline",
+      "app_pages_about_isswitchenabled",
+      "app_pages_about_mergedclasses",
+      "app_pages_about_now",
+      "app_pages_about_pasttime",
+      "app_pages_about_samplepersistednote",
+      "app_pages_about_swipermodules",
+      "app_pages_about_swiperslides",
+      "app_pages_about_text_copiedtext_copy_copied",
+      "app_pages_about_triggerconfirmswal",
+      "app_pages_about_triggersuccessswal",
+      "app_pages_about_triggertoastswal",
+      "app_pages_about_x_mousex_y_mousey",
+      "app_pages_about_zodformdata",
+      "app_pages_about_zodformschema"
+    ],
+    "3": [
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_a",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_c",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_c4",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_i2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_k",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_n",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_n2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_p2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_r",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_s4",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_t",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_u",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_w1",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_w2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_x2",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_x2_e",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_x2_z",
+      "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_y"
+    ],
+    "4": [
+      "package_dependencies",
+      "package_dependencies_axios",
+      "package_dependencies_clsx",
+      "package_dependencies_dayjs",
+      "package_dependencies_headlessui_vue",
+      "package_dependencies_nuxt",
+      "package_dependencies_nuxt_icon",
+      "package_dependencies_nuxtjs_color_mode",
+      "package_dependencies_pinia",
+      "package_dependencies_sweetalert2",
+      "package_dependencies_swiper",
+      "package_dependencies_tailwind_merge",
+      "package_dependencies_vue",
+      "package_dependencies_vue_router",
+      "package_dependencies_vueuse_core",
+      "package_dependencies_vueuse_nuxt",
+      "package_dependencies_zod"
+    ],
+    "5": [
+      "package_devdependencies",
+      "package_devdependencies_nuxtjs_tailwindcss",
+      "package_devdependencies_pinia_nuxt",
+      "package_devdependencies_tailwindcss_aspect_ratio",
+      "package_devdependencies_tailwindcss_forms",
+      "package_devdependencies_tailwindcss_typography",
+      "package_devdependencies_types_node",
+      "package_devdependencies_typescript",
+      "package_devdependencies_vue_tsc"
+    ],
+    "6": [
+      "app_layouts_default",
+      "app_layouts_default_appstore",
+      "app_layouts_default_colormode",
+      "app_layouts_default_dayjs",
+      "app_layouts_default_ishydrated",
+      "app_layouts_default_route",
+      "app_layouts_default_toggletheme"
+    ],
+    "7": [
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "package_scripts_generate",
+      "package_scripts_postinstall",
+      "package_scripts_preview",
+      "package_scripts_typecheck"
+    ],
+    "8": [
+      "app_pages_index",
+      "app_pages_index_appstore",
+      "app_pages_index_currentdate",
+      "app_pages_index_dayjs_swal",
+      "app_pages_index_features",
+      "app_pages_index_showsamplealert"
+    ],
+    "9": [
+      "tsconfig",
+      "tsconfig_files",
+      "tsconfig_references"
+    ],
+    "10": [
+      "app_app"
+    ],
+    "11": [
+      "nuxt_config"
+    ]
+  },
+  "cohesion": {
+    "0": 0.09494949494949495,
+    "1": 0.05855855855855856,
+    "2": 0.06896551724137931,
+    "3": 0.20261437908496732,
+    "4": 0.11764705882352941,
+    "5": 0.2222222222222222,
+    "6": 0.2857142857142857,
+    "7": 0.2857142857142857,
+    "8": 0.3333333333333333,
+    "9": 0.6666666666666666,
+    "10": 1.0,
+    "11": 1.0
+  },
+  "gods": [
+    {
+      "id": "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_q2",
+      "label": "q2()",
+      "degree": 12
+    },
+    {
+      "id": "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_r2",
+      "label": "r2()",
+      "degree": 11
+    },
+    {
+      "id": "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_a",
+      "label": "a()",
+      "degree": 11
+    },
+    {
+      "id": "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_d",
+      "label": "d()",
+      "degree": 10
+    },
+    {
+      "id": "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_y2",
+      "label": "y2()",
+      "degree": 10
+    },
+    {
+      "id": "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_x2",
+      "label": "X2()",
+      "degree": 10
+    },
+    {
+      "id": "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_p2",
+      "label": "p2()",
+      "degree": 8
+    },
+    {
+      "id": "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_w2",
+      "label": "W2()",
+      "degree": 8
+    },
+    {
+      "id": "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_c2_c",
+      "label": "c()",
+      "degree": 7
+    },
+    {
+      "id": "public_assets_scripts_vendor_font_awesome_7_3_1_all_min_g2",
+      "label": "g2()",
+      "degree": 7
+    }
+  ],
+  "surprises": [
+    {
+      "source": "f2()",
+      "target": "a()",
+      "source_files": [
+        "public/assets/scripts/vendor/font-awesome/@7.3.1/all.min.js",
+        "public/assets/scripts/vendor/font-awesome/@7.3.1/all.min.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "indirect_call",
+      "note": "Bridges community 0 → community 3"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `dependencies` connect `Runtime Dependencies` to `Plugins and App Store`?",
+      "why": "High betweenness centrality (0.090) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 2 inferred relationships involving `q2()` (e.g. with `C()` and `E1()`) actually correct?",
+      "why": "`q2()` has 2 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `nuxt`, `@nuxt/icon`, `@nuxtjs/color-mode` to the rest of the system?",
+      "why": "12 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Minified Icon Library Bundle` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.09494949494949495 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `devDependencies` connect `Dev Dependencies and Tooling` to `Plugins and App Store`?",
+      "why": "High betweenness centrality (0.047) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 3 inferred relationships involving `a()` (e.g. with `C()` and `f2()`) actually correct?",
+      "why": "`a()` has 3 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Plugins and App Store` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.05855855855855856 - nodes in this community are weakly interconnected."
+    }
+  ]
+}
