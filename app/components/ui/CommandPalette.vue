@@ -67,6 +67,14 @@ const commands: CommandItem[] = [
     action: () => router.push('/mycv'),
   },
   {
+    id: 'nav-wedding',
+    title: 'Buka Template Undangan Pernikahan (Wedding Invitation)',
+    category: 'Navigasi',
+    icon: 'heroicons:envelope-open-20-solid',
+    shortcut: 'G W',
+    action: () => router.push('/wedding'),
+  },
+  {
     id: 'nav-showcase',
     title: 'Buka Showcase Fitur Template',
     category: 'Navigasi',

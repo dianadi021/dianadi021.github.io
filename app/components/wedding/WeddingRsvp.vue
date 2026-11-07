@@ -1,0 +1,235 @@
+<script setup lang="ts">
+import { z } from 'zod'
+import type { RsvpAttendanceStatus, RsvpEntryRecord } from '~/types/wedding'
+
+const props = defineProps<{
+  initialGuestName: string
+}>()
+
+const { $swal } = useNuxtApp()
+
+const rsvpSchema = z.object({
+  guestName: z.string().min(2, 'Nama minimal 2 karakter'),
+  attendance: z.enum(['ATTENDING', 'NOT_ATTENDING', 'UNCERTAIN']),
+  totalGuests: z.coerce.number().min(1, 'Jumlah tamu minimal 1').max(5, 'Jumlah tamu maksimal 5'),
+  message: z.string().min(3, 'Ucapan minimal 3 karakter').max(500, 'Ucapan maksimal 500 karakter')
+})
+
+const formData = reactive({
+  guestName: props.initialGuestName || '',
+  attendance: 'ATTENDING' as RsvpAttendanceStatus,
+  totalGuests: 1,
+  message: ''
+})
+
+watch(() => props.initialGuestName, (newVal) => {
+  if (newVal && !formData.guestName) {
+    formData.guestName = newVal
+  }
+})
+
+const formErrors = ref<Record<string, string>>({})
+const isSubmitting = ref(false)
+
+// Inisialisasi daftar ucapan default dan simpan di LocalStorage
+const defaultEntries: RsvpEntryRecord[] = [
+  {
+    id: 'rsvp-1',
+    guestName: 'Keluarga Besar Bpk. Hendra',
+    attendance: 'ATTENDING',
+    totalGuests: 2,
+    message: 'Selamat menempuh hidup baru untuk kedua mempelai. Semoga menjadi keluarga sakinah, mawaddah, warahmah.',
+    createdAt: '2026-11-06 14:20'
+  },
+  {
+    id: 'rsvp-2',
+    guestName: 'Bima & Rara',
+    attendance: 'ATTENDING',
+    totalGuests: 2,
+    message: 'Barakallahu lakum wa baraka alaikum. Bahagia selalu sampai akhir hayat ya teman-teman!',
+    createdAt: '2026-11-06 16:45'
+  }
+]
+
+const guestbookEntries = useLocalStorage<RsvpEntryRecord[]>('wedding_guestbook_entries', defaultEntries)
+
+const handleSubmit = () => {
+  formErrors.value = {}
+  const parseResult = rsvpSchema.safeParse(formData)
+
+  if (!parseResult.success) {
+    const formatted = parseResult.error.format()
+    if (formatted.guestName?._errors[0]) formErrors.value.guestName = formatted.guestName._errors[0]
+    if (formatted.attendance?._errors[0]) formErrors.value.attendance = formatted.attendance._errors[0]
+    if (formatted.totalGuests?._errors[0]) formErrors.value.totalGuests = formatted.totalGuests._errors[0]
+    if (formatted.message?._errors[0]) formErrors.value.message = formatted.message._errors[0]
+    return
+  }
+
+  isSubmitting.value = true
+
+  const newEntry: RsvpEntryRecord = {
+    id: `rsvp-${Date.now()}`,
+    guestName: formData.guestName.trim(),
+    attendance: formData.attendance,
+    totalGuests: formData.totalGuests,
+    message: formData.message.trim(),
+    createdAt: new Date().toLocaleDateString('id-ID', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+  }
+
+  guestbookEntries.value = [newEntry, ...guestbookEntries.value]
+  formData.message = ''
+  isSubmitting.value = false
+
+  if ($swal) {
+    $swal.fire({
+      icon: 'success',
+      title: 'Terima Kasih! ✨',
+      text: 'Konfirmasi kehadiran dan ucapan doa restu Anda telah berhasil tersimpan.',
+      confirmButtonColor: '#219EBC'
+    })
+  }
+}
+</script>
+
+<template>
+  <section class="max-w-4xl mx-auto space-y-8 text-center">
+    <div class="space-y-2">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#8ECAE6]/20 text-[#023047] dark:text-[#8ECAE6]">
+        <span>💌</span>
+        <span>Buku Tamu & RSVP</span>
+      </div>
+      <h2 class="text-3xl font-serif font-bold text-[#023047] dark:text-white">
+        Konfirmasi Kehadiran & Doa Restu
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto">
+        Kirimkan doa dan konfirmasi kehadiran Anda untuk membantu kami menyiapkan jamuan terbaik.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+      <!-- RSVP Form Card -->
+      <div class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#034363] border-2 border-[#8ECAE6]/40 dark:border-[#219EBC]/30 shadow-sm space-y-4">
+        <h3 class="text-lg font-serif font-bold text-[#023047] dark:text-white flex items-center gap-2">
+          <Icon name="heroicons:pencil-square-20-solid" class="w-5 h-5 text-[#FB8500]" />
+          <span>Isi Konfirmasi Kehadiran</span>
+        </h3>
+
+        <form class="space-y-4" @submit.prevent="handleSubmit">
+          <!-- Guest Name -->
+          <div class="space-y-1">
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-200">Nama Lengkap</label>
+            <input
+              v-model="formData.guestName"
+              type="text"
+              class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-[#023047] text-slate-900 dark:text-white focus:ring-2 focus:ring-[#219EBC] focus:outline-none"
+              :class="formErrors.guestName ? 'border-danger ring-1 ring-danger' : ''"
+              placeholder="Nama Anda / Keluarga"
+            >
+            <span v-if="formErrors.guestName" class="text-[11px] text-danger">{{ formErrors.guestName }}</span>
+          </div>
+
+          <!-- Attendance -->
+          <div class="space-y-1">
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-200">Konfirmasi Kehadiran</label>
+            <select
+              v-model="formData.attendance"
+              class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-[#023047] text-slate-900 dark:text-white focus:ring-2 focus:ring-[#219EBC] focus:outline-none"
+            >
+              <option value="ATTENDING">Ya, Saya Akan Hadir</option>
+              <option value="UNCERTAIN">Masih Ragu / Belum Pasti</option>
+              <option value="NOT_ATTENDING">Maaf, Tidak Bisa Hadir</option>
+            </select>
+          </div>
+
+          <!-- Total Guests -->
+          <div class="space-y-1">
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-200">Jumlah Tamu</label>
+            <select
+              v-model.number="formData.totalGuests"
+              class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-[#023047] text-slate-900 dark:text-white focus:ring-2 focus:ring-[#219EBC] focus:outline-none"
+            >
+              <option :value="1">1 Orang</option>
+              <option :value="2">2 Orang</option>
+              <option :value="3">3 Orang</option>
+              <option :value="4">4 Orang</option>
+            </select>
+          </div>
+
+          <!-- Message -->
+          <div class="space-y-1">
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-200">Ucapan & Doa Restu</label>
+            <textarea
+              v-model="formData.message"
+              rows="3"
+              class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-[#023047] text-slate-900 dark:text-white focus:ring-2 focus:ring-[#219EBC] focus:outline-none"
+              :class="formErrors.message ? 'border-danger ring-1 ring-danger' : ''"
+              placeholder="Tuliskan ucapan selamat dan doa untuk kedua mempelai..."
+            />
+            <span v-if="formErrors.message" class="text-[11px] text-danger">{{ formErrors.message }}</span>
+          </div>
+
+          <button
+            type="submit"
+            :disabled="isSubmitting"
+            class="w-full py-3 rounded-xl bg-[#FB8500] hover:bg-[#FB8500]/90 text-white font-bold text-xs shadow-md transition"
+          >
+            {{ isSubmitting ? 'Mengirim...' : 'Kirim Konfirmasi & Ucapan' }}
+          </button>
+        </form>
+      </div>
+
+      <!-- Guestbook Live Feed -->
+      <div class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#034363] border-2 border-[#8ECAE6]/40 dark:border-[#219EBC]/30 shadow-sm flex flex-col justify-between space-y-4">
+        <div class="space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-700/60 pb-3">
+            <h3 class="text-lg font-serif font-bold text-[#023047] dark:text-white flex items-center gap-2">
+              <Icon name="heroicons:chat-bubble-left-right-20-solid" class="w-5 h-5 text-[#219EBC]" />
+              <span>Untaian Doa Tamu</span>
+            </h3>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-[#8ECAE6]/20 text-[#023047] dark:text-[#8ECAE6] font-bold">
+              {{ guestbookEntries.length }} Pesan
+            </span>
+          </div>
+
+          <!-- Entries Scroll List -->
+          <div class="space-y-3 max-h-96 overflow-y-auto pr-1">
+            <div
+              v-for="entry in guestbookEntries"
+              :key="entry.id"
+              class="p-3.5 rounded-2xl bg-slate-50 dark:bg-[#023047] border border-slate-200 dark:border-slate-700 space-y-1.5"
+            >
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold text-[#023047] dark:text-white truncate">
+                  {{ entry.guestName }}
+                </span>
+                <span
+                  class="text-[9px] font-bold px-2 py-0.5 rounded-full shrink-0 uppercase"
+                  :class="{
+                    'bg-success/15 text-success': entry.attendance === 'ATTENDING',
+                    'bg-warning/15 text-warning-700 dark:text-warning': entry.attendance === 'UNCERTAIN',
+                    'bg-danger/15 text-danger': entry.attendance === 'NOT_ATTENDING',
+                  }"
+                >
+                  {{ entry.attendance === 'ATTENDING' ? 'Hadir' : entry.attendance === 'UNCERTAIN' ? 'Ragu' : 'Berhalangan' }}
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
+                "{{ entry.message }}"
+              </p>
+              <span class="text-[10px] text-slate-400 block pt-0.5">
+                {{ entry.createdAt }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
