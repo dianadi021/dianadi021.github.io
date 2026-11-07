@@ -18,75 +18,7 @@ Daftar tugas terstruktur untuk platform portofolio dan showcase arsitektur [dian
 - [x] **Fase 9: Penguatan Strict Typing & Standarisasi Plugin Node/TS** *(Selesai)*
 - [x] **Fase 10: SDLC Planning & Kontrak Domain Wedding Platform** *(Selesai)*
 - [x] **Fase 11: Implementasi Delivery Layout Wedding Invitation (Scrollytelling)** *(Selesai)*
-
----
-
-## 🚀 Fase Aktif & Item Dalam Antrean
-
-### 📌 Fase 7: Resolusi Temuan Review Frontend & Dekomposisi Showcase
-- [x] **Dekomposisi Monolit Showcase ([`app/pages/about.vue`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/about.vue#L1-L812) — 812 baris ➔ 60 baris)**
-  - [x] Ekstraksi bagian Swiper Carousel ke `app/components/showcase/ShowcaseSwiper.vue`.
-  - [x] Ekstraksi demo Headless UI (Switch, Disclosure, Menu, Modal) ke `app/components/showcase/ShowcaseHeadlessUi.vue`.
-  - [x] Ekstraksi form validasi Zod ke `app/components/showcase/ShowcaseZodForm.vue`.
-  - [x] Ekstraksi interaksi Axios & SweetAlert2 ke `app/components/showcase/ShowcaseAxios.vue`.
-  - [x] Ekstraksi komponen pendukung `ShowcaseTailwindColors.vue`, `ShowcaseVueUse.vue`, `ShowcasePinia.vue`, `ShowcaseSweetAlert.vue`, dan `ShowcaseDayjs.vue`.
-  - [x] Rampingkan `app/pages/about.vue` menjadi orkestrator presenter (< 60 baris).
-- [x] **Pencegahan Hydration Text Mismatch ([`app/pages/about.vue:684`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/about.vue#L684))**
-  - [x] Bungkus interpolasi `{{ now }}` dan relative time dengan tag `<ClientOnly>` dan sediakan skeleton placeholder fallback.
-- [x] **Stabilisasi Virtual DOM Key Matriks TOPSIS ([`app/pages/portofolio/topsis.vue:150,154`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/portofolio/topsis.vue#L150))**
-  - [x] Ganti binding `:key="criterion.name"` menjadi `:key="criterion.id"` untuk mencegah collision saat nama kriteria bernilai sama.
-- [x] **Isolasi Request Showcase Eksternal ([`app/pages/about.vue:77`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/about.vue#L77))**
-  - [x] Ganti endpoint eksternal dengan mock internal Nitro server route (`server/api/demo.get.ts`).
-
----
-
-### 📌 Fase 8: Automasi Pengujian Unit Matematis (Vitest)
-- [x] **Instalasi & Konfigurasi Vitest Runner ([`package.json`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/package.json))**
-  - [x] Pasang dependensi dev: `pnpm add -D vitest @nuxt/test-utils happy-dom`.
-  - [x] Daftarkan script pengujian `"test": "vitest run"` pada `package.json` dan buat `vitest.config.ts`.
-- [x] **Spesifikasi Unit Test TOPSIS Engine ([`app/composables/useTopsis.ts`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/composables/useTopsis.ts#L3-L98))**
-  - [x] Buat file test `app/composables/__tests__/useTopsis.spec.ts`.
-  - [x] Test case 1: Deteksi `INSUFFICIENT_DATA` jika criteria < 1 atau alternatives < 2.
-  - [x] Test case 2: Deteksi `INVALID_PARAMETERS` jika total bobot <= 0 atau ada bobot negatif.
-  - [x] Test case 3: Deteksi `INVALID_PARAMETERS` jika seluruh nilai kolom nol (zero norm divisor guard).
-  - [x] Test case 4: Validasi akurasi peringkat Euclidean distance dan skor TOPSIS (0..1 range).
-- [x] **Integrasi Test Step ke CI Workflow ([`.github/workflows/deploy-pages.yml`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/.github/workflows/deploy-pages.yml))**
-  - [x] Tambahkan perintah `run: pnpm test` berdampingan dengan `pnpm run typecheck` sebelum fase packaging `pnpm generate`.
-
----
-
-### 📌 Fase 9: Penguatan Strict Typing & Standarisasi Plugin Node/TS
-- [x] **Pengetatan Opsi Kompiler TypeScript ([`nuxt.config.ts:93-96`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/nuxt.config.ts#L93-L96))**
-  - [x] Aktifkan `noUncheckedIndexedAccess: true` pada konfigurasi compiler Nuxt TypeScript untuk menjamin null safety pada akses array `array[i]`.
-  - [x] Jalankan audit kompilasi `pnpm run typecheck` untuk memverifikasi seluruh fallback indexing (`?? 0`).
-- [x] **Penyempurnaan Plugin Axios ([`app/plugins/axios.ts:16-33`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/plugins/axios.ts#L16-L33))**
-  - [x] Implementasikan transformasi error terpusat pada response interceptor dengan type narrowing (`error: unknown`).
-  - [x] Hapus boilerplate request passthrough kosong jika belum ada injeksi bearer token.
-
----
-
-### 📌 Fase 11: Implementasi Delivery Layout Wedding Invitation (Vertical Scrollytelling)
-- [x] **Komponen Cover Gate & Amplop Pembuka (`app/components/wedding/WeddingCoverGate.vue`)**
-  - [x] Implementasi interaksi klik "Buka Undangan" untuk mentransisikan gate status dari `LOCKED_COVER` ke `OPENED_UNLOCKED`.
-  - [x] Parsing nama tamu dari URL query parameter (`?to=...`) dengan fallback aman `"Tamu Undangan"` dan sanitasi XSS.
-- [x] **Komponen Floating Audio Player (`app/components/wedding/WeddingAudioPlayer.vue`)**
-  - [x] Integrasi pemutaran audio latar setelah transisi `OPENED_UNLOCKED` dengan penanganan fallback status `BLOCKED_AUTOPLAY`.
-  - [x] Tombol toggle putar/jeda mengambang (*floating circular vinyl button*).
-- [x] **Komponen Profil Mempelai & Rincian Acara (`app/components/wedding/WeddingCouple.vue`, `WeddingEventSchedule.vue`)**
-  - [x] Tampilan profil kedua mempelai, foto, dan informasi keluarga besar.
-  - [x] Informasi agenda akad dan resepsi dengan tombol tautan langsung ke Google Maps & *Add to Google Calendar*.
-- [x] **Komponen Live Countdown Waktu Acara (`app/components/wedding/WeddingCountdown.vue`)**
-  - [x] Hitung mundur reaktif (hari, jam, menit, detik) dengan pembungkus `<ClientOnly>` untuk mencegah SSR *hydration mismatch*.
-- [x] **Komponen Formulir RSVP & Buku Tamu (`app/components/wedding/WeddingRsvp.vue`)**
-  - [x] Formulir kehadiran dan ucapan doa dengan validasi skema Zod.
-  - [x] Penyimpanan entri ucapan secara reaktif pada `useLocalStorage` dengan ID deterministik.
-- [x] **Komponen Amplop Digital & Salin Rekening (`app/components/wedding/WeddingGift.vue`)**
-  - [x] Informasi nomor rekening bank / QRIS dengan aksi salin clipboard instan via `useClipboard` dan alert toast.
-- [x] **Halaman Rute Undangan Utama (`app/pages/wedding.vue`)**
-  - [x] Komposisi terpadu seluruh subkomponen dalam tata letak vertikal mulus (*Vertical Scrollytelling*).
-  - [x] Pendaftaran shortcut rute baru ke [CommandPalette.vue](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/components/ui/CommandPalette.vue).
-- [x] **Verifikasi & Quality Gate**
-  - [x] Validasi responsivitas tata letak pada viewport seluler, pengujian unit Vitest (5/5 PASS), dan kompilasi statis `CI=true pnpm run build` (12.6s, 0 error).
+- [x] **Fase 12: Visual Refinement & Aesthetic Polish (Wedding Palette & Portfolio Depth)** *(Selesai)*
 
 ---
 
@@ -107,7 +39,31 @@ Daftar tugas terstruktur untuk platform portofolio dan showcase arsitektur [dian
 - [x] Mitigasi CSV Formula Injection (CWE-1236) pada ekspor CSV hasil TOPSIS.
 - [x] Pembersihan direktori sisa scaffolding `src/` dan file konfigurasi Vite lama.
 
+### ✅ Fase 7: Resolusi Review Frontend & Dekomposisi Showcase
+- [x] Dekomposisi monolit [about.vue](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/about.vue) (812 baris ➔ 60 baris) ke 9 subkomponen modular di `app/components/showcase/`.
+- [x] Pembuatan mock internal Nitro server route [server/api/demo.get.ts](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/server/api/demo.get.ts) untuk mengisolasi request Axios.
+- [x] Pembungkusan `<ClientOnly>` pada evaluasi waktu dinamis `now` untuk mencegah hydration mismatch.
+- [x] Stabilisasi virtual DOM key `:key="criterion.id"` pada [app/pages/portofolio/topsis.vue](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/portofolio/topsis.vue).
+
+### ✅ Fase 8: Automasi Pengujian Unit Matematis (Vitest)
+- [x] Pemasangan Vitest runner, `@nuxt/test-utils`, dan konfigurasi [vitest.config.ts](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/vitest.config.ts).
+- [x] Penulisan 5 automated unit test cases di [useTopsis.spec.ts](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/composables/__tests__/useTopsis.spec.ts) (invarian matriks, zero-divisor guard, Euclidean distance).
+- [x] Pendaftaran runner `pnpm run test` pada CI workflow [.github/workflows/deploy-pages.yml](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/.github/workflows/deploy-pages.yml).
+
+### ✅ Fase 9: Penguatan Strict Typing & Standarisasi Plugin Node/TS
+- [x] Pengaktifan `noUncheckedIndexedAccess: true` pada [nuxt.config.ts](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/nuxt.config.ts).
+- [x] Standarisasi global response error interceptor dengan safe type narrowing pada [app/plugins/axios.ts](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/plugins/axios.ts).
+
 ### ✅ Fase 10: SDLC Planning & Kontrak Domain Wedding Platform
 - [x] Penyusunan kontrak antarmuka TypeScript lengkap di [`app/types/wedding.ts`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/types/wedding.ts) (`GuestContext`, `CoupleProfile`, `WeddingEventSchedule`, `RsvpEntryRecord`, `InvitationGateState`).
-- [x] Kristalisasi Single Source of Truth baru pada [`CONTEXT.md`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/CONTEXT.md) memuat 4 invarian kritis wedding dan FSM.
-- [x] Verifikasi tipe statis via `pnpm run typecheck` (0 error, lolos 100%).
+- [x] Kristalisasi Single Source of Truth baru pada [`CONTEXT.md`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/CONTEXT.md) memuat 4 invarian kritis wedding dan FSM cover/audio.
+
+### ✅ Fase 11: Delivery Layout Wedding Invitation (Scrollytelling)
+- [x] Pembuatan 7 subkomponen interaktif di `app/components/wedding/` (`WeddingCoverGate`, `WeddingAudioPlayer`, `WeddingCouple`, `WeddingCountdown`, `WeddingEventSchedule`, `WeddingGift`, `WeddingRsvp`).
+- [x] Implementasi rute [app/pages/wedding.vue](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/wedding.vue) dengan sanitasi XSS query `?to=...` dan integrasi shortcut ke [CommandPalette.vue](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/components/ui/CommandPalette.vue).
+
+### ✅ Fase 12: Visual Refinement & Aesthetic Polish (Wedding Palette & Portfolio Depth)
+- [x] Isolasi layout [app/pages/wedding.vue](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/wedding.vue) menggunakan `definePageMeta({ layout: false })` dan penambahan tombol floating minimalis portofolio.
+- [x] Transformasi palet warna seluruh subkomponen wedding dari developer palette (`#023047`, `#219EBC`, `#FB8500`) ke *Warm Botanical & Champagne Gold* (`#FAF7F2`, `#1C3026`, `#D4AF37`, `#C5A880`, `#E8D5CE`).
+- [x] Peningkatan kedalaman visual portofolio di [HomeMetrics.vue](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/components/home/HomeMetrics.vue) dan integrasi kartu showcase wedding di [HomeProjects.vue](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/components/home/HomeProjects.vue).
+- [x] Kristalisasi token desain *Wedding Champagne Botanical* pada [CONTEXT.md](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/CONTEXT.md).

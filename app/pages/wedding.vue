@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import type { GuestContext, CoupleProfile, WeddingEventSchedule, DigitalGiftAccount } from '~/types/wedding'
 
+definePageMeta({
+  layout: false
+})
+
 useSeoMeta({
   title: 'The Wedding Celebration of Romeo & Juliet | Undangan Pernikahan Digital',
   description: 'Undangan pernikahan digital resmi Romeo & Juliet. Minggu, 20 Desember 2026 di Sleman, D.I. Yogyakarta.',
@@ -89,7 +93,17 @@ const giftAccounts: DigitalGiftAccount[] = [
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#faf8f5] dark:bg-[#023047] text-[#023047] dark:text-[#f8f9fa] selection:bg-[#FFB703]/30 selection:text-[#023047]">
+  <div class="min-h-screen bg-[#FAF7F2] text-[#1C3026] selection:bg-[#D4AF37]/30 selection:text-[#1C3026] relative overflow-x-hidden">
+    <!-- Floating Back to Portfolio Pill -->
+    <NuxtLink
+      to="/"
+      class="fixed top-4 left-4 z-40 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 hover:bg-white text-[#1C3026] border border-[#E6DAC3] text-xs font-serif font-bold shadow-sm backdrop-blur-md transition hover:-translate-y-0.5"
+      title="Kembali ke Portofolio Utama"
+    >
+      <Icon name="heroicons:arrow-left-20-solid" class="w-4 h-4 text-[#C5A880]" />
+      <span>Portofolio</span>
+    </NuxtLink>
+
     <!-- 1. Cover Gate Amplop (Modal Layar Penuh) -->
     <WeddingCoverGate
       :guest="guestContext"
@@ -103,29 +117,17 @@ const giftAccounts: DigitalGiftAccount[] = [
     />
 
     <!-- 3. Konten Utama Undangan (Vertical Scrollytelling) -->
-    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16 sm:space-y-24">
-      <!-- Back to Portfolio Floating Bar -->
-      <div class="flex items-center justify-between text-xs text-slate-500 border-b border-[#8ECAE6]/40 dark:border-[#219EBC]/30 pb-4">
-        <NuxtLink to="/" class="inline-flex items-center gap-1.5 font-bold hover:text-[#219EBC] transition">
-          <Icon name="heroicons:arrow-left-20-solid" class="w-4 h-4" />
-          <span>Kembali ke Portofolio Dian Adi</span>
-        </NuxtLink>
-        <span class="inline-flex items-center gap-1 text-[#FB8500] font-semibold">
-          <Icon name="heroicons:sparkles-20-solid" class="w-4 h-4" />
-          Template Undangan Pernikahan Nuxt 4
-        </span>
-      </div>
-
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-16 sm:space-y-24">
       <!-- Hero Header Section -->
-      <header class="text-center space-y-4 pt-4">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-[#8ECAE6]/20 text-[#023047] dark:text-[#8ECAE6]">
+      <header class="text-center space-y-4 pt-6">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-serif font-semibold bg-[#E8D5CE]/40 text-[#1C3026] border border-[#C5A880]/30 shadow-xs">
           <span>🕊️</span>
           <span>Walimatul 'Ursy</span>
         </div>
-        <h1 class="text-4xl sm:text-6xl font-serif font-black tracking-tight text-[#023047] dark:text-white">
-          Romeo <span class="text-[#FFB703]">&</span> Juliet
+        <h1 class="text-4xl sm:text-6xl font-serif font-black tracking-tight text-[#1C3026]">
+          Romeo <span class="text-[#D4AF37] font-normal">&</span> Juliet
         </h1>
-        <p class="text-sm sm:text-base font-medium text-slate-600 dark:text-slate-300">
+        <p class="text-sm sm:text-base font-serif italic text-[#1C3026]/75">
           Minggu, 20 Desember 2026 · Sleman, D.I. Yogyakarta
         </p>
       </header>
@@ -146,11 +148,11 @@ const giftAccounts: DigitalGiftAccount[] = [
       <WeddingGift :accounts="giftAccounts" />
 
       <!-- Footer Ucapan Penutup -->
-      <footer class="text-center space-y-3 pt-12 border-t border-[#8ECAE6]/40 dark:border-[#219EBC]/20">
-        <p class="text-sm font-serif italic text-slate-600 dark:text-slate-300">
+      <footer class="text-center space-y-3 pt-12 border-t border-[#E6DAC3]">
+        <p class="text-sm font-serif italic text-[#1C3026]/80 max-w-lg mx-auto">
           Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
         </p>
-        <p class="text-xs font-bold text-[#023047] dark:text-[#8ECAE6] uppercase tracking-widest pt-2">
+        <p class="text-xs font-serif font-bold text-[#D4AF37] uppercase tracking-widest pt-2">
           KAMI YANG BERBAHAGIA, KELUARGA BESAR MONTAGUE & CAPULET
         </p>
       </footer>

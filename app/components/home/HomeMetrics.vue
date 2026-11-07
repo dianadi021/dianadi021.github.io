@@ -2,10 +2,10 @@
   <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <div
-        class="p-6 rounded-3xl bg-white dark:bg-[#034363]/80 border-2 border-[#8ECAE6]/30 dark:border-[#219EBC]/30 shadow-xs hover:border-[#219EBC] transition space-y-2 text-left"
+        class="p-6 rounded-3xl bg-white/90 dark:bg-[#034363]/80 backdrop-blur-md border-2 border-[#8ECAE6]/30 dark:border-[#219EBC]/30 shadow-xs hover:border-[#219EBC] hover:-translate-y-1 hover:shadow-md transition-all duration-300 space-y-2 text-left"
       >
         <div
-          class="w-10 h-10 rounded-2xl bg-[#8ECAE6]/25 flex items-center justify-center text-xl"
+          class="w-10 h-10 rounded-2xl bg-[#8ECAE6]/25 flex items-center justify-center text-xl shadow-2xs"
         >
           🏛️
         </div>
@@ -20,10 +20,10 @@
       </div>
 
       <div
-        class="p-6 rounded-3xl bg-white dark:bg-[#034363]/80 border-2 border-[#8ECAE6]/30 dark:border-[#219EBC]/30 shadow-xs hover:border-[#219EBC] transition space-y-2 text-left"
+        class="p-6 rounded-3xl bg-white/90 dark:bg-[#034363]/80 backdrop-blur-md border-2 border-[#8ECAE6]/30 dark:border-[#219EBC]/30 shadow-xs hover:border-[#219EBC] hover:-translate-y-1 hover:shadow-md transition-all duration-300 space-y-2 text-left"
       >
         <div
-          class="w-10 h-10 rounded-2xl bg-[#FFB703]/25 flex items-center justify-center text-xl"
+          class="w-10 h-10 rounded-2xl bg-[#FFB703]/25 flex items-center justify-center text-xl shadow-2xs"
         >
           🛡️
         </div>
@@ -38,10 +38,10 @@
       </div>
 
       <div
-        class="p-6 rounded-3xl bg-white dark:bg-[#034363]/80 border-2 border-[#8ECAE6]/30 dark:border-[#219EBC]/30 shadow-xs hover:border-[#219EBC] transition space-y-2 text-left"
+        class="p-6 rounded-3xl bg-white/90 dark:bg-[#034363]/80 backdrop-blur-md border-2 border-[#8ECAE6]/30 dark:border-[#219EBC]/30 shadow-xs hover:border-[#219EBC] hover:-translate-y-1 hover:shadow-md transition-all duration-300 space-y-2 text-left"
       >
         <div
-          class="w-10 h-10 rounded-2xl bg-[#FB8500]/25 flex items-center justify-center text-xl"
+          class="w-10 h-10 rounded-2xl bg-[#FB8500]/25 flex items-center justify-center text-xl shadow-2xs"
         >
           🌿
         </div>
@@ -56,10 +56,10 @@
       </div>
 
       <div
-        class="p-6 rounded-3xl bg-white dark:bg-[#034363]/80 border-2 border-[#8ECAE6]/30 dark:border-[#219EBC]/30 shadow-xs hover:border-[#219EBC] transition space-y-2 text-left"
+        class="p-6 rounded-3xl bg-white/90 dark:bg-[#034363]/80 backdrop-blur-md border-2 border-[#8ECAE6]/30 dark:border-[#219EBC]/30 shadow-xs hover:border-[#219EBC] hover:-translate-y-1 hover:shadow-md transition-all duration-300 space-y-2 text-left"
       >
         <div
-          class="w-10 h-10 rounded-2xl bg-[#219EBC]/25 flex items-center justify-center text-xl"
+          class="w-10 h-10 rounded-2xl bg-[#219EBC]/25 flex items-center justify-center text-xl shadow-2xs"
         >
           ⛵
         </div>

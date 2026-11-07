@@ -32,12 +32,23 @@ Dokumen ini adalah **Single Source of Truth (SSOT)** spesifik proyek `dianadi021
 ---
 
 ## 4. Design System Tokens
+
+### 4.1 Developer Portfolio Theme Tokens
 Palet warna kustom berbasis aksen warm & cold contrast:
 - **Dark Background / Text**: Prussian Blue (`#023047`) — `bg-[#023047]`, `text-[#023047]`
 - **Primary Accent / Brand**: Cerulean Blue (`#219EBC`) — `text-[#219EBC]`, `border-[#219EBC]`
 - **Soft Accent / Badges**: Ice Blue (`#8ECAE6`) — `bg-[#8ECAE6]/20`, `text-[#8ECAE6]`
 - **Highlight / Secondary**: Amber Gold (`#FFB703`) — `text-[#FFB703]`, `bg-[#FFB703]`
 - **Primary CTA / Buttons**: UT Orange (`#FB8500`) — `bg-[#FB8500] hover:bg-[#FB8500]/90`
+
+### 4.2 Wedding Invitation Luxury Tokens (Champagne Botanical)
+Terisolasi khusus untuk rute `/wedding` (`definePageMeta({ layout: false })`):
+- **Base Background**: Warm Sand / Ivory (`#FAF7F2`) — `bg-[#FAF7F2]`
+- **Deep Primary / Typography**: Deep Pine Forest (`#1C3026`) — `text-[#1C3026]`, `bg-[#1C3026]`
+- **Foil Highlight**: Vintage Champagne Gold (`#D4AF37`) — `text-[#D4AF37]`, `border-[#D4AF37]`
+- **Muted Sand Gold**: Antique Muted Gold (`#C5A880`) — `text-[#C5A880]`, `border-[#C5A880]`
+- **Blush Petal Accent**: Pale Rose Botanical (`#E8D5CE`) — `bg-[#E8D5CE]/40`
+- **Card Border**: Champagne Line (`#E6DAC3`) — `border-[#E6DAC3]`
 
 ---
 

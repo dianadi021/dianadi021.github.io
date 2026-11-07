@@ -48,41 +48,41 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="rounded-3xl bg-white dark:bg-[#034363] border border-[#8ECAE6]/40 dark:border-[#219EBC]/30 p-6 sm:p-8 shadow-sm text-center space-y-4">
-    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#8ECAE6]/20 text-[#023047] dark:text-[#8ECAE6]">
-      <Icon name="heroicons:clock-20-solid" class="w-4 h-4 text-[#FB8500]" />
-      <span>Hitung Mundur Waktu Menuju Hari Bahagia</span>
+  <div class="rounded-3xl bg-white border border-[#E6DAC3] p-6 sm:p-10 shadow-lg shadow-[#1C3026]/5 text-center space-y-5">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-serif font-semibold bg-[#D4AF37]/15 text-[#8C6415] border border-[#D4AF37]/30">
+      <Icon name="heroicons:clock-20-solid" class="w-4 h-4 text-[#AA7A1E]" />
+      <span class="tracking-widest uppercase">Menghitung Hari Bahagia</span>
     </div>
 
     <!-- ClientOnly to Prevent SSR/SSG Hydration Mismatch -->
     <ClientOnly>
-      <div v-if="!remaining.isPassed" class="grid grid-cols-4 gap-2 sm:gap-4 max-w-lg mx-auto">
-        <div class="p-3 sm:p-4 rounded-2xl bg-[#023047] text-white shadow-xs">
-          <span class="block text-2xl sm:text-4xl font-extrabold font-mono text-[#FFB703]">{{ remaining.days }}</span>
-          <span class="block text-[10px] sm:text-xs text-slate-300 uppercase tracking-wider mt-1">Hari</span>
+      <div v-if="!remaining.isPassed" class="grid grid-cols-4 gap-2.5 sm:gap-5 max-w-lg mx-auto">
+        <div class="p-4 sm:p-5 rounded-2xl bg-[#1C3026] text-white shadow-md border border-[#D4AF37]/20">
+          <span class="block text-2xl sm:text-4xl font-serif font-bold text-[#D4AF37]">{{ remaining.days }}</span>
+          <span class="block text-[10px] sm:text-xs text-[#FAF7F2]/75 uppercase tracking-widest font-serif mt-1">Hari</span>
         </div>
-        <div class="p-3 sm:p-4 rounded-2xl bg-[#023047] text-white shadow-xs">
-          <span class="block text-2xl sm:text-4xl font-extrabold font-mono text-[#FFB703]">{{ remaining.hours }}</span>
-          <span class="block text-[10px] sm:text-xs text-slate-300 uppercase tracking-wider mt-1">Jam</span>
+        <div class="p-4 sm:p-5 rounded-2xl bg-[#1C3026] text-white shadow-md border border-[#D4AF37]/20">
+          <span class="block text-2xl sm:text-4xl font-serif font-bold text-[#D4AF37]">{{ remaining.hours }}</span>
+          <span class="block text-[10px] sm:text-xs text-[#FAF7F2]/75 uppercase tracking-widest font-serif mt-1">Jam</span>
         </div>
-        <div class="p-3 sm:p-4 rounded-2xl bg-[#023047] text-white shadow-xs">
-          <span class="block text-2xl sm:text-4xl font-extrabold font-mono text-[#FFB703]">{{ remaining.minutes }}</span>
-          <span class="block text-[10px] sm:text-xs text-slate-300 uppercase tracking-wider mt-1">Menit</span>
+        <div class="p-4 sm:p-5 rounded-2xl bg-[#1C3026] text-white shadow-md border border-[#D4AF37]/20">
+          <span class="block text-2xl sm:text-4xl font-serif font-bold text-[#D4AF37]">{{ remaining.minutes }}</span>
+          <span class="block text-[10px] sm:text-xs text-[#FAF7F2]/75 uppercase tracking-widest font-serif mt-1">Menit</span>
         </div>
-        <div class="p-3 sm:p-4 rounded-2xl bg-[#023047] text-white shadow-xs">
-          <span class="block text-2xl sm:text-4xl font-extrabold font-mono text-[#FFB703]">{{ remaining.seconds }}</span>
-          <span class="block text-[10px] sm:text-xs text-slate-300 uppercase tracking-wider mt-1">Detik</span>
+        <div class="p-4 sm:p-5 rounded-2xl bg-[#1C3026] text-white shadow-md border border-[#D4AF37]/20">
+          <span class="block text-2xl sm:text-4xl font-serif font-bold text-[#D4AF37]">{{ remaining.seconds }}</span>
+          <span class="block text-[10px] sm:text-xs text-[#FAF7F2]/75 uppercase tracking-widest font-serif mt-1">Detik</span>
         </div>
       </div>
-      <div v-else class="text-base font-bold text-success">
-        Alhamdulillah, Acara Telah Selesai Dilaksanakan! 🎉
+      <div v-else class="text-base font-serif font-bold text-[#1C3026]">
+        Alhamdulillah, Acara Telah Selesai Dilaksanakan! ⚜️
       </div>
 
       <template #fallback>
-        <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-lg mx-auto opacity-50">
-          <div v-for="placeholder in ['Hari', 'Jam', 'Menit', 'Detik']" :key="placeholder" class="p-3 sm:p-4 rounded-2xl bg-slate-200 dark:bg-slate-700 animate-pulse">
-            <span class="block text-2xl font-mono">--</span>
-            <span class="block text-xs uppercase">{{ placeholder }}</span>
+        <div class="grid grid-cols-4 gap-2.5 sm:gap-5 max-w-lg mx-auto opacity-50">
+          <div v-for="placeholder in ['Hari', 'Jam', 'Menit', 'Detik']" :key="placeholder" class="p-4 sm:p-5 rounded-2xl bg-slate-100 animate-pulse border border-[#E6DAC3]">
+            <span class="block text-2xl font-serif text-[#1C3026]">--</span>
+            <span class="block text-xs uppercase font-serif">{{ placeholder }}</span>
           </div>
         </div>
       </template>

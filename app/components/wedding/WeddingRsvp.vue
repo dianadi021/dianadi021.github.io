@@ -92,7 +92,9 @@ const handleSubmit = () => {
       icon: 'success',
       title: 'Terima Kasih! ✨',
       text: 'Konfirmasi kehadiran dan ucapan doa restu Anda telah berhasil tersimpan.',
-      confirmButtonColor: '#219EBC'
+      confirmButtonColor: '#1C3026',
+      background: '#FAF7F2',
+      color: '#1C3026'
     })
   }
 }
@@ -101,46 +103,46 @@ const handleSubmit = () => {
 <template>
   <section class="max-w-4xl mx-auto space-y-8 text-center">
     <div class="space-y-2">
-      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#8ECAE6]/20 text-[#023047] dark:text-[#8ECAE6]">
+      <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-serif font-semibold bg-[#E8D5CE]/40 text-[#1C3026] border border-[#C5A880]/30 shadow-xs">
         <span>💌</span>
         <span>Buku Tamu & RSVP</span>
       </div>
-      <h2 class="text-3xl font-serif font-bold text-[#023047] dark:text-white">
+      <h2 class="text-3xl font-serif font-bold text-[#1C3026]">
         Konfirmasi Kehadiran & Doa Restu
       </h2>
-      <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto">
+      <p class="text-xs sm:text-sm text-[#1C3026]/75 font-serif max-w-md mx-auto">
         Kirimkan doa dan konfirmasi kehadiran Anda untuk membantu kami menyiapkan jamuan terbaik.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
       <!-- RSVP Form Card -->
-      <div class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#034363] border-2 border-[#8ECAE6]/40 dark:border-[#219EBC]/30 shadow-sm space-y-4">
-        <h3 class="text-lg font-serif font-bold text-[#023047] dark:text-white flex items-center gap-2">
-          <Icon name="heroicons:pencil-square-20-solid" class="w-5 h-5 text-[#FB8500]" />
+      <div class="p-6 sm:p-8 rounded-3xl bg-white/90 backdrop-blur-sm border border-[#E6DAC3] shadow-md shadow-[#C5A880]/10 space-y-4">
+        <h3 class="text-lg font-serif font-bold text-[#1C3026] flex items-center gap-2">
+          <Icon name="heroicons:pencil-square-20-solid" class="w-5 h-5 text-[#D4AF37]" />
           <span>Isi Konfirmasi Kehadiran</span>
         </h3>
 
         <form class="space-y-4" @submit.prevent="handleSubmit">
           <!-- Guest Name -->
           <div class="space-y-1">
-            <label class="block text-xs font-bold text-slate-700 dark:text-slate-200">Nama Lengkap</label>
+            <label class="block text-xs font-serif font-bold text-[#1C3026]">Nama Lengkap</label>
             <input
               v-model="formData.guestName"
               type="text"
-              class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-[#023047] text-slate-900 dark:text-white focus:ring-2 focus:ring-[#219EBC] focus:outline-none"
-              :class="formErrors.guestName ? 'border-danger ring-1 ring-danger' : ''"
+              class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#E6DAC3] bg-[#FAF7F2] text-[#1C3026] font-serif focus:ring-2 focus:ring-[#D4AF37] focus:outline-none"
+              :class="formErrors.guestName ? 'border-rose-400 ring-1 ring-rose-400' : ''"
               placeholder="Nama Anda / Keluarga"
             >
-            <span v-if="formErrors.guestName" class="text-[11px] text-danger">{{ formErrors.guestName }}</span>
+            <span v-if="formErrors.guestName" class="text-[11px] text-rose-600">{{ formErrors.guestName }}</span>
           </div>
 
           <!-- Attendance -->
           <div class="space-y-1">
-            <label class="block text-xs font-bold text-slate-700 dark:text-slate-200">Konfirmasi Kehadiran</label>
+            <label class="block text-xs font-serif font-bold text-[#1C3026]">Konfirmasi Kehadiran</label>
             <select
               v-model="formData.attendance"
-              class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-[#023047] text-slate-900 dark:text-white focus:ring-2 focus:ring-[#219EBC] focus:outline-none"
+              class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#E6DAC3] bg-[#FAF7F2] text-[#1C3026] font-serif focus:ring-2 focus:ring-[#D4AF37] focus:outline-none"
             >
               <option value="ATTENDING">Ya, Saya Akan Hadir</option>
               <option value="UNCERTAIN">Masih Ragu / Belum Pasti</option>
@@ -150,10 +152,10 @@ const handleSubmit = () => {
 
           <!-- Total Guests -->
           <div class="space-y-1">
-            <label class="block text-xs font-bold text-slate-700 dark:text-slate-200">Jumlah Tamu</label>
+            <label class="block text-xs font-serif font-bold text-[#1C3026]">Jumlah Tamu</label>
             <select
               v-model.number="formData.totalGuests"
-              class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-[#023047] text-slate-900 dark:text-white focus:ring-2 focus:ring-[#219EBC] focus:outline-none"
+              class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#E6DAC3] bg-[#FAF7F2] text-[#1C3026] font-serif focus:ring-2 focus:ring-[#D4AF37] focus:outline-none"
             >
               <option :value="1">1 Orang</option>
               <option :value="2">2 Orang</option>
@@ -164,21 +166,21 @@ const handleSubmit = () => {
 
           <!-- Message -->
           <div class="space-y-1">
-            <label class="block text-xs font-bold text-slate-700 dark:text-slate-200">Ucapan & Doa Restu</label>
+            <label class="block text-xs font-serif font-bold text-[#1C3026]">Ucapan & Doa Restu</label>
             <textarea
               v-model="formData.message"
               rows="3"
-              class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-[#023047] text-slate-900 dark:text-white focus:ring-2 focus:ring-[#219EBC] focus:outline-none"
-              :class="formErrors.message ? 'border-danger ring-1 ring-danger' : ''"
+              class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#E6DAC3] bg-[#FAF7F2] text-[#1C3026] font-serif focus:ring-2 focus:ring-[#D4AF37] focus:outline-none"
+              :class="formErrors.message ? 'border-rose-400 ring-1 ring-rose-400' : ''"
               placeholder="Tuliskan ucapan selamat dan doa untuk kedua mempelai..."
             />
-            <span v-if="formErrors.message" class="text-[11px] text-danger">{{ formErrors.message }}</span>
+            <span v-if="formErrors.message" class="text-[11px] text-rose-600">{{ formErrors.message }}</span>
           </div>
 
           <button
             type="submit"
             :disabled="isSubmitting"
-            class="w-full py-3 rounded-xl bg-[#FB8500] hover:bg-[#FB8500]/90 text-white font-bold text-xs shadow-md transition"
+            class="w-full py-3 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C5A880] hover:from-[#c29e2e] hover:to-[#b3956d] text-white font-serif font-bold text-xs shadow-md transition"
           >
             {{ isSubmitting ? 'Mengirim...' : 'Kirim Konfirmasi & Ucapan' }}
           </button>
@@ -186,14 +188,14 @@ const handleSubmit = () => {
       </div>
 
       <!-- Guestbook Live Feed -->
-      <div class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#034363] border-2 border-[#8ECAE6]/40 dark:border-[#219EBC]/30 shadow-sm flex flex-col justify-between space-y-4">
+      <div class="p-6 sm:p-8 rounded-3xl bg-white/90 backdrop-blur-sm border border-[#E6DAC3] shadow-md shadow-[#C5A880]/10 flex flex-col justify-between space-y-4">
         <div class="space-y-3">
-          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-700/60 pb-3">
-            <h3 class="text-lg font-serif font-bold text-[#023047] dark:text-white flex items-center gap-2">
-              <Icon name="heroicons:chat-bubble-left-right-20-solid" class="w-5 h-5 text-[#219EBC]" />
+          <div class="flex items-center justify-between border-b border-[#E6DAC3]/60 pb-3">
+            <h3 class="text-lg font-serif font-bold text-[#1C3026] flex items-center gap-2">
+              <Icon name="heroicons:chat-bubble-left-right-20-solid" class="w-5 h-5 text-[#D4AF37]" />
               <span>Untaian Doa Tamu</span>
             </h3>
-            <span class="text-xs px-2.5 py-1 rounded-full bg-[#8ECAE6]/20 text-[#023047] dark:text-[#8ECAE6] font-bold">
+            <span class="text-xs px-3 py-1 rounded-full bg-[#FAF7F2] text-[#1C3026] border border-[#E6DAC3] font-serif font-bold">
               {{ guestbookEntries.length }} Pesan
             </span>
           </div>
@@ -203,27 +205,27 @@ const handleSubmit = () => {
             <div
               v-for="entry in guestbookEntries"
               :key="entry.id"
-              class="p-3.5 rounded-2xl bg-slate-50 dark:bg-[#023047] border border-slate-200 dark:border-slate-700 space-y-1.5"
+              class="p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#E6DAC3]/80 space-y-1.5"
             >
               <div class="flex items-center justify-between gap-2">
-                <span class="text-xs font-bold text-[#023047] dark:text-white truncate">
+                <span class="text-xs font-serif font-bold text-[#1C3026] truncate">
                   {{ entry.guestName }}
                 </span>
                 <span
-                  class="text-[9px] font-bold px-2 py-0.5 rounded-full shrink-0 uppercase"
+                  class="text-[9px] font-serif font-bold px-2 py-0.5 rounded-full shrink-0 uppercase"
                   :class="{
-                    'bg-success/15 text-success': entry.attendance === 'ATTENDING',
-                    'bg-warning/15 text-warning-700 dark:text-warning': entry.attendance === 'UNCERTAIN',
-                    'bg-danger/15 text-danger': entry.attendance === 'NOT_ATTENDING',
+                    'bg-[#1C3026]/10 text-[#1C3026] border border-[#1C3026]/20': entry.attendance === 'ATTENDING',
+                    'bg-[#D4AF37]/15 text-[#91751d] border border-[#D4AF37]/30': entry.attendance === 'UNCERTAIN',
+                    'bg-rose-100 text-rose-700 border border-rose-200': entry.attendance === 'NOT_ATTENDING',
                   }"
                 >
                   {{ entry.attendance === 'ATTENDING' ? 'Hadir' : entry.attendance === 'UNCERTAIN' ? 'Ragu' : 'Berhalangan' }}
                 </span>
               </div>
-              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
+              <p class="text-xs text-[#1C3026]/85 font-serif leading-relaxed italic">
                 "{{ entry.message }}"
               </p>
-              <span class="text-[10px] text-slate-400 block pt-0.5">
+              <span class="text-[10px] text-[#1C3026]/50 font-serif block pt-0.5">
                 {{ entry.createdAt }}
               </span>
             </div>

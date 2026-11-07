@@ -7,61 +7,66 @@ const props = defineProps<{
 </script>
 
 <template>
-  <section class="max-w-4xl mx-auto space-y-8 text-center">
-    <div class="space-y-2">
-      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#8ECAE6]/20 text-[#023047] dark:text-[#8ECAE6]">
-        <span>🌿</span>
-        <span>Pasangan Mempelai</span>
+  <section class="max-w-4xl mx-auto space-y-10 text-center">
+    <div class="space-y-3">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-serif font-semibold bg-[#D4AF37]/15 text-[#8C6415] border border-[#D4AF37]/30">
+        <span>🕊️</span>
+        <span class="tracking-widest uppercase">Pasangan Mempelai</span>
       </div>
-      <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#023047] dark:text-white">
+      <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#1C3026] tracking-tight">
         Maha Suci Allah yang Menciptakan Berpasang-pasangan
       </h2>
-      <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-xl mx-auto leading-relaxed">
-        "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya." (QS. Ar-Rum: 21)
+      <p class="text-xs sm:text-sm text-[#1C3026]/75 max-w-xl mx-auto leading-relaxed font-serif italic">
+        "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya."
+        <span class="block text-[11px] not-italic font-sans text-[#8C6415] font-semibold pt-1">
+          (QS. Ar-Rum: 21)
+        </span>
       </p>
     </div>
 
     <!-- Couple Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       <!-- Groom Card -->
-      <div class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#034363] border-2 border-[#8ECAE6]/40 dark:border-[#219EBC]/30 shadow-sm space-y-4 hover:-translate-y-1 transition-transform">
-        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-tr from-[#219EBC] to-[#FB8500] p-1 shadow-md">
-          <div class="w-full h-full rounded-full bg-slate-100 dark:bg-[#023047] flex items-center justify-center text-4xl">
+      <div class="p-8 sm:p-10 rounded-3xl bg-white border border-[#E6DAC3] shadow-lg shadow-[#1C3026]/5 space-y-5 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#D4AF37]/10 to-transparent rounded-bl-full pointer-events-none" />
+        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-tr from-[#D4AF37] via-[#F3E5AB] to-[#C5A880] p-1 shadow-md">
+          <div class="w-full h-full rounded-full bg-[#FAF7F2] flex items-center justify-center text-4xl">
             🤵🏻‍♂️
           </div>
         </div>
-        <div class="space-y-1">
-          <h3 class="text-2xl font-serif font-extrabold text-[#023047] dark:text-white">
+        <div class="space-y-2">
+          <h3 class="text-2xl font-serif font-bold text-[#1C3026]">
             {{ props.couple.groomFullName }}
           </h3>
-          <p class="text-xs text-[#219EBC] dark:text-[#8ECAE6] font-semibold">
+          <p class="text-xs text-[#8C6415] font-semibold tracking-wider uppercase font-serif">
             {{ props.couple.groomBio }}
           </p>
-          <p class="text-xs text-slate-500 dark:text-slate-400 pt-2 leading-relaxed">
-            Putra dari: <br>
-            <strong class="text-slate-700 dark:text-slate-200">{{ props.couple.groomParents }}</strong>
-          </p>
+          <div class="pt-3 border-t border-[#E6DAC3]/60 text-xs text-[#1C3026]/70 leading-relaxed font-serif">
+            <span class="text-[11px] text-[#8C6415] uppercase tracking-wider block">Putra Tercinta Dari:</span>
+            <strong class="text-sm text-[#1C3026]">{{ props.couple.groomParents }}</strong>
+          </div>
         </div>
       </div>
 
       <!-- Bride Card -->
-      <div class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#034363] border-2 border-[#8ECAE6]/40 dark:border-[#219EBC]/30 shadow-sm space-y-4 hover:-translate-y-1 transition-transform">
-        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-tr from-[#FFB703] to-[#FB8500] p-1 shadow-md">
-          <div class="w-full h-full rounded-full bg-slate-100 dark:bg-[#023047] flex items-center justify-center text-4xl">
+      <div class="p-8 sm:p-10 rounded-3xl bg-white border border-[#E6DAC3] shadow-lg shadow-[#1C3026]/5 space-y-5 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#DDA192]/15 to-transparent rounded-bl-full pointer-events-none" />
+        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-tr from-[#DDA192] via-[#F3E5AB] to-[#D4AF37] p-1 shadow-md">
+          <div class="w-full h-full rounded-full bg-[#FAF7F2] flex items-center justify-center text-4xl">
             👰🏻‍♀️
           </div>
         </div>
-        <div class="space-y-1">
-          <h3 class="text-2xl font-serif font-extrabold text-[#023047] dark:text-white">
+        <div class="space-y-2">
+          <h3 class="text-2xl font-serif font-bold text-[#1C3026]">
             {{ props.couple.brideFullName }}
           </h3>
-          <p class="text-xs text-[#FB8500] font-semibold">
+          <p class="text-xs text-[#8C6415] font-semibold tracking-wider uppercase font-serif">
             {{ props.couple.brideBio }}
           </p>
-          <p class="text-xs text-slate-500 dark:text-slate-400 pt-2 leading-relaxed">
-            Putri dari: <br>
-            <strong class="text-slate-700 dark:text-slate-200">{{ props.couple.brideParents }}</strong>
-          </p>
+          <div class="pt-3 border-t border-[#E6DAC3]/60 text-xs text-[#1C3026]/70 leading-relaxed font-serif">
+            <span class="text-[11px] text-[#8C6415] uppercase tracking-wider block">Putri Tercinta Dari:</span>
+            <strong class="text-sm text-[#1C3026]">{{ props.couple.brideParents }}</strong>
+          </div>
         </div>
       </div>
     </div>

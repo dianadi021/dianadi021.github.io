@@ -57,20 +57,20 @@ onBeforeUnmount(() => {
       preload="none"
     />
 
-    <!-- Floating Audio Toggle Button -->
+    <!-- Floating Luxury Audio Toggle Button -->
     <div class="fixed bottom-6 right-6 z-40">
       <button
         type="button"
-        class="w-12 h-12 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 border-2"
+        class="w-12 h-12 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 border-2"
         :class="audioState === 'PLAYING'
-          ? 'bg-[#FB8500] text-white border-white animate-spin-slow scale-105'
-          : 'bg-[#023047] text-[#8ECAE6] border-[#219EBC]/50 hover:scale-105'"
+          ? 'bg-gradient-to-tr from-[#D4AF37] to-[#F3E5AB] text-[#14231C] border-[#14231C] animate-spin-slow scale-105'
+          : 'bg-[#14231C]/90 text-[#D4AF37] border-[#D4AF37]/50 backdrop-blur-md hover:scale-105'"
         :title="audioState === 'PLAYING' ? 'Jeda Musik' : 'Putar Musik Latar'"
         @click="toggleAudio"
       >
         <Icon
           :name="audioState === 'PLAYING' ? 'heroicons:musical-note-20-solid' : 'heroicons:speaker-x-mark-20-solid'"
-          class="w-6 h-6"
+          class="w-5 h-5"
         />
       </button>
     </div>
