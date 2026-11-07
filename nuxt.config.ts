@@ -1,11 +1,19 @@
 // nuxt.config.ts
+const appBaseURL = (typeof process.env.NUXT_APP_BASE_URL === 'string' && process.env.NUXT_APP_BASE_URL.trim() !== '')
+  ? process.env.NUXT_APP_BASE_URL.trim()
+  : '/'
+
+const publicApiBase = (typeof process.env.NUXT_PUBLIC_API_BASE === 'string' && process.env.NUXT_PUBLIC_API_BASE.trim() !== '')
+  ? process.env.NUXT_PUBLIC_API_BASE.trim()
+  : '/api'
+
 export default defineNuxtConfig({
   compatibilityDate: '2026-10-04',
 
   // Set NUXT_APP_BASE_URL to '/<repository>/' for GitHub project pages,
   // or '/' for a custom domain and Vercel.
   app: {
-    baseURL: process.env.NUXT_APP_BASE_URL || '/',
+    baseURL: appBaseURL,
     head: {
       title: 'Dian Adi Nugroho',
       meta: [
@@ -51,6 +59,7 @@ export default defineNuxtConfig({
   // Konfigurasi PostCSS (dipindah ke sini karena postcss.config.js tidak didukung Nuxt 4)
   postcss: {
     plugins: {
+      'tailwindcss/nesting': false,
       tailwindcss: {},
       autoprefixer: {}
     }
@@ -69,7 +78,7 @@ export default defineNuxtConfig({
     apiSecret: '',
     // Public keys (Tersedia di sisi client dan server)
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE || '/api'
+      apiBase: publicApiBase
     }
   },
 
@@ -83,6 +92,11 @@ export default defineNuxtConfig({
 
   // Konfigurasi TypeScript
   typescript: {
-    strict: true
+    strict: true,
+    tsConfig: {
+      compilerOptions: {
+        noUncheckedIndexedAccess: true
+      }
+    }
   }
 })

@@ -6,30 +6,30 @@ const route = useRoute()
 const isHydrated = ref(false)
 const activeHash = ref('')
 
+// Scroll listener to update active section on home page
+const handleScroll = () => {
+  if (route.path !== '/') return
+  const scrollPos = window.scrollY + 140
+  const experienceEl = document.getElementById('experience')
+  const skillsEl = document.getElementById('skills')
+
+  if (skillsEl && scrollPos >= skillsEl.offsetTop) {
+    activeHash.value = '#skills'
+  } else if (experienceEl && scrollPos >= experienceEl.offsetTop) {
+    activeHash.value = '#experience'
+  } else {
+    activeHash.value = ''
+  }
+}
+
 onMounted(() => {
   isHydrated.value = true
   if (route.hash) {
     activeHash.value = route.hash
   }
-
-  // Scroll listener to update active section on home page
-  const handleScroll = () => {
-    if (route.path !== '/') return
-    const scrollPos = window.scrollY + 140
-    const experienceEl = document.getElementById('experience')
-    const skillsEl = document.getElementById('skills')
-
-    if (skillsEl && scrollPos >= skillsEl.offsetTop) {
-      activeHash.value = '#skills'
-    } else if (experienceEl && scrollPos >= experienceEl.offsetTop) {
-      activeHash.value = '#experience'
-    } else {
-      activeHash.value = ''
-    }
-  }
-
-  window.addEventListener('scroll', handleScroll, { passive: true })
 })
+
+useEventListener('scroll', handleScroll, { passive: true })
 
 watch(() => route.hash, (newVal) => {
   activeHash.value = newVal || ''
@@ -52,6 +52,8 @@ const isNavActive = (path: string, hash = '') => {
 const toggleTheme = () => {
   colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
 }
+
+const commandPaletteRef = ref<{ open: () => void } | null>(null)
 </script>
 
 <template>
@@ -139,6 +141,18 @@ const toggleTheme = () => {
 
         <!-- Right Side Controls -->
         <div class="flex items-center space-x-2 sm:space-x-3">
+          <!-- Command Palette Trigger Button -->
+          <button
+            type="button"
+            @click="commandPaletteRef?.open()"
+            class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold bg-white/80 dark:bg-[#034363] border border-[#8ECAE6]/40 dark:border-[#219EBC]/30 text-slate-700 dark:text-slate-300 hover:border-[#219EBC] shadow-2xs transition"
+            title="Buka Command Palette (Ctrl+K)"
+          >
+            <Icon name="heroicons:command-line-20-solid" class="w-3.5 h-3.5 text-[#219EBC]" />
+            <span class="hidden lg:inline text-[11px]">Perintah</span>
+            <kbd class="hidden sm:inline-block rounded border border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-[#023047] px-1 text-[9px] font-mono">⌘K</kbd>
+          </button>
+
           <!-- Atmosphere Badge -->
           <div class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium bg-[#8ECAE6]/20 border border-[#219EBC]/30 text-[#023047] dark:text-[#8ECAE6]">
             <span class="w-1.5 h-1.5 rounded-full bg-[#198754] animate-ping"></span>
@@ -240,6 +254,9 @@ const toggleTheme = () => {
         </div>
       </div>
     </footer>
+
+    <!-- Global Command Palette (Ctrl+K / Cmd+K) -->
+    <UiCommandPalette ref="commandPaletteRef" />
   </div>
 </template>
 
