@@ -18,6 +18,13 @@ const formData = reactive<ZodFormData>({
 const formErrors = ref<Record<string, string>>({})
 const formSuccess = ref(false)
 
+const handleAgeInput = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  const sanitized = target.value.replace(/\D/g, '')
+  target.value = sanitized
+  formData.age = sanitized === '' ? ('' as unknown as number) : Number(sanitized)
+}
+
 const handleZodSubmit = () => {
   formErrors.value = {}
   formSuccess.value = false
@@ -86,18 +93,23 @@ const handleZodSubmit = () => {
 
       <!-- Age Input -->
       <div class="space-y-1">
-        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300">Usia (18 - 100 tahun)</label>
+        <label for="zod-age" class="block text-xs font-semibold text-slate-700 dark:text-slate-300">Usia (18 - 100 tahun)</label>
         <input
-          v-model.number="formData.age"
-          type="number"
+          id="zod-age"
+          :value="formData.age"
+          type="text"
+          inputmode="numeric"
+          :aria-invalid="!!formErrors.age"
+          :aria-describedby="formErrors.age ? 'zod-age-error' : undefined"
           class="w-full text-xs px-3 py-2 rounded-lg border focus:ring-2 focus:ring-primary focus:outline-none dark:bg-slate-800"
           :class="formErrors.age ? 'border-danger focus:ring-danger' : 'border-slate-300 dark:border-slate-700'"
+          @input="handleAgeInput"
         >
-        <span v-if="formErrors.age" class="text-[11px] text-danger font-medium block">{{ formErrors.age }}</span>
+        <span v-if="formErrors.age" id="zod-age-error" role="alert" class="text-[11px] text-danger font-medium block">{{ formErrors.age }}</span>
       </div>
 
       <!-- Submit Button -->
-      <div class="md:col-span-3 flex items-center justify-between pt-2">
+      <footer class="md:col-span-3 flex items-center justify-between pt-2">
         <span v-if="formSuccess" class="text-xs text-success font-semibold flex items-center gap-1">
           <Icon name="heroicons:check-circle-20-solid" class="w-4 h-4" />
           Validasi Berhasil & Lolos Zod Schema!
@@ -106,11 +118,11 @@ const handleZodSubmit = () => {
 
         <button
           type="submit"
-          class="px-5 py-2 rounded-lg bg-primary hover:bg-primary-600 text-white text-xs font-bold transition shadow-xs"
+          class="min-h-[44px] px-5 py-2 rounded-lg bg-primary hover:bg-primary-600 text-white text-xs font-bold transition shadow-xs flex items-center justify-center"
         >
           Uji Validasi Form (Zod)
         </button>
-      </div>
+      </footer>
     </form>
   </section>
 </template>
