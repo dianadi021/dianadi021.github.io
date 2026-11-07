@@ -12,22 +12,15 @@ export default defineNuxtPlugin(() => {
     }
   })
 
-  // Request interceptor (siap untuk inject auth token)
-  api.interceptors.request.use(
-    (requestConfig) => {
-      return requestConfig
-    },
-    (error) => {
-      return Promise.reject(error)
-    }
-  )
-
-  // Response interceptor (siap untuk handling error global)
+  // Global response error normalizer
   api.interceptors.response.use(
-    (response) => {
-      return response
-    },
-    (error) => {
+    (response) => response,
+    (error: unknown) => {
+      if (axios.isAxiosError(error)) {
+        const status = error.response?.status
+        const message = (error.response?.data as { message?: string } | undefined)?.message ?? error.message
+        console.warn(`[Axios API Error] ${status ?? 'Network'}: ${message}`)
+      }
       return Promise.reject(error)
     }
   )

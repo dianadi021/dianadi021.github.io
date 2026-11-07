@@ -92,6 +92,11 @@ export default defineNuxtConfig({
 
   // Konfigurasi TypeScript
   typescript: {
-    strict: true
+    strict: true,
+    tsConfig: {
+      compilerOptions: {
+        noUncheckedIndexedAccess: true
+      }
+    }
   }
 })

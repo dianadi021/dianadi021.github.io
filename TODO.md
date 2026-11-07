@@ -15,7 +15,7 @@ Daftar tugas terstruktur untuk platform portofolio dan showcase arsitektur [dian
 - [x] **Fase 6: Pembersihan Zombie Artifacts (Vite boilerplate & Tailwind nesting)** *(Selesai)*
 - [x] **Fase 7: Resolusi Temuan Review Frontend & Dekomposisi Showcase** *(Selesai)*
 - [x] **Fase 8: Automasi Pengujian Unit Matematis (Vitest)** *(Selesai)*
-- [ ] **Fase 9: Penguatan Strict Typing & Standarisasi Plugin Node/TS** *(Dalam Antrean)*
+- [x] **Fase 9: Penguatan Strict Typing & Standarisasi Plugin Node/TS** *(Selesai)*
 - [x] **Fase 10: SDLC Planning & Kontrak Domain Wedding Platform** *(Selesai)*
 - [ ] **Fase 11: Implementasi Delivery Layout Wedding Invitation (Scrollytelling)** *(Dalam Antrean)*
 
@@ -56,12 +56,12 @@ Daftar tugas terstruktur untuk platform portofolio dan showcase arsitektur [dian
 ---
 
 ### 📌 Fase 9: Penguatan Strict Typing & Standarisasi Plugin Node/TS
-- [ ] **Pengetatan Opsi Kompiler TypeScript ([`nuxt.config.ts:93-96`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/nuxt.config.ts#L93-L96))**
-  - [ ] Aktifkan `noUncheckedIndexedAccess: true` pada konfigurasi compiler Nuxt TypeScript untuk menjamin null safety pada akses array `array[i]`.
-  - [ ] Jalankan audit kompilasi `pnpm run typecheck` untuk memverifikasi seluruh fallback indexing (`?? 0`).
-- [ ] **Penyempurnaan Plugin Axios ([`app/plugins/axios.ts:16-33`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/plugins/axios.ts#L16-L33))**
-  - [ ] Implementasikan transformasi error terpusat pada response interceptor dengan type narrowing (`error: unknown`).
-  - [ ] Hapus boilerplate request passthrough kosong jika belum ada injeksi bearer token.
+- [x] **Pengetatan Opsi Kompiler TypeScript ([`nuxt.config.ts:93-96`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/nuxt.config.ts#L93-L96))**
+  - [x] Aktifkan `noUncheckedIndexedAccess: true` pada konfigurasi compiler Nuxt TypeScript untuk menjamin null safety pada akses array `array[i]`.
+  - [x] Jalankan audit kompilasi `pnpm run typecheck` untuk memverifikasi seluruh fallback indexing (`?? 0`).
+- [x] **Penyempurnaan Plugin Axios ([`app/plugins/axios.ts:16-33`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/plugins/axios.ts#L16-L33))**
+  - [x] Implementasikan transformasi error terpusat pada response interceptor dengan type narrowing (`error: unknown`).
+  - [x] Hapus boilerplate request passthrough kosong jika belum ada injeksi bearer token.
 
 ---
 
