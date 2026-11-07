@@ -53,6 +53,9 @@ const defaultEntries: RsvpEntryRecord[] = [
 
 const guestbookEntries = useLocalStorage<RsvpEntryRecord[]>('wedding_guestbook_entries', defaultEntries)
 
+const generateRsvpKey = (name: string, msg: string) =>
+  `rsvp_${name.trim().toLowerCase().replace(/\s+/g, '_')}_${msg.trim().toLowerCase().replace(/\s+/g, '_')}`
+
 const handleSubmit = () => {
   formErrors.value = {}
   const parseResult = rsvpSchema.safeParse(formData)
@@ -66,10 +69,38 @@ const handleSubmit = () => {
     return
   }
 
+  // Idempotency & Deduplication Guard (Wedding Invariant 4)
+  const payloadKey = generateRsvpKey(formData.guestName, formData.message)
+  const isDuplicate = guestbookEntries.value.some(
+    entry => generateRsvpKey(entry.guestName, entry.message) === payloadKey
+  )
+
+  if (isDuplicate) {
+    if ($swal) {
+      $swal.fire({
+        icon: 'info',
+        title: 'Konfirmasi Telah Tercatat 💌',
+        text: 'Konfirmasi kehadiran dan ucapan doa restu Anda sudah berhasil tercatat sebelumnya.',
+        confirmButtonColor: '#1C3026',
+        background: '#FAF7F2',
+        color: '#1C3026'
+      })
+    }
+    return
+  }
+
   isSubmitting.value = true
 
+  // Deterministic ID hash
+  let hash = 0
+  for (let i = 0; i < payloadKey.length; i++) {
+    hash = ((hash << 5) - hash) + payloadKey.charCodeAt(i)
+    hash |= 0
+  }
+  const deterministicId = `rsvp-${Math.abs(hash)}`
+
   const newEntry: RsvpEntryRecord = {
-    id: `rsvp-${Date.now()}`,
+    id: deterministicId,
     guestName: formData.guestName.trim(),
     attendance: formData.attendance,
     totalGuests: formData.totalGuests,
@@ -126,21 +157,25 @@ const handleSubmit = () => {
         <form class="space-y-4" @submit.prevent="handleSubmit">
           <!-- Guest Name -->
           <div class="space-y-1">
-            <label class="block text-xs font-serif font-bold text-[#1C3026]">Nama Lengkap</label>
+            <label for="rsvp-guest-name" class="block text-xs font-serif font-bold text-[#1C3026]">Nama Lengkap</label>
             <input
+              id="rsvp-guest-name"
               v-model="formData.guestName"
               type="text"
+              :aria-invalid="!!formErrors.guestName"
+              :aria-describedby="formErrors.guestName ? 'rsvp-guest-name-error' : undefined"
               class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#E6DAC3] bg-[#FAF7F2] text-[#1C3026] font-serif focus:ring-2 focus:ring-[#D4AF37] focus:outline-none"
               :class="formErrors.guestName ? 'border-rose-400 ring-1 ring-rose-400' : ''"
               placeholder="Nama Anda / Keluarga"
             >
-            <span v-if="formErrors.guestName" class="text-[11px] text-rose-600">{{ formErrors.guestName }}</span>
+            <span v-if="formErrors.guestName" id="rsvp-guest-name-error" role="alert" class="text-[11px] text-rose-600 block">{{ formErrors.guestName }}</span>
           </div>
 
           <!-- Attendance -->
           <div class="space-y-1">
-            <label class="block text-xs font-serif font-bold text-[#1C3026]">Konfirmasi Kehadiran</label>
+            <label for="rsvp-attendance" class="block text-xs font-serif font-bold text-[#1C3026]">Konfirmasi Kehadiran</label>
             <select
+              id="rsvp-attendance"
               v-model="formData.attendance"
               class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#E6DAC3] bg-[#FAF7F2] text-[#1C3026] font-serif focus:ring-2 focus:ring-[#D4AF37] focus:outline-none"
             >
@@ -152,8 +187,9 @@ const handleSubmit = () => {
 
           <!-- Total Guests -->
           <div class="space-y-1">
-            <label class="block text-xs font-serif font-bold text-[#1C3026]">Jumlah Tamu</label>
+            <label for="rsvp-total-guests" class="block text-xs font-serif font-bold text-[#1C3026]">Jumlah Tamu</label>
             <select
+              id="rsvp-total-guests"
               v-model.number="formData.totalGuests"
               class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#E6DAC3] bg-[#FAF7F2] text-[#1C3026] font-serif focus:ring-2 focus:ring-[#D4AF37] focus:outline-none"
             >
@@ -166,24 +202,41 @@ const handleSubmit = () => {
 
           <!-- Message -->
           <div class="space-y-1">
-            <label class="block text-xs font-serif font-bold text-[#1C3026]">Ucapan & Doa Restu</label>
+            <label for="rsvp-message" class="block text-xs font-serif font-bold text-[#1C3026]">Ucapan & Doa Restu</label>
             <textarea
+              id="rsvp-message"
               v-model="formData.message"
               rows="3"
+              :aria-invalid="!!formErrors.message"
+              :aria-describedby="formErrors.message ? 'rsvp-message-error' : undefined"
               class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#E6DAC3] bg-[#FAF7F2] text-[#1C3026] font-serif focus:ring-2 focus:ring-[#D4AF37] focus:outline-none"
               :class="formErrors.message ? 'border-rose-400 ring-1 ring-rose-400' : ''"
               placeholder="Tuliskan ucapan selamat dan doa untuk kedua mempelai..."
             />
-            <span v-if="formErrors.message" class="text-[11px] text-rose-600">{{ formErrors.message }}</span>
+            <span v-if="formErrors.message" id="rsvp-message-error" role="alert" class="text-[11px] text-rose-600 block">{{ formErrors.message }}</span>
           </div>
 
-          <button
-            type="submit"
-            :disabled="isSubmitting"
-            class="w-full py-3 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C5A880] hover:from-[#c29e2e] hover:to-[#b3956d] text-white font-serif font-bold text-xs shadow-md transition"
-          >
-            {{ isSubmitting ? 'Mengirim...' : 'Kirim Konfirmasi & Ucapan' }}
-          </button>
+          <footer class="pt-2">
+            <button
+              type="submit"
+              :disabled="isSubmitting"
+              :aria-busy="isSubmitting"
+              class="w-full min-h-[44px] py-3 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C5A880] hover:from-[#c29e2e] hover:to-[#b3956d] text-white font-serif font-bold text-xs shadow-md transition disabled:opacity-60 disabled:cursor-not-allowed select-none flex items-center justify-center gap-2"
+            >
+              <svg
+                v-if="isSubmitting"
+                class="h-4 w-4 animate-spin text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+              </svg>
+              <span>{{ isSubmitting ? 'Mengirim...' : 'Kirim Konfirmasi & Ucapan' }}</span>
+            </button>
+          </footer>
         </form>
       </div>
 
@@ -202,8 +255,21 @@ const handleSubmit = () => {
 
           <!-- Entries Scroll List -->
           <div class="space-y-3 max-h-96 overflow-y-auto pr-1">
+            <!-- Empty State (4-State View) -->
+            <div
+              v-if="guestbookEntries.length === 0"
+              class="p-8 text-center rounded-2xl bg-[#FAF7F2] border border-dashed border-[#E6DAC3] space-y-2"
+            >
+              <span class="text-2xl block" aria-hidden="true">📜</span>
+              <p class="text-xs font-serif font-bold text-[#1C3026]">Belum Ada Untaian Doa</p>
+              <p class="text-[11px] font-serif text-[#1C3026]/70 leading-relaxed max-w-xs mx-auto">
+                Jadilah tamu pertama yang mengirimkan konfirmasi kehadiran dan doa restu untuk kedua mempelai.
+              </p>
+            </div>
+
             <div
               v-for="entry in guestbookEntries"
+              v-else
               :key="entry.id"
               class="p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#E6DAC3]/80 space-y-1.5"
             >

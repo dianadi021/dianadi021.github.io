@@ -6,10 +6,13 @@ useSeoMeta({
   description: 'Kalkulator pengambilan keputusan multikriteria menggunakan metode TOPSIS.',
 })
 
+const { $swal } = useNuxtApp()
 const { calculate } = useTopsis()
 
 let nextId = 1
 const generateId = (prefix: string) => `${prefix}-${nextId++}`
+
+const isDirty = ref(false)
 
 const criteria = ref<Criterion[]>([
   { id: generateId('crit'), name: 'Korelasi', weight: 0.25, impact: 'benefit' },
@@ -26,31 +29,119 @@ const alternatives = ref<Alternative[]>([
 ])
 const notice = ref('')
 
+// Normalisasi desimal non-moneter: angka positif dengan opsional 1-4 digit desimal (. atau ,)
+const DECIMAL_INPUT_REGEX = /^\d*([.,]\d{0,4})?$/
+
 const calculation = computed(() => calculate(criteria.value, alternatives.value))
 const totalWeight = computed(() => calculation.value.totalWeight)
 const results = computed(() => calculation.value.rankedAlternatives)
 const best = computed(() => calculation.value.bestAlternative)
 const summary = computed(() => calculation.value.summary)
 
-const updateValue = (alternativeIndex: number, criterionIndex: number, value: string | number) => {
-  const targetAlternative = alternatives.value[alternativeIndex]
-  if (targetAlternative) {
-    targetAlternative.values[criterionIndex] = value === '' ? Number.NaN : Number(value)
+const updateCriterionWeight = (index: number, rawValue: string) => {
+  isDirty.value = true
+  const trimmed = rawValue.trim()
+  const target = criteria.value[index]
+  if (!target) return
+
+  if (trimmed === '') {
+    target.weight = Number.NaN
+    return
+  }
+
+  if (DECIMAL_INPUT_REGEX.test(trimmed)) {
+    const normalized = Number(trimmed.replace(',', '.'))
+    target.weight = Number.isNaN(normalized) ? 0 : normalized
   }
 }
+
+const updateValue = (alternativeIndex: number, criterionIndex: number, rawValue: string | number) => {
+  isDirty.value = true
+  const targetAlternative = alternatives.value[alternativeIndex]
+  if (!targetAlternative) return
+
+  const strVal = String(rawValue ?? '').trim()
+  if (strVal === '') {
+    targetAlternative.values[criterionIndex] = Number.NaN
+    return
+  }
+
+  if (DECIMAL_INPUT_REGEX.test(strVal)) {
+    const normalized = Number(strVal.replace(',', '.'))
+    targetAlternative.values[criterionIndex] = Number.isNaN(normalized) ? 0 : normalized
+  }
+}
+
 const addCriterion = () => {
+  isDirty.value = true
   criteria.value.push({ id: generateId('crit'), name: `Kriteria ${criteria.value.length + 1}`, weight: 1, impact: 'benefit' })
   alternatives.value.forEach((alternative) => alternative.values.push(0))
 }
+
 const removeCriterion = (index: number) => {
   if (criteria.value.length <= 1) return
   criteria.value.splice(index, 1)
   alternatives.value.forEach((alternative) => alternative.values.splice(index, 1))
 }
-const addAlternative = () => alternatives.value.push({ id: generateId('alt'), name: `Alternatif ${alternatives.value.length + 1}`, values: criteria.value.map(() => 0) })
+
+const confirmRemoveCriterion = async (index: number) => {
+  if (criteria.value.length <= 1) return
+  const target = criteria.value[index]
+  if ($swal) {
+    const res = await $swal.fire({
+      title: 'Hapus Kriteria?',
+      text: `Kriteria "${target?.name || `Kriteria ${index + 1}`}" beserta seluruh nilai kolomnya akan dihapus.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#e11d48',
+      cancelButtonColor: '#023047',
+      confirmButtonText: 'Ya, Hapus',
+      cancelButtonText: 'Batal'
+    })
+    if (!res.isConfirmed) return
+  }
+  removeCriterion(index)
+  isDirty.value = true
+}
+
+const addAlternative = () => {
+  isDirty.value = true
+  alternatives.value.push({ id: generateId('alt'), name: `Alternatif ${alternatives.value.length + 1}`, values: criteria.value.map(() => 0) })
+}
+
 const removeAlternative = (index: number) => {
   if (alternatives.value.length <= 2) return
   alternatives.value.splice(index, 1)
+}
+
+const confirmRemoveAlternative = async (index: number) => {
+  if (alternatives.value.length <= 2) return
+  const target = alternatives.value[index]
+  if ($swal) {
+    const res = await $swal.fire({
+      title: 'Hapus Alternatif?',
+      text: `Alternatif "${target?.name || `Alternatif ${index + 1}`}" beserta seluruh nilainya akan dihapus.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#e11d48',
+      cancelButtonColor: '#023047',
+      confirmButtonText: 'Ya, Hapus',
+      cancelButtonText: 'Batal'
+    })
+    if (!res.isConfirmed) return
+  }
+  removeAlternative(index)
+  isDirty.value = true
+}
+
+// Dirty Form Guard (Anti Unsaved Navigation)
+if (import.meta.client) {
+  useEventListener('beforeunload', (event: BeforeUnloadEvent) => {
+    if (isDirty.value) {
+      event.preventDefault()
+      event.returnValue = ''
+    }
+  })
 }
 
 const { start: resetNoticeTimeout } = useTimeoutFn(() => {
@@ -130,11 +221,11 @@ const formatScore = (score: number) => score.toFixed(4)
             <button type="button" class="rounded-lg border border-[#219EBC]/40 px-3 py-2 text-sm font-semibold text-[#219EBC] hover:bg-[#8ECAE6]/20" @click="addCriterion">+ Tambah kriteria</button>
           </div>
           <div class="space-y-2">
-            <div v-for="(criterion, index) in criteria" :key="criterion.id || index" class="grid grid-cols-[1fr_6rem_7.5rem_2rem] items-center gap-2">
+            <div v-for="(criterion, index) in criteria" :key="criterion.id || index" class="grid grid-cols-[1fr_6rem_7.5rem_2.75rem] items-center gap-2">
               <input v-model="criterion.name" :aria-label="`Nama kriteria ${index + 1}`" class="min-w-0 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm dark:border-slate-600 dark:bg-[#023047]" />
-              <input v-model.number="criterion.weight" type="number" min="0" step="0.05" :aria-label="`Bobot ${criterion.name}`" class="w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-2 text-sm dark:border-slate-600 dark:bg-[#023047]" />
+              <input :value="Number.isNaN(criterion.weight) ? '' : criterion.weight" type="text" inputmode="decimal" :aria-label="`Bobot ${criterion.name}`" class="w-full rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-2 font-mono text-sm dark:border-slate-600 dark:bg-[#023047]" @input="updateCriterionWeight(index, ($event.target as HTMLInputElement).value)" />
               <select v-model="criterion.impact" :aria-label="`Tipe ${criterion.name}`" class="w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-2 text-sm dark:border-slate-600 dark:bg-[#023047]"><option value="benefit">Benefit ↑</option><option value="cost">Cost ↓</option></select>
-              <button type="button" :disabled="criteria.length <= 1" class="rounded p-1 text-slate-400 hover:text-red-500 disabled:opacity-30" :aria-label="`Hapus ${criterion.name}`" @click="removeCriterion(index)">×</button>
+              <button type="button" :disabled="criteria.length <= 1" class="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg text-slate-400 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30 disabled:opacity-30 transition" :aria-label="`Hapus ${criterion.name}`" @click="confirmRemoveCriterion(index)">×</button>
             </div>
           </div>
           <p class="mt-3 text-xs text-slate-500 dark:text-slate-300">Total bobot saat ini: <strong>{{ totalWeight.toFixed(2) }}</strong></p>
@@ -150,9 +241,28 @@ const formatScore = (score: number) => score.toFixed(4)
               <thead class="bg-[#023047] text-xs uppercase tracking-wide text-white"><tr><th class="px-3 py-3">Alternatif</th><th v-for="criterion in criteria" :key="criterion.id" class="px-3 py-3">{{ criterion.name }}</th><th class="px-2 py-3"><span class="sr-only">Aksi</span></th></tr></thead>
               <tbody class="divide-y divide-slate-100 dark:divide-slate-600">
                 <tr v-for="(alternative, rowIndex) in alternatives" :key="alternative.id || rowIndex">
-                  <td class="p-2"><input v-model="alternative.name" :aria-label="`Nama alternatif ${rowIndex + 1}`" class="w-36 rounded-md border border-slate-200 bg-slate-50 px-2.5 py-2 dark:border-slate-600 dark:bg-[#023047]" /></td>
-                  <td v-for="(criterion, columnIndex) in criteria" :key="criterion.id" class="p-2"><input :value="alternative.values[columnIndex]" type="number" step="any" :aria-label="`${alternative.name}, ${criterion.name}`" class="w-28 rounded-md border border-slate-200 bg-slate-50 px-2.5 py-2 dark:border-slate-600 dark:bg-[#023047]" @input="updateValue(rowIndex, columnIndex, ($event.target as HTMLInputElement).value)" /></td>
-                  <td class="p-2"><button type="button" :disabled="alternatives.length <= 2" class="rounded px-2 py-1 text-slate-400 hover:text-red-500 disabled:opacity-30" :aria-label="`Hapus ${alternative.name}`" @click="removeAlternative(rowIndex)">×</button></td>
+                  <td class="p-2"><input v-model="alternative.name" :aria-label="`Nama alternatif ${rowIndex + 1}`" class="w-36 rounded-md border border-slate-200 bg-slate-50 px-2.5 py-2 text-sm dark:border-slate-600 dark:bg-[#023047]" /></td>
+                  <td v-for="(criterion, columnIndex) in criteria" :key="criterion.id" class="p-2">
+                    <input
+                      :value="Number.isNaN(alternative.values[columnIndex]) ? '' : alternative.values[columnIndex]"
+                      type="text"
+                      inputmode="decimal"
+                      :aria-label="`${alternative.name}, ${criterion.name}`"
+                      class="w-28 rounded-md border border-slate-200 bg-slate-50 px-2.5 py-2 font-mono text-sm dark:border-slate-600 dark:bg-[#023047]"
+                      @input="updateValue(rowIndex, columnIndex, ($event.target as HTMLInputElement).value)"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <button
+                      type="button"
+                      :disabled="alternatives.length <= 2"
+                      class="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg text-slate-400 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30 disabled:opacity-30 transition"
+                      :aria-label="`Hapus ${alternative.name}`"
+                      @click="confirmRemoveAlternative(rowIndex)"
+                    >
+                      ×
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>

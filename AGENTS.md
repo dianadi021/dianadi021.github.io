@@ -14,7 +14,7 @@ Dokumen ini adalah *Permanent Rules & Behavioral Constitution* yang selalu aktif
 ## 2. Separation of Concerns Architecture
 Sistem memisahkan tanggung jawab menjadi 3 lapisan:
 1. **Rules (`AGENTS.md`):** Konstitusi permanen yang mengatur disiplin kode, keamanan, dan protokol verifikasi (Always-On).
-2. **Domain State (`CONTEXT.md`):** Single Source of Truth spesifik proyek yang memuat batasan entitas, invarian bisnis unik, dan string perintah verifikasi otomatis (test/lint). Disusun/diperbarui pada tahap Planning (via [`sdlc-planning`](./.agents/skills/sdlc-planning/SKILL.md); inisialisasi dari template jika belum ada), lalu menjadi acuan mutlak (*immutable reference*) selama tahap Delivery. Agen dilarang memodifikasi isi `CONTEXT.md` di luar fase Planning tanpa instruksi eksplisit.
+2. **Domain State (`CONTEXT.md`):** Single Source of Truth spesifik proyek yang memuat batasan entitas, invarian bisnis unik, dan string perintah verifikasi otomatis (test/lint). Disusun/diperbarui pada tahap Planning (via [`sdlc-planning`](./.agents/skills/sdlc-planning/SKILL.md); inisialisasi dari [`CONTEXT.template.md`](./.agents/skills/sdlc-planning/resources/CONTEXT.template.md) jika belum ada), lalu menjadi acuan mutlak (*immutable reference*) selama tahap Delivery. Agen dilarang memodifikasi isi `CONTEXT.md` di luar fase Planning tanpa instruksi eksplisit.
 3. **Workflow Procedures (`.agents/skills/`):** Prosedur bertahap yang dimuat secara *on-demand* sesuai intensi tugas:
    - [`trend-research`](./.agents/skills/trend-research/SKILL.md): Riset eksternal, pemindaian Google Trends, berita realtime, dan sentimen komunitas/sosial media (Reddit/HN).
    - [`sdlc-brainstorming`](./.agents/skills/sdlc-brainstorming/SKILL.md): Tahap discovery, brainstorming 5W+1H, eksplorasi alternatif, analisis kebutuhan, dan deteksi ambiguitas.
@@ -23,9 +23,11 @@ Sistem memisahkan tanggung jawab menjadi 3 lapisan:
    - [`sdlc-lifecycle`](./.agents/skills/sdlc-lifecycle/SKILL.md): Alur komprehensif 10 fase dari 0 sampai rilis.
    - [`sdlc-audit`](./.agents/skills/sdlc-audit/SKILL.md): Audit kepatuhan proyek, evaluasi kelengkapan CONTEXT.md, dan analisis celah SDLC.
    - [`review-android-kotlin`](./.agents/skills/review-android-kotlin/SKILL.md): Code review Android Native (Kotlin), Jetpack Compose, Coroutines/Flow, dan anti-pattern leaks.
-   - [`review-laravel-php`](./.agents/skills/review-laravel-php/SKILL.md): Code review Laravel & PHP 8.4, pure-write transactions, anti-N+1, bulk mutations, dan Backed Enums.
+   - [`review-laravel-php`](./.agents/skills/review-laravel-php/SKILL.md): Code review Laravel & Modern PHP (PHP 8.2+), pure-write transactions, anti-N+1, bulk mutations, dan Backed Enums.
    - [`review-typescript-node`](./.agents/skills/review-typescript-node/SKILL.md): Code review TypeScript & Node.js (AdonisJS / Express), strict typing, VineJS/Zod, dan non-blocking I/O.
-   - [`review-frontend-web`](./.agents/skills/review-frontend-web/SKILL.md): Code review frontend web (Vue 3 / React / Inertia), komponen reusable, state, keamanan, dan a11y.
+   - [`review-frontend-web`](./.agents/skills/review-frontend-web/SKILL.md): Code review frontend web & desktop-hybrid (Vue 3 / React / Inertia / Tauri / Electron), komponen reusable, semantik layout, standarisasi input regex, state, keamanan, dan a11y.
+   - [`test-backend-io`](./.agents/skills/test-backend-io/SKILL.md): Pengujian dinamis Input/Output (I/O) backend (Laravel / Node.js TS), validasi 422, anti-IDOR 403, rollback transaksi, anti-N+1 query count, serta laporan analisis testability & refactor.
+   - [`test-client-io`](./.agents/skills/test-client-io/SKILL.md): Pengujian dinamis Input/Output (I/O) client lintas stack (Web, Android, Desktop), verifikasi semantik UI/UX (bottom action, 4-state, input regex), serta laporan analisis testability & rekomendasi refactor.
 
 ---
 
@@ -50,6 +52,11 @@ Sistem memisahkan tanggung jawab menjadi 3 lapisan:
 - **Query Optimization & Bounded Scope:** Hindari subquery berlebih (*excessive subqueries*); gunakan `JOIN` terindeks. Dilarang query koleksi terbuka tanpa batas pagination (`LIMIT`).
 - **Security & Anti-IDOR:** Setiap query mutasi/baca wajib menyertakan filter batas otentikasi (`tenant_id` / `user_id` dari sesi auth). Dilarang menyambung string query mentah (wajib *parameter binding*).
 - **Presisi Finansial:** Dilarang menggunakan tipe `float` untuk moneter; gunakan `decimal` atau `bigint` (satuan sen).
+- **UI/UX, Reusable Components & Kontrak I/O:**
+  - *Strict Reusable Components:* UI wajib memakai komponen atomik terpusat (`BaseButton`, `BaseInput`, `BaseNumericInput`, `BaseModal`, `BaseScaffold`) dan token spacing 4px/8px.
+  - *Semantic Bottom Action & 4-State View:* Primary action pada form/modal/mobile wajib di slot bawah (`<footer>` / `Scaffold.bottomBar`) dengan urutan `[Cancel (Kiri)] → [Submit (Kanan)]`. Setiap view wajib menangani 4 state (`Loading`, `Empty`, `Error`, `Success`) dan `truncate` teks panjang.
+  - *Standar Input Angka & Idempotent Action:* Dilarang memakai `<input type="number">` polos. Untuk integer/OTP/moneter sen wajib `type="text" inputmode="numeric"` + sanitasi ASCII `/^\d+$/` (setelah strip separator tampilan); untuk matriks/bobot desimal non-moneter (seperti bobot TOPSIS) gunakan `type="text" inputmode="decimal"` + `/^\d+([.,]\d{1,4})?$/`. Tombol submit wajib mengunci diri (`disabled`/`loading`) saat proses berjalan dan form dengan `isDirty` memiliki guard konfirmasi keluar.
+- **Keamanan Frontend & Lifecycle Spesifik Proyek:** Sanitasi input/output terhadap XSS & CSV Formula Injection (CWE-1236), isolasi hidrasi waktu dinamis dengan `<ClientOnly>`, serta pembersihan event listener secara simetris via `onUnmounted` atau `useEventListener` (`@vueuse/core`).
 - **Production-Ready & No Boilerplate:** Kode langsung pakai, modular, dan dilarang menulis ulang fungsi/impor yang tidak dimodifikasi.
 
 ---
@@ -61,8 +68,9 @@ Pada tahap verifikasi pengujian:
   - Biarkan modifikasi dalam status *uncommitted* di working directory untuk inspeksi pengguna.
   - Sajikan *Deep Analysis* (akar masalah, file terdampak, trade-off solusi).
 - ✅ **Kondisi B (Lolos Test & Nol Konflik):**
-  - Lakukan *selective staging* hanya pada file target fitur (`git add [file]`).
-  - Buat commit deskriptif berformat *Conventional Commits* (`feat(...)`, `fix(...)`, `refactor(...)`).
+  - **Prompt-Driven Commit:** Eksekusi `git add` dan `git commit` ditentukan oleh instruksi/prompt pengguna:
+    - *Jika pengguna meminta commit:* Lakukan *selective staging* hanya pada file target fitur (`git add [file]`) dan buat commit deskriptif berformat *Conventional Commits* (`feat(...)`, `fix(...)`, `refactor(...)`).
+    - *Jika pengguna tidak meminta commit:* Biarkan perubahan di working directory dan laporkan kesiapan rilis beserta saran pesan commit.
 
 ---
 

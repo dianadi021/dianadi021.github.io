@@ -1,4 +1,4 @@
-# 🚀 OpenAI Codex Rules & Agent Constitution
+# 🚀 Antigravity CLI Rules & Agent Constitution
 
 Seluruh keputusan teknis, analisis kode, dan eksekusi di repositori ini wajib mematuhi standar permanen pada [AGENTS.md](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/AGENTS.md).
 
@@ -23,6 +23,7 @@ Sebelum membaca file secara masif atau melakukan pencarian kode berulang:
 - **Strict Typing:** Aktifkan strict mode; dilarang menggunakan `any` atau tipe implisit ambigu.
 - **Pembersihan Lifecycle & Memory:** Event listener dan interval wajib dibersihkan secara simetris di `onUnmounted` atau menggunakan composable auto-cleanup (`useEventListener` dari VueUse).
 - **Keamanan Frontend:** Sanitasi input/output (pencegahan XSS & CSV Formula Injection CWE-1236), larangan hardcoded secret/API key privat, dan penanganan `AbortController` pada request asinkron.
+- **UI/UX, Reusable Components & Kontrak I/O:** Wajib memakai komponen atomik terpusat (`BaseButton`, `BaseInput`, `BaseNumericInput`, `BaseModal`), token spacing 4px/8px, primary action di slot bawah (`<footer>`), penanganan 4 state (`Loading`, `Empty`, `Error`, `Success`), input angka bulat `type="text" inputmode="numeric"` + regex ASCII `/^\d+$/` atau desimal TOPSIS `inputmode="decimal"` + `/^\d+([.,]\d{1,4})?$/` (dilarang `type="number"` polos), serta verifikasi kontrak I/O sesuai [`test-client-io`](./.agents/skills/test-client-io/SKILL.md).
 - **Produksi Langsung Pakai:** Kode langsung pakai, modular, dan dilarang mengubah file tanpa instruksi atau kebutuhan fitur yang relevan.
 
 ---
@@ -30,7 +31,7 @@ Sebelum membaca file secara masif atau melakukan pencarian kode berulang:
 ## 4. Conflict Decision Gate & Verifikasi
 - **Tooling Wajib:** Jalankan `pnpm run typecheck` sebelum menyimpulkan atau merilis modifikasi kode.
 - **Gagal Verifikasi:** Hentikan perubahan, biarkan *uncommitted* untuk inspeksi, dan berikan analisis akar masalah secara mendalam.
-- **Lolos Verifikasi:** Selective staging hanya pada file target (`git add [file]`) dengan format commit *Conventional Commits*.
+- **Lolos Verifikasi (Prompt-Driven Commit):** Jika pengguna meminta commit, lakukan selective staging hanya pada file target (`git add [file]`) dengan format *Conventional Commits*; jika tidak diminta, biarkan di working directory dan laporkan saran pesan commit.
 
 ---
 
