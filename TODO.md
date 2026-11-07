@@ -14,7 +14,7 @@ Daftar tugas terstruktur untuk platform portofolio dan showcase arsitektur [dian
 - [x] **Fase 5: Mitigasi Keamanan Frontend (CSV Formula Injection CWE-1236)** *(Selesai)*
 - [x] **Fase 6: Pembersihan Zombie Artifacts (Vite boilerplate & Tailwind nesting)** *(Selesai)*
 - [x] **Fase 7: Resolusi Temuan Review Frontend & Dekomposisi Showcase** *(Selesai)*
-- [ ] **Fase 8: Automasi Pengujian Unit Matematis (Vitest)** *(Dalam Antrean)*
+- [x] **Fase 8: Automasi Pengujian Unit Matematis (Vitest)** *(Selesai)*
 - [ ] **Fase 9: Penguatan Strict Typing & Standarisasi Plugin Node/TS** *(Dalam Antrean)*
 - [x] **Fase 10: SDLC Planning & Kontrak Domain Wedding Platform** *(Selesai)*
 - [ ] **Fase 11: Implementasi Delivery Layout Wedding Invitation (Scrollytelling)** *(Dalam Antrean)*
@@ -41,17 +41,17 @@ Daftar tugas terstruktur untuk platform portofolio dan showcase arsitektur [dian
 ---
 
 ### 📌 Fase 8: Automasi Pengujian Unit Matematis (Vitest)
-- [ ] **Instalasi & Konfigurasi Vitest Runner ([`package.json`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/package.json))**
-  - [ ] Pasang dependensi dev: `pnpm add -D vitest @nuxt/test-utils happy-dom`.
-  - [ ] Daftarkan script pengujian `"test": "vitest run"` pada `package.json`.
-- [ ] **Spesifikasi Unit Test TOPSIS Engine ([`app/composables/useTopsis.ts`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/composables/useTopsis.ts#L3-L98))**
-  - [ ] Buat file test `app/composables/__tests__/useTopsis.spec.ts`.
-  - [ ] Test case 1: Deteksi `INSUFFICIENT_DATA` jika criteria < 1 atau alternatives < 2.
-  - [ ] Test case 2: Deteksi `INVALID_PARAMETERS` jika total bobot <= 0 atau ada bobot negatif.
-  - [ ] Test case 3: Deteksi `INVALID_PARAMETERS` jika seluruh nilai kolom nol (zero norm divisor guard).
-  - [ ] Test case 4: Validasi akurasi peringkat Euclidean distance dan skor TOPSIS (0..1 range).
-- [ ] **Integrasi Test Step ke CI Workflow ([`.github/workflows/deploy-pages.yml`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/.github/workflows/deploy-pages.yml))**
-  - [ ] Tambahkan perintah `run: pnpm test` berdampingan dengan `pnpm run typecheck` sebelum fase packaging `pnpm generate`.
+- [x] **Instalasi & Konfigurasi Vitest Runner ([`package.json`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/package.json))**
+  - [x] Pasang dependensi dev: `pnpm add -D vitest @nuxt/test-utils happy-dom`.
+  - [x] Daftarkan script pengujian `"test": "vitest run"` pada `package.json` dan buat `vitest.config.ts`.
+- [x] **Spesifikasi Unit Test TOPSIS Engine ([`app/composables/useTopsis.ts`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/composables/useTopsis.ts#L3-L98))**
+  - [x] Buat file test `app/composables/__tests__/useTopsis.spec.ts`.
+  - [x] Test case 1: Deteksi `INSUFFICIENT_DATA` jika criteria < 1 atau alternatives < 2.
+  - [x] Test case 2: Deteksi `INVALID_PARAMETERS` jika total bobot <= 0 atau ada bobot negatif.
+  - [x] Test case 3: Deteksi `INVALID_PARAMETERS` jika seluruh nilai kolom nol (zero norm divisor guard).
+  - [x] Test case 4: Validasi akurasi peringkat Euclidean distance dan skor TOPSIS (0..1 range).
+- [x] **Integrasi Test Step ke CI Workflow ([`.github/workflows/deploy-pages.yml`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/.github/workflows/deploy-pages.yml))**
+  - [x] Tambahkan perintah `run: pnpm test` berdampingan dengan `pnpm run typecheck` sebelum fase packaging `pnpm generate`.
 
 ---
 

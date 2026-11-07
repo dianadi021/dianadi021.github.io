@@ -38,6 +38,9 @@ jobs:
       - name: Run static typecheck
         run: pnpm run typecheck
 
+      - name: Run automated unit tests
+        run: pnpm run test
+
       - name: Generate static site
         run: pnpm generate
         env:
