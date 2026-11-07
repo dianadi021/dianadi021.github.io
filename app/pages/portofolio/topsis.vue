@@ -147,11 +147,11 @@ const formatScore = (score: number) => score.toFixed(4)
           </div>
           <div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-600">
             <table class="w-full min-w-max text-left text-sm">
-              <thead class="bg-[#023047] text-xs uppercase tracking-wide text-white"><tr><th class="px-3 py-3">Alternatif</th><th v-for="criterion in criteria" :key="criterion.name" class="px-3 py-3">{{ criterion.name }}</th><th class="px-2 py-3"><span class="sr-only">Aksi</span></th></tr></thead>
+              <thead class="bg-[#023047] text-xs uppercase tracking-wide text-white"><tr><th class="px-3 py-3">Alternatif</th><th v-for="criterion in criteria" :key="criterion.id" class="px-3 py-3">{{ criterion.name }}</th><th class="px-2 py-3"><span class="sr-only">Aksi</span></th></tr></thead>
               <tbody class="divide-y divide-slate-100 dark:divide-slate-600">
                 <tr v-for="(alternative, rowIndex) in alternatives" :key="alternative.id || rowIndex">
                   <td class="p-2"><input v-model="alternative.name" :aria-label="`Nama alternatif ${rowIndex + 1}`" class="w-36 rounded-md border border-slate-200 bg-slate-50 px-2.5 py-2 dark:border-slate-600 dark:bg-[#023047]" /></td>
-                  <td v-for="(criterion, columnIndex) in criteria" :key="criterion.name" class="p-2"><input :value="alternative.values[columnIndex]" type="number" step="any" :aria-label="`${alternative.name}, ${criterion.name}`" class="w-28 rounded-md border border-slate-200 bg-slate-50 px-2.5 py-2 dark:border-slate-600 dark:bg-[#023047]" @input="updateValue(rowIndex, columnIndex, ($event.target as HTMLInputElement).value)" /></td>
+                  <td v-for="(criterion, columnIndex) in criteria" :key="criterion.id" class="p-2"><input :value="alternative.values[columnIndex]" type="number" step="any" :aria-label="`${alternative.name}, ${criterion.name}`" class="w-28 rounded-md border border-slate-200 bg-slate-50 px-2.5 py-2 dark:border-slate-600 dark:bg-[#023047]" @input="updateValue(rowIndex, columnIndex, ($event.target as HTMLInputElement).value)" /></td>
                   <td class="p-2"><button type="button" :disabled="alternatives.length <= 2" class="rounded px-2 py-1 text-slate-400 hover:text-red-500 disabled:opacity-30" :aria-label="`Hapus ${alternative.name}`" @click="removeAlternative(rowIndex)">×</button></td>
                 </tr>
               </tbody>

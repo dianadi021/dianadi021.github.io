@@ -13,7 +13,7 @@ Daftar tugas terstruktur untuk platform portofolio dan showcase arsitektur [dian
 - [x] **Fase 4: Dekomposisi Monolit Halaman Utama (`index.vue`) & Command Palette** *(Selesai)*
 - [x] **Fase 5: Mitigasi Keamanan Frontend (CSV Formula Injection CWE-1236)** *(Selesai)*
 - [x] **Fase 6: Pembersihan Zombie Artifacts (Vite boilerplate & Tailwind nesting)** *(Selesai)*
-- [ ] **Fase 7: Resolusi Temuan Review Frontend & Dekomposisi Showcase** *(Dalam Antrean)*
+- [x] **Fase 7: Resolusi Temuan Review Frontend & Dekomposisi Showcase** *(Selesai)*
 - [ ] **Fase 8: Automasi Pengujian Unit Matematis (Vitest)** *(Dalam Antrean)*
 - [ ] **Fase 9: Penguatan Strict Typing & Standarisasi Plugin Node/TS** *(Dalam Antrean)*
 - [x] **Fase 10: SDLC Planning & Kontrak Domain Wedding Platform** *(Selesai)*
@@ -24,18 +24,19 @@ Daftar tugas terstruktur untuk platform portofolio dan showcase arsitektur [dian
 ## 🚀 Fase Aktif & Item Dalam Antrean
 
 ### 📌 Fase 7: Resolusi Temuan Review Frontend & Dekomposisi Showcase
-- [ ] **Dekomposisi Monolit Showcase ([`app/pages/about.vue`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/about.vue#L1-L812) — 812 baris)**
-  - [ ] Ekstraksi bagian Swiper Carousel ke `app/components/showcase/ShowcaseSwiper.vue`.
-  - [ ] Ekstraksi demo Headless UI (Switch, Disclosure, Menu, Modal) ke `app/components/showcase/ShowcaseHeadlessUi.vue`.
-  - [ ] Ekstraksi form validasi Zod ke `app/components/showcase/ShowcaseZodForm.vue`.
-  - [ ] Ekstraksi interaksi Axios & SweetAlert2 ke `app/components/showcase/ShowcaseAxios.vue`.
-  - [ ] Rampingkan `app/pages/about.vue` menjadi orkestrator presenter (< 150 baris).
-- [ ] **Pencegahan Hydration Text Mismatch ([`app/pages/about.vue:684`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/about.vue#L684))**
-  - [ ] Bungkus interpolasi `{{ now }}` dengan tag `<ClientOnly>` dan sediakan skeleton placeholder fallback.
-- [ ] **Stabilisasi Virtual DOM Key Matriks TOPSIS ([`app/pages/portofolio/topsis.vue:150,154`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/portofolio/topsis.vue#L150))**
-  - [ ] Ganti binding `:key="criterion.name"` menjadi `:key="criterion.id"` untuk mencegah collision saat nama kriteria bernilai sama.
-- [ ] **Isolasi Request Showcase Eksternal ([`app/pages/about.vue:77`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/about.vue#L77))**
-  - [ ] Ganti endpoint `jsonplaceholder.typicode.com` dengan mock internal Nitro server route (`/api/demo`).
+- [x] **Dekomposisi Monolit Showcase ([`app/pages/about.vue`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/about.vue#L1-L812) — 812 baris ➔ 60 baris)**
+  - [x] Ekstraksi bagian Swiper Carousel ke `app/components/showcase/ShowcaseSwiper.vue`.
+  - [x] Ekstraksi demo Headless UI (Switch, Disclosure, Menu, Modal) ke `app/components/showcase/ShowcaseHeadlessUi.vue`.
+  - [x] Ekstraksi form validasi Zod ke `app/components/showcase/ShowcaseZodForm.vue`.
+  - [x] Ekstraksi interaksi Axios & SweetAlert2 ke `app/components/showcase/ShowcaseAxios.vue`.
+  - [x] Ekstraksi komponen pendukung `ShowcaseTailwindColors.vue`, `ShowcaseVueUse.vue`, `ShowcasePinia.vue`, `ShowcaseSweetAlert.vue`, dan `ShowcaseDayjs.vue`.
+  - [x] Rampingkan `app/pages/about.vue` menjadi orkestrator presenter (< 60 baris).
+- [x] **Pencegahan Hydration Text Mismatch ([`app/pages/about.vue:684`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/about.vue#L684))**
+  - [x] Bungkus interpolasi `{{ now }}` dan relative time dengan tag `<ClientOnly>` dan sediakan skeleton placeholder fallback.
+- [x] **Stabilisasi Virtual DOM Key Matriks TOPSIS ([`app/pages/portofolio/topsis.vue:150,154`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/portofolio/topsis.vue#L150))**
+  - [x] Ganti binding `:key="criterion.name"` menjadi `:key="criterion.id"` untuk mencegah collision saat nama kriteria bernilai sama.
+- [x] **Isolasi Request Showcase Eksternal ([`app/pages/about.vue:77`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/pages/about.vue#L77))**
+  - [x] Ganti endpoint eksternal dengan mock internal Nitro server route (`server/api/demo.get.ts`).
 
 ---
 
