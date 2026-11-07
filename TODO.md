@@ -1,6 +1,6 @@
 # 📋 Engineering TODO & Quality Roadmap
 
-Daftar tugas terstruktur untuk platform portofolio dan showcase arsitektur [dianadi021.github.io](https://dianadi021.github.io), disusun berdasarkan temuan **SDLC Audit**, **Code Review Frontend Web**, dan **Code Review TypeScript/Node**.
+Daftar tugas terstruktur untuk platform portofolio dan showcase arsitektur [dianadi021.github.io](https://dianadi021.github.io), disusun berdasarkan temuan **SDLC Audit**, **Code Review Frontend Web**, **Code Review TypeScript/Node**, dan **SDLC Planning Wedding Platform**.
 
 ---
 
@@ -16,6 +16,8 @@ Daftar tugas terstruktur untuk platform portofolio dan showcase arsitektur [dian
 - [ ] **Fase 7: Resolusi Temuan Review Frontend & Dekomposisi Showcase** *(Dalam Antrean)*
 - [ ] **Fase 8: Automasi Pengujian Unit Matematis (Vitest)** *(Dalam Antrean)*
 - [ ] **Fase 9: Penguatan Strict Typing & Standarisasi Plugin Node/TS** *(Dalam Antrean)*
+- [x] **Fase 10: SDLC Planning & Kontrak Domain Wedding Platform** *(Selesai)*
+- [ ] **Fase 11: Implementasi Delivery Layout Wedding Invitation (Scrollytelling)** *(Dalam Antrean)*
 
 ---
 
@@ -62,6 +64,31 @@ Daftar tugas terstruktur untuk platform portofolio dan showcase arsitektur [dian
 
 ---
 
+### 📌 Fase 11: Implementasi Delivery Layout Wedding Invitation (Vertical Scrollytelling)
+- [ ] **Komponen Cover Gate & Amplop Pembuka (`app/components/wedding/WeddingCoverGate.vue`)**
+  - [ ] Implementasi interaksi klik "Buka Undangan" untuk mentransisikan gate status dari `LOCKED_COVER` ke `OPENED_UNLOCKED`.
+  - [ ] Parsing nama tamu dari URL query parameter (`?to=...`) dengan fallback aman `"Tamu Undangan"` dan sanitasi XSS.
+- [ ] **Komponen Floating Audio Player (`app/components/wedding/WeddingAudioPlayer.vue`)**
+  - [ ] Integrasi pemutaran audio latar setelah transisi `OPENED_UNLOCKED` dengan penanganan fallback status `BLOCKED_AUTOPLAY`.
+  - [ ] Tombol toggle putar/jeda mengambang (*floating circular vinyl button*).
+- [ ] **Komponen Profil Mempelai & Rincian Acara (`app/components/wedding/WeddingCouple.vue`, `WeddingEventSchedule.vue`)**
+  - [ ] Tampilan profil kedua mempelai, foto, dan informasi keluarga besar.
+  - [ ] Informasi agenda akad dan resepsi dengan tombol tautan langsung ke Google Maps & *Add to Google Calendar*.
+- [ ] **Komponen Live Countdown Waktu Acara (`app/components/wedding/WeddingCountdown.vue`)**
+  - [ ] Hitung mundur reaktif (hari, jam, menit, detik) dengan pembungkus `<ClientOnly>` untuk mencegah SSR *hydration mismatch*.
+- [ ] **Komponen Formulir RSVP & Buku Tamu (`app/components/wedding/WeddingRsvp.vue`)**
+  - [ ] Formulir kehadiran dan ucapan doa dengan validasi skema Zod.
+  - [ ] Penyimpanan entri ucapan secara reaktif pada `useLocalStorage` dengan ID deterministik.
+- [ ] **Komponen Amplop Digital & Salin Rekening (`app/components/wedding/WeddingGift.vue`)**
+  - [ ] Informasi nomor rekening bank / QRIS dengan aksi salin clipboard instan via `useClipboard` dan alert toast.
+- [ ] **Halaman Rute Undangan Utama (`app/pages/wedding.vue`)**
+  - [ ] Komposisi terpadu seluruh subkomponen dalam tata letak vertikal mulus (*Vertical Scrollytelling*).
+  - [ ] Pendaftaran shortcut rute baru ke [CommandPalette.vue](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/components/ui/CommandPalette.vue).
+- [ ] **Verifikasi & Quality Gate**
+  - [ ] Validasi responsivitas tata letak pada viewport seluler dan kompilasi statis `pnpm run typecheck` (0 error).
+
+---
+
 ## 🏛️ Rekam Jejak Fase Selesai
 
 ### ✅ Fase 0–1: Spesifikasi Kontrak & Type Safety TOPSIS
@@ -78,3 +105,8 @@ Daftar tugas terstruktur untuk platform portofolio dan showcase arsitektur [dian
 - [x] Implementasi Global Command Palette (`Ctrl+K`) menggunakan Headless UI Combobox.
 - [x] Mitigasi CSV Formula Injection (CWE-1236) pada ekspor CSV hasil TOPSIS.
 - [x] Pembersihan direktori sisa scaffolding `src/` dan file konfigurasi Vite lama.
+
+### ✅ Fase 10: SDLC Planning & Kontrak Domain Wedding Platform
+- [x] Penyusunan kontrak antarmuka TypeScript lengkap di [`app/types/wedding.ts`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/app/types/wedding.ts) (`GuestContext`, `CoupleProfile`, `WeddingEventSchedule`, `RsvpEntryRecord`, `InvitationGateState`).
+- [x] Kristalisasi Single Source of Truth baru pada [`CONTEXT.md`](file:///home/wannacry021/Public/Project/Skuad/dianadi021.github.io/CONTEXT.md) memuat 4 invarian kritis wedding dan FSM.
+- [x] Verifikasi tipe statis via `pnpm run typecheck` (0 error, lolos 100%).
